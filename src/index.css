@@ -1,1 +1,81 @@
 @import "tailwindcss";
+
+/* -----------------------------------------------------------------------------
+ * OWN KARMA — Tailwind 4 theme tokens
+ * Palette §10.1  |  Typography §10.2  |  Motion §11
+ * All tokens are additive; Tailwind defaults remain available.
+ * ---------------------------------------------------------------------------*/
+@theme {
+  /* Palette (§10.1) — exactly one non-neutral accent: --color-ok-axis */
+  --color-ok-void: #000000;
+  --color-ok-obsidian: #0A0A0C;
+  --color-ok-stone: #1A1A1D;
+  --color-ok-bone: #F3EFE7;
+  --color-ok-dust: #A9A399;
+  --color-ok-axis: #D4A855;
+  --color-ok-signal: #D4A855;
+  --color-ok-alert: #B25141;
+
+  /* Typography (§10.2) */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", -apple-system, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-hindi: "Noto Sans Devanagari", system-ui, sans-serif;
+
+  /* Display type scale (§10.2) — sits on top of Tailwind defaults */
+  --text-ok-md: 1.75rem;      /* 28px */
+  --text-ok-lg: 2.5rem;       /* 40px */
+  --text-ok-xl: 4rem;         /* 64px */
+  --text-ok-2xl: 7rem;        /* 112px */
+  --text-ok-3xl: 11.25rem;    /* 180px */
+
+  /* Motion (§11) — calm asymmetric ease */
+  --ease-ok: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-ok-short: 600ms;
+  --duration-ok-medium: 1200ms;
+  --duration-ok-scene: 2400ms;
+}
+
+/* -----------------------------------------------------------------------------
+ * Base surface — the void
+ * ---------------------------------------------------------------------------*/
+html,
+body,
+#root {
+  min-height: 100%;
+  background-color: var(--color-ok-void);
+  color: var(--color-ok-bone);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+/* Hindi text auto-switches font whenever lang="hi" is set on an ancestor */
+:lang(hi) {
+  font-family: var(--font-hindi);
+}
+
+/* Selection uses the axis */
+::selection {
+  background-color: var(--color-ok-axis);
+  color: var(--color-ok-void);
+}
+
+/* Keyboard focus ring uses the axis (§13 a11y) */
+:focus-visible {
+  outline: 2px solid var(--color-ok-axis);
+  outline-offset: 2px;
+}
+
+/* Honor prefers-reduced-motion (§11) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
