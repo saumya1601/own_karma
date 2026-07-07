@@ -21,24 +21,61 @@ import { useMediaCapability } from '../hooks/useMediaCapability.js'
  *   - Silhouette + cursor axis overlays.
  *
  * Asset contract (`/public/videos/`):
- *   • hero-main.webm    OPTIONAL VP9 alt (preferred if browser supports).
- *   • hero-main.mp4     REQUIRED H.264 baseline, ≤ 8 MB, 24 fps, keyframe every ≤ 12 frames.
- *   • hero-poster.jpg   REQUIRED first-frame still (SVG fallback ships with the repo).
+ *   • hero-main.mp4           REQUIRED — landscape H.264, ≤ 8 MB, 24 fps, keyframe every ≤ 12 frames.
+ *   • hero-main-mobile.mp4    REQUIRED — portrait H.264, ≤ 6 MB, 24 fps, keyframe every ≤ 12 frames.
+ *   • hero-poster.jpg         REQUIRED — landscape first-frame still.
+ *   • hero-poster-mobile.jpg  REQUIRED — portrait first-frame still.
+ *   Source switching by viewport width (< 768 px → mobile pair). See requirement2 §2c.
  *
  * @param {{ progress?: number }} props
  * @param {number} [props.progress=0] Scroll progress into the parent's sticky track, 0..1.
  */
 export default function HeroFilm({ progress = 0 }) {
-    const { prefersReducedMotion } = useMediaCapability()
+    const { prefersReducedMotion, isMobile } = useMediaCapability()
     const videoRef = useRef(null)
     const rafRef = useRef(0)
     const lastAppliedTimeRef = useRef(-1)
     const [videoState, setVideoState] = useState('loading') // 'loading' | 'ready' | 'error'
+    const [audioMode, setAudioMode] = useState('scrub') // 'scrub' | 'autoplay'
 
-    // ─── Wire load / error listeners ─────────────────────────────────────
+    // Viewport-tailored asset pair. `useMediaCapability` already tracks the
+    // 767 px breakpoint and re-renders on viewport change, so switching between
+    // portrait and landscape rotations "just works" via key= on the elements below.
+    const sources = isMobile
+        ? { video: '/videos/hero-main-mobile.mp4', poster: '/videos/hero-poster-mobile.jpg' }
+        : { video: '/videos/hero-main.mp4', poster: '/videos/hero-poster.jpg' }
+
+    // ─── Sound On toggle: scroll-scrub silent mode ↔ autoplay-loop with sound ─
+    // Called only on user click, so browser autoplay policy allows unmuted play().
+    const toggleAudio = useCallback(() => {
+        const video = videoRef.current
+        if (!video) return
+
+        if (audioMode === 'scrub') {
+            video.currentTime = 0
+            video.play().catch(() => {
+                // Browser blocked unmuted playback — silently revert.
+                setAudioMode('scrub')
+            })
+            setAudioMode('autoplay')
+        } else {
+            video.pause()
+            lastAppliedTimeRef.current = -1 // force next scrub to reapply progress
+            setAudioMode('scrub')
+        }
+    }, [audioMode])
+
+    // ─── Load listeners + release on source-change / unmount ────────────
+    // Dep is `sources.video` so listeners re-attach when the viewport crosses
+    // the mobile breakpoint and React remounts the <video> via its key= prop.
     useEffect(() => {
         const video = videoRef.current
         if (!video) return
+
+        // Reset per-source state.
+        setVideoState('loading')
+        setAudioMode('scrub')
+        lastAppliedTimeRef.current = -1
 
         const onReady = () => setVideoState('ready')
         const onError = () => setVideoState('error')
@@ -60,8 +97,16 @@ export default function HeroFilm({ progress = 0 }) {
             video.removeEventListener('canplay', onReady)
             video.removeEventListener('error', onError)
             clearTimeout(t)
+            cancelAnimationFrame(rafRef.current)
+            try {
+                video.pause()
+                video.removeAttribute('src')
+                video.load()
+            } catch {
+                /* ignore */
+            }
         }
-    }, [])
+    }, [sources.video])
 
     // ─── Drive currentTime from progress (rAF-throttled) ─────────────────
     const scheduleScrub = useCallback((pct) => {
@@ -83,28 +128,12 @@ export default function HeroFilm({ progress = 0 }) {
     }, [])
 
     useEffect(() => {
-        if (videoState !== 'ready') return
+        // Only drive currentTime from scroll when we're in scrub mode.
+        // In autoplay mode the video plays through naturally with audio.
+        if (videoState !== 'ready' || audioMode !== 'scrub') return
         scheduleScrub(progress)
         return () => cancelAnimationFrame(rafRef.current)
-    }, [progress, videoState, scheduleScrub])
-
-    // ─── Pause + release on unmount ──────────────────────────────────────
-    useEffect(() => {
-        // Capture ref at effect run-time; cleanup must not read a stale ref.
-        const video = videoRef.current
-        return () => {
-            cancelAnimationFrame(rafRef.current)
-            if (video) {
-                try {
-                    video.pause()
-                    video.removeAttribute('src')
-                    video.load()
-                } catch {
-                    /* ignore */
-                }
-            }
-        }
-    }, [])
+    }, [progress, videoState, scheduleScrub, audioMode])
 
     // Reduced-motion OR decode failure → poster-only. Video element is never mounted.
     const posterOnly = prefersReducedMotion || videoState === 'error'
@@ -113,7 +142,8 @@ export default function HeroFilm({ progress = 0 }) {
         <div className="absolute inset-0 w-full h-full overflow-hidden bg-ok-void">
             {/* Poster — always mounted; first paint is never black. */}
             <img
-                src="/videos/hero-poster.jpg"
+                key={sources.poster}
+                src={sources.poster}
                 alt=""
                 aria-hidden="true"
                 draggable="false"
@@ -126,21 +156,22 @@ export default function HeroFilm({ progress = 0 }) {
             {/* Scroll-scrubbed film. Skipped entirely in poster-only mode. */}
             {!posterOnly && (
                 <video
+                    key={sources.video}
                     ref={videoRef}
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-900 ease-out ${videoState === 'ready' ? 'opacity-100' : 'opacity-0'
                         }`}
                     style={{ objectPosition: 'center 40%' }}
-                    poster="/videos/hero-poster.jpg"
+                    poster={sources.poster}
                     preload="auto"
-                    muted
+                    muted={audioMode === 'scrub'}
+                    loop={audioMode === 'autoplay'}
                     playsInline
                     disablePictureInPicture
                     disableRemotePlayback
                     crossOrigin="anonymous"
                     aria-hidden="true"
                 >
-                    <source src="/videos/hero-main.webm" type="video/webm" />
-                    <source src="/videos/hero-main.mp4" type="video/mp4" />
+                    <source src={sources.video} type="video/mp4" />
                 </video>
             )}
 
@@ -167,6 +198,19 @@ export default function HeroFilm({ progress = 0 }) {
                 <div className="absolute bottom-6 left-6 md:left-12 font-mono text-[10px] tracking-[0.3em] text-ok-axis/50 uppercase select-none">
                     Loading film…
                 </div>
+            )}
+
+            {/* Sound On toggle — flips silent scroll-scrub ↔ autoplay-loop with sound. */}
+            {!posterOnly && videoState === 'ready' && (
+                <button
+                    type="button"
+                    onClick={toggleAudio}
+                    className="absolute bottom-6 left-6 md:left-12 z-30 flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] uppercase select-none transition-colors text-ok-axis/60 hover:text-ok-axis focus-visible:outline focus-visible:outline-ok-axis focus-visible:outline-offset-4"
+                    aria-label={audioMode === 'scrub' ? 'Turn sound on and play the film' : 'Turn sound off and return to scroll-scrub'}
+                >
+                    <span aria-hidden="true" className="text-base leading-none">{audioMode === 'scrub' ? '◇' : '◆'}</span>
+                    <span>Sound {audioMode === 'scrub' ? 'On' : 'Off'}</span>
+                </button>
             )}
         </div>
     )

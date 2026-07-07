@@ -111,9 +111,9 @@ export default function Home() {
         This page begins with a cinematic alignment film. As you scroll, a human silhouette passes through 10 collapsing realms: Void Birth, Netherworld, Desert, Water, Forest, Lava, Ice Shatter, Galaxy, Sun, and Lock. Only after this cinematic resolves does the first hoodie display.
       </div>
 
-      {/* Cinematic Sticky Track — 400vh matches the current 10s hero clip.
-          Bump back to h-[1000vh]-h-[3000vh] when the full 24–30s merged film ships (see _document/requirement2.md §4). */}
-      <div ref={trackRef} className="relative w-full h-[400vh] bg-ok-void">
+      {/* Cinematic Sticky Track — mobile 30 s film uses 1200vh, desktop 30 s film uses 2400vh
+          at natural scroll pace. Adjust proportionally if the merged film runtime changes. */}
+      <div ref={trackRef} className="relative w-full h-[1200vh] md:h-[2400vh] bg-ok-void">
         <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
 
           {/* Cinematic scroll-scrubbed film — see _document/requirement2.md */}

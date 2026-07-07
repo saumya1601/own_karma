@@ -21,17 +21,30 @@ export default function TopNav() {
   const lang = useLangStore((s) => s.lang)
   const toggleLang = useLangStore((s) => s.toggleLang)
 
-  // Hide on scroll-down past 100px; reveal on scroll-up. rAF-throttled.
+  // Hide on scroll-down past 100px; reveal on scroll-up. Prevent jittering with a scroll threshold.
   const [hidden, setHidden] = useState(false)
   useEffect(() => {
     let lastY = window.scrollY
     let ticking = false
+    const threshold = 10 // minimum scroll distance (in px) to trigger show/hide
+
     const onScroll = () => {
       if (ticking) return
       requestAnimationFrame(() => {
         const y = window.scrollY
-        setHidden(y > 100 && y > lastY)
-        lastY = y
+        const deltaY = y - lastY
+
+        if (y <= 100) {
+          setHidden(false)
+          lastY = y
+        } else if (Math.abs(deltaY) > threshold) {
+          if (deltaY > 0) {
+            setHidden(true)
+          } else {
+            setHidden(false)
+          }
+          lastY = y
+        }
         ticking = false
       })
       ticking = true
