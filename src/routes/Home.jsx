@@ -8,7 +8,7 @@ import HeroFilm from '../hero/HeroFilm.jsx'
 import InstagramGrid from '../components/social/InstagramGrid.jsx'
 import { getAll } from '../services/productsAdapter.js'
 import { subscribe } from '../services/waitlistAdapter.js'
-import { useLenis } from '../hooks/useLenis.js'
+import { useLenis, getLenis } from '../hooks/useLenis.js'
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js'
 import { track } from '../lib/track.js'
 
@@ -45,6 +45,31 @@ export default function Home() {
   const [progress, setProgress] = useState(0)
 
   useDocumentTitle('Home')
+
+  const handleAutoplay = () => {
+    const lenis = getLenis()
+    if (lenis) {
+      // Scroll to the end of the cinematic track (#shop-anchor) over 30s
+      lenis.scrollTo('#shop-anchor', {
+        duration: 30,
+        easing: (t) => t, // linear
+      })
+    }
+  }
+
+  const handleOnScroll = () => {
+    const lenis = getLenis()
+    if (lenis) {
+      // Scroll down slightly (150px) to start the experience
+      lenis.scrollTo(150, {
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // smooth exponential ease
+      })
+    }
+  }
+
+  const overlayOpacity = Math.max(0, 1 - progress * 20)
+  const isOverlayVisible = overlayOpacity > 0
 
   // Track scroll progress along the 1000vh track
   useLenis(() => {
@@ -148,9 +173,73 @@ export default function Home() {
           </div>
 
           {/* Progress Percent Overlay */}
-          <div className="absolute bottom-24 right-6 md:right-12 pointer-events-none z-20 font-mono text-[10px] text-ok-axis/60 tracking-[0.2em]">
+          <div className="absolute bottom-6 md:bottom-24 right-6 md:right-12 pointer-events-none z-20 font-mono text-[10px] text-ok-axis/60 tracking-[0.2em]">
             {Math.round(progress * 100)}% ALIGNED
           </div>
+
+          {/* Initial Experience Selector Overlay */}
+          {isOverlayVisible && (
+            <div
+              className={`absolute inset-0 z-30 flex flex-col items-center justify-center bg-ok-void/90 text-center px-6 transition-opacity duration-500 select-none ${
+                progress > 0 ? 'pointer-events-none' : 'pointer-events-auto'
+              }`}
+              style={{ opacity: overlayOpacity }}
+            >
+              {/* Central Technical Content Wrapper (No box/borders) */}
+              <div className="relative max-w-2xl w-full text-center -translate-y-12 transition-all duration-300">
+                
+                {/* Top decorative dot and code line */}
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <div className="w-1.5 h-1.5 rounded-full bg-ok-axis animate-pulse" />
+                  <span className="font-mono text-[10px] tracking-[0.5em] text-ok-axis uppercase">
+                    SYS.EXEC // CONCEPT_01
+                  </span>
+                </div>
+
+                {/* Main Title */}
+                <h1 className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl text-ok-bone tracking-[0.18em] font-light uppercase leading-none mb-6 whitespace-nowrap">
+                  OWN KARMA
+                </h1>
+
+                {/* Subtle Divider Line */}
+                <div className="w-20 h-px bg-ok-axis/30 mx-auto mb-6" />
+
+                {/* Description */}
+                <p className="font-sans text-xs md:text-sm text-ok-dust leading-relaxed tracking-wider max-w-lg mx-auto mb-1">
+                  "Not worn to be seen. Worn to stand correctly."
+                </p>
+                <p className="font-mono text-[10px] text-ok-axis/70 tracking-[0.2em] max-w-lg mx-auto mb-10">
+                  Align the axis. Observe the 10 collapsing realms.
+                </p>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full max-w-sm mx-auto pointer-events-auto">
+                  <button
+                    onClick={handleAutoplay}
+                    className="group relative w-full sm:w-auto px-8 py-3.5 text-[10px] font-mono tracking-[0.25em] bg-ok-axis text-ok-void hover:bg-ok-bone hover:text-ok-void active:scale-[0.98] transition-all duration-300 uppercase cursor-pointer font-bold shadow-lg shadow-ok-axis/10"
+                  >
+                    Auto Play
+                  </button>
+                  <button
+                    onClick={handleOnScroll}
+                    className="w-full sm:w-auto px-8 py-3.5 text-[10px] font-mono tracking-[0.25em] border border-ok-stone/80 text-ok-dust hover:border-ok-axis hover:text-ok-axis active:scale-[0.98] transition-all duration-300 uppercase cursor-pointer"
+                  >
+                    On Scroll
+                  </button>
+                </div>
+              </div>
+
+              {/* Bottom Mouse Scroll Indicator */}
+              <div className="absolute bottom-10 flex flex-col items-center gap-2">
+                <span className="font-mono text-[8px] tracking-[0.4em] text-ok-dust/40 uppercase">
+                  Scroll to enter directly
+                </span>
+                <div className="w-4 h-6 border border-ok-dust/20 rounded-full flex justify-center p-1">
+                  <div className="w-0.5 h-1.5 bg-ok-axis/50 rounded-full animate-bounce" />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

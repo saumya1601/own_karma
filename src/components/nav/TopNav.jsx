@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ShoppingBag, Volume2, VolumeOff } from 'lucide-react'
@@ -21,48 +20,13 @@ export default function TopNav() {
   const lang = useLangStore((s) => s.lang)
   const toggleLang = useLangStore((s) => s.toggleLang)
 
-  // Hide on scroll-down past 100px; reveal on scroll-up. Prevent jittering with a scroll threshold.
-  const [hidden, setHidden] = useState(false)
-  useEffect(() => {
-    let lastY = window.scrollY
-    let ticking = false
-    const threshold = 10 // minimum scroll distance (in px) to trigger show/hide
-
-    const onScroll = () => {
-      if (ticking) return
-      requestAnimationFrame(() => {
-        const y = window.scrollY
-        const deltaY = y - lastY
-
-        if (y <= 100) {
-          setHidden(false)
-          lastY = y
-        } else if (Math.abs(deltaY) > threshold) {
-          if (deltaY > 0) {
-            setHidden(true)
-          } else {
-            setHidden(false)
-          }
-          lastY = y
-        }
-        ticking = false
-      })
-      ticking = true
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
   return (
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50',
         'flex items-center justify-between',
         'h-16 px-6 md:px-12',
-        'bg-ok-void/80 backdrop-blur-md',
-        'border-b border-ok-stone/30',
-        'transition-transform duration-500 ease-ok',
-        hidden && '-translate-y-full',
+        'bg-transparent',
       )}
     >
       {/* Logo */}

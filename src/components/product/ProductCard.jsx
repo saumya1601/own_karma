@@ -128,11 +128,13 @@ function HoodieMesh({ rotating }) {
     const clonedScene = useMemo(() => scene.clone(true), [scene])
     const ref = useRef(null)
 
-    useFrame((_, delta) => {
+    useFrame((state, delta) => {
         if (!ref.current) return
-        if (rotating) {
-            ref.current.rotation.y += delta * 0.4
-        }
+        // Auto-rotates at 0.25 speed, speeds up to 0.75 on hover
+        const speed = rotating ? 0.75 : 0.25
+        ref.current.rotation.y += delta * speed
+        // Subtle premium floating/bobbing effect
+        ref.current.position.y = Math.sin(state.clock.getElapsedTime() * 1.5) * 0.04
     })
 
     return (

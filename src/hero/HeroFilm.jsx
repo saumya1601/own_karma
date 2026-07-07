@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { useMediaCapability } from '../hooks/useMediaCapability.js'
+import { useSoundStore } from '../stores/soundStore.js'
 
 /**
  * HeroFilm — scroll-scrubbed cinematic video hero.
@@ -37,6 +38,8 @@ export default function HeroFilm({ progress = 0 }) {
     const lastAppliedTimeRef = useRef(-1)
     const [videoState, setVideoState] = useState('loading') // 'loading' | 'ready' | 'error'
     const [audioMode, setAudioMode] = useState('scrub') // 'scrub' | 'autoplay'
+    const isMuted = useSoundStore((s) => s.isMuted)
+    const toggleMute = useSoundStore((s) => s.toggleMute)
 
     // Viewport-tailored asset pair. `useMediaCapability` already tracks the
     // 767 px breakpoint and re-renders on viewport change, so switching between
@@ -58,12 +61,28 @@ export default function HeroFilm({ progress = 0 }) {
                 setAudioMode('scrub')
             })
             setAudioMode('autoplay')
+            // Unmute the site globally so they can hear the film
+            if (isMuted) {
+                toggleMute()
+            }
         } else {
             video.pause()
             lastAppliedTimeRef.current = -1 // force next scrub to reapply progress
             setAudioMode('scrub')
         }
-    }, [audioMode])
+    }, [audioMode, isMuted, toggleMute])
+
+    // If the site is muted globally, force video to pause and return to scroll-scrub mode.
+    useEffect(() => {
+        if (isMuted && audioMode === 'autoplay') {
+            const video = videoRef.current
+            if (video) {
+                video.pause()
+                lastAppliedTimeRef.current = -1
+            }
+            setAudioMode('scrub')
+        }
+    }, [isMuted, audioMode])
 
     // ─── Load listeners + release on source-change / unmount ────────────
     // Dep is `sources.video` so listeners re-attach when the viewport crosses
@@ -127,9 +146,26 @@ export default function HeroFilm({ progress = 0 }) {
         })
     }, [])
 
+    // Sync video play/pause with audioMode state
+    useEffect(() => {
+        const video = videoRef.current
+        if (!video || videoState !== 'ready') return
+
+        if (audioMode === 'autoplay') {
+            if (video.paused) {
+                video.play().catch(() => {
+                    setAudioMode('scrub')
+                })
+            }
+        } else {
+            if (!video.paused) {
+                video.pause()
+            }
+        }
+    }, [audioMode, videoState])
+
     useEffect(() => {
         // Only drive currentTime from scroll when we're in scrub mode.
-        // In autoplay mode the video plays through naturally with audio.
         if (videoState !== 'ready' || audioMode !== 'scrub') return
         scheduleScrub(progress)
         return () => cancelAnimationFrame(rafRef.current)
@@ -163,7 +199,7 @@ export default function HeroFilm({ progress = 0 }) {
                     style={{ objectPosition: 'center 40%' }}
                     poster={sources.poster}
                     preload="auto"
-                    muted={audioMode === 'scrub'}
+                    muted={isMuted || audioMode === 'scrub'}
                     loop={audioMode === 'autoplay'}
                     playsInline
                     disablePictureInPicture
