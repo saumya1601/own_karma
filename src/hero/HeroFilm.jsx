@@ -113,7 +113,7 @@ export default function HeroFilm({ progress = 0 }) {
         <div className="absolute inset-0 w-full h-full overflow-hidden bg-ok-void">
             {/* Poster — always mounted; first paint is never black. */}
             <img
-                src="/videos/hero-poster.svg"
+                src="/videos/hero-poster.jpg"
                 alt=""
                 aria-hidden="true"
                 draggable="false"
@@ -130,7 +130,7 @@ export default function HeroFilm({ progress = 0 }) {
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-900 ease-out ${videoState === 'ready' ? 'opacity-100' : 'opacity-0'
                         }`}
                     style={{ objectPosition: 'center 40%' }}
-                    poster="/videos/hero-poster.svg"
+                    poster="/videos/hero-poster.jpg"
                     preload="auto"
                     muted
                     playsInline
