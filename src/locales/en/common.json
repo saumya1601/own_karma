@@ -1,0 +1,116 @@
+{
+  "brand": "OWN KARMA",
+  "tagline": "Not worn to be seen. Worn to stand correctly.",
+
+  "nav": {
+    "shop": "Shop",
+    "story": "Story",
+    "waitlist": "Waitlist",
+    "about": "About",
+    "contact": "Contact",
+    "cart": "Cart",
+    "search": "Search",
+    "lang_toggle": "हिन्दी",
+    "sound_on": "Sound On",
+    "sound_off": "Sound Off"
+  },
+
+  "footer": {
+    "cool_stuff": "Cool Stuff",
+    "boring_stuff": "Boring Stuff",
+    "all_products": "All Products",
+    "hoodies": "Hoodies",
+    "tees": "Tees",
+    "pants": "Pants",
+    "caps": "Caps",
+    "accessories": "Accessories",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "shipping_policy": "Shipping Policy",
+    "returns": "Returns & Exchanges",
+    "whatsapp": "WhatsApp Us",
+    "copyright": "© {{year}} OWN KARMA. All rights reserved.",
+    "tagline_footer": "Black. Silence. End."
+  },
+
+  "cart": {
+    "title": "Cart",
+    "empty": "The axis holds nothing yet.",
+    "subtotal": "Subtotal",
+    "shipping_note": "Calculated at checkout",
+    "checkout": "Checkout",
+    "remove": "Remove",
+    "qty": "Qty"
+  },
+
+  "product": {
+    "add_to_cart": "Add to Cart",
+    "notify_me": "Notify Me",
+    "sold_out": "Sold Out",
+    "last_few_left": "Last Few Left",
+    "in_stock": "In Stock",
+    "coming_soon": "Coming Soon",
+    "new": "New",
+    "serial_line": "Yours will be etched with a unique number: {{prefix}}-####/{{total}}",
+    "materials_care": "Materials & Care",
+    "related": "You May Also Like",
+    "size": "Size",
+    "color": "Color",
+    "serial_explainer": "Every OWN KARMA piece is laser-serialized inside the neck tape. Your number is yours alone."
+  },
+
+  "checkout": {
+    "title": "Checkout",
+    "step_address": "Address",
+    "step_shipping": "Shipping",
+    "step_payment": "Payment",
+    "name": "Full Name",
+    "phone": "Phone (+91)",
+    "pincode": "Pincode",
+    "city": "City",
+    "state": "State",
+    "address_line1": "Address Line 1",
+    "address_line2": "Address Line 2 (Optional)",
+    "shipping_standard": "Standard — Free (4–7 days)",
+    "shipping_express": "Express — ₹149 (2–3 days)",
+    "payment_razorpay": "Pay Online (Razorpay)",
+    "payment_cod": "Cash on Delivery",
+    "place_order": "Place Order",
+    "success_title": "Alignment Complete.",
+    "success_order_id": "Order #{{orderId}}",
+    "success_serial": "Your serial allocations:",
+    "continue_shopping": "Continue Shopping"
+  },
+
+  "waitlist": {
+    "title": "Enter the Next Collapse",
+    "email_placeholder": "your@email.com",
+    "submit": "Join Waitlist",
+    "success": "You're on the list.",
+    "already": "Already on the list."
+  },
+
+  "story": {
+    "title": "The Story",
+    "read_more": "Read the Full Story"
+  },
+
+  "about": {
+    "title": "About OWN KARMA"
+  },
+
+  "contact": {
+    "title": "Contact",
+    "form_name": "Your Name",
+    "form_email": "Your Email",
+    "form_message": "Message",
+    "form_submit": "Send",
+    "whatsapp_cta": "Chat on WhatsApp"
+  },
+
+  "page": {
+    "not_found_title": "404",
+    "not_found_text": "This realm doesn't exist.",
+    "back_home": "Return to the Axis"
+  }
+}

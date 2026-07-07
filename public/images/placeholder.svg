@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Image pending — OWN KARMA">
+  <rect width="400" height="500" fill="#0A0A0C"/>
+  <line x1="200" y1="0" x2="200" y2="500" stroke="#D4A855" stroke-width="1" opacity="0.4"/>
+  <text x="200" y="252" fill="#A9A399" font-family="ui-monospace, JetBrains Mono, monospace" font-size="11" text-anchor="middle" letter-spacing="4">OWN KARMA</text>
+  <text x="200" y="274" fill="#A9A399" font-family="ui-monospace, JetBrains Mono, monospace" font-size="8" text-anchor="middle" letter-spacing="2" opacity="0.55">IMAGE PENDING</text>
+</svg>
