@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ProductCard from '../components/product/ProductCard.jsx'
-import HeroCanvas from '../hero/HeroCanvas.jsx'
+import HeroFilm from '../hero/HeroFilm.jsx'
 import InstagramGrid from '../components/social/InstagramGrid.jsx'
 import { getAll } from '../services/productsAdapter.js'
 import { subscribe } from '../services/waitlistAdapter.js'
@@ -108,25 +108,22 @@ export default function Home() {
 
       {/* Screen reader description transcript */}
       <div className="sr-only">
-        This page begins with a 3D cinematic alignment. As you scroll, a human silhouette passes through 10 collapsing realms: Void Birth, Netherworld, Desert, Water, Forest, Lava, Ice Shatter, Galaxy, Sun, and Lock. Only after this cinematic resolves does the first hoodie display.
+        This page begins with a cinematic alignment film. As you scroll, a human silhouette passes through 10 collapsing realms: Void Birth, Netherworld, Desert, Water, Forest, Lava, Ice Shatter, Galaxy, Sun, and Lock. Only after this cinematic resolves does the first hoodie display.
       </div>
 
       {/* Cinematic Sticky Track */}
       <div ref={trackRef} className="relative w-full h-[1000vh] bg-ok-void">
         <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
 
-          {/* 3D Canvas */}
+          {/* Cinematic scroll-scrubbed film — see _document/requirement2.md */}
           <div className="absolute inset-0 w-full h-full z-0">
-            <HeroCanvas progress={progress} />
+            <HeroFilm progress={progress} />
           </div>
 
           {/* Centered Golden Axis snappable cursor strip (Invisible DOM element for snapping) */}
           <div data-cursor-axis className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-1 pointer-events-none z-10" />
 
-          {/* Centered Human Silhouette overlay */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-            <div className="w-16 h-48 bg-ok-bone/5 backdrop-blur-[1px] border border-ok-bone/10 rounded-full animate-pulse" />
-          </div>
+
 
           {/* Realm Cues typography */}
           <div className="absolute bottom-24 left-6 md:left-12 right-6 pointer-events-none z-20 select-none">

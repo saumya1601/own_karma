@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    OWN KARMA — hero-poster.svg  (placeholder)
+    Ships with the repo so `<HeroFilm>` never renders a black viewport before the
+    real film + JPEG poster are delivered by the client.
+    Replace with hero-poster.jpg (1920×1080) when real assets arrive.
+    Contract: /public/videos/README.md
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="poster-title">
+    <title id="poster-title">A single vertical golden axis on a black field. Landing hero placeholder.</title>
+
+    <!-- Void base -->
+    <defs>
+        <radialGradient id="void" cx="50%" cy="55%" r="70%">
+            <stop offset="0%" stop-color="#0A0A0A" />
+            <stop offset="60%" stop-color="#000000" />
+            <stop offset="100%" stop-color="#000000" />
+        </radialGradient>
+
+        <!-- Axis gradient — dim at the poles, bright at center -->
+        <linearGradient id="axis" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stop-color="#D4A855" stop-opacity="0" />
+            <stop offset="30%"  stop-color="#D4A855" stop-opacity="0.55" />
+            <stop offset="50%"  stop-color="#D4A855" stop-opacity="1" />
+            <stop offset="70%"  stop-color="#D4A855" stop-opacity="0.55" />
+            <stop offset="100%" stop-color="#D4A855" stop-opacity="0" />
+        </linearGradient>
+
+        <!-- Soft glow around the axis -->
+        <linearGradient id="axisGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stop-color="#D4A855" stop-opacity="0" />
+            <stop offset="50%"  stop-color="#D4A855" stop-opacity="0.18" />
+            <stop offset="100%" stop-color="#D4A855" stop-opacity="0" />
+        </linearGradient>
+
+        <filter id="soften" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="12" />
+        </filter>
+    </defs>
+
+    <!-- Full-bleed void -->
+    <rect width="1920" height="1080" fill="url(#void)" />
+
+    <!-- Wide diffuse halo behind the axis
+    <rect x="920" y="0" width="80" height="1080" fill="url(#axisGlow)" filter="url(#soften)" />
+    -->
+
+    <!-- The axis itself — a 2px vertical line, gold, top-to-bottom fade
+    <rect x="959" y="0" width="2" height="1080" fill="url(#axis)" />
+    -->
+
+    <!-- Subtle horizon line, barely-there -->
+    <line x1="0" y1="756" x2="1920" y2="756" stroke="#1A1A1D" stroke-width="1" opacity="0.6" />
+
+    <!-- Small centered word-mark below center -->
+    <g transform="translate(960 900)" text-anchor="middle" font-family="'Courier New', ui-monospace, monospace" fill="#D4A855" opacity="0.35">
+        <text font-size="14" letter-spacing="6">OWN KARMA</text>
+    </g>
+</svg>
