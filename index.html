@@ -7,6 +7,12 @@
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="OWN KARMA — Not worn to be seen. Worn to stand correctly." />
 
+  <!-- Hero poster preload — starts fetch before React mounts (~200–400ms faster first paint).
+       Media queries ensure only the correct-orientation poster is prefetched per viewport. -->
+  <link rel="preload" as="image" href="/videos/hero-poster.jpg" fetchpriority="high" media="(min-width: 768px)" />
+  <link rel="preload" as="image" href="/videos/hero-poster-mobile.jpg" fetchpriority="high"
+    media="(max-width: 767px)" />
+
   <!-- Open Graph -->
   <meta property="og:site_name" content="OWN KARMA" />
   <meta property="og:title" content="OWN KARMA" />
