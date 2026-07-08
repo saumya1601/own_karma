@@ -32,6 +32,11 @@ export const storyConcepts = {
     subtitle: 'The Blueprint',
     quote: 'The universe exists because you observe it.',
     philosophy: 'Most brands say you are small in the universe. OWN KARMA says: The universe exists because you observe it. Human existence is older than the galaxy.',
+    video: {
+      src: '/videos/story-divine.mp4',
+      poster: '/videos/story-divine-poster.jpg',
+      label: 'Concept 02 film — cosmic reversal, human contains the galaxy',
+    },
     timeline: [
       { time: '0–5s', name: 'The False Scale', desc: "Black void. A massive hyper-realistic galaxy slowly rotates. Camera pulls back. Text: 'Infinite.'" },
       { time: '5–10s', name: 'Human Scale Shift', desc: "A tiny human silhouette appears in the foreground. The galaxy is rotating inside the outline of the human chest. Text: 'Or so you thought.'" },

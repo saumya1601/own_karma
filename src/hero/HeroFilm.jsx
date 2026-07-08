@@ -30,16 +30,18 @@ import { useSoundStore } from '../stores/soundStore.js'
  *
  * @param {{ onProgress?: (progress: number) => void }} props
  */
-export default function HeroFilm({ onProgress }) {
+export default function HeroFilm({ onProgress, src, poster }) {
     const { prefersReducedMotion, isMobile } = useMediaCapability()
     const videoRef = useRef(null)
     const [videoState, setVideoState] = useState('loading') // 'loading' | 'ready' | 'error'
     const isMuted = useSoundStore((s) => s.isMuted)
 
     // Viewport-tailored asset pair
-    const sources = isMobile
-        ? { video: '/videos/hero-main-mobile.mp4', poster: '/videos/hero-poster-mobile.jpg' }
-        : { video: '/videos/hero-main.mp4', poster: '/videos/hero-poster.jpg' }
+    const sources = src && poster
+        ? { video: src, poster }
+        : (isMobile
+            ? { video: '/videos/hero-main-mobile.mp4', poster: '/videos/hero-poster-mobile.jpg' }
+            : { video: '/videos/hero-main.mp4', poster: '/videos/hero-poster.jpg' })
 
     const handleTimeUpdate = useCallback((e) => {
         const video = e.currentTarget

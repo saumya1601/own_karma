@@ -27,8 +27,8 @@ Universal Rule:            No visible product until beat 5 INFINITE GALAXY CLOTH
 STYLE LOCK (do not deviate):
 - 24 fps native, no frame interpolation.
 - Every motion uses cubic-bezier(0.65, 0, 0.35, 1) easing — no linear motion.
-- Last 6 frames of this clip: hold the settled state, zero motion (dead-air pause), UNLESS the clip explicitly hands off mid-motion for continuity.
-- Axis: vertical golden beam at center frame X, 2 px core + 8 px anisotropic glow, color #D4A855, brightest at Y=40%. The HUMAN'S SPINE IS THE AXIS — but the axis only appears from Clip 2 onward (it emerges as the spine glow in beat 3).
+- Last 6 frames of this clip: hold the settled state, zero motion (dead-air pause) — EXCEPT when this specific clip's prompt says 'ends MID-MOTION', in which case continue the described motion through the final frame.
+- Axis: vertical golden beam at center frame X, 2 px core + 8 px anisotropic glow, color #D4A855, brightest at Y=40%. The HUMAN'S SPINE IS THE AXIS — but the axis only appears from beat 3 onward (first drawn in Clip 2 starting at its 2.5 s mark, i.e., 10 s into the film).
 - Human silhouette: backlit, rim-lit gold at shoulders fading to black at feet, 7-head-tall, arms at sides, feet touching, absolutely motionless.
 - Palette: void black + gold #D4A855 + deep cosmic blue-black #0B1220 (≤5% sat) for nebulae + bone off-white capped Y-luma 0.86 for stars. Nothing else.
 - Grade: ARRI Log C → Rec.709 film curve, 3200K warm tint, +5 magenta, 0.3% monochrome film grain.
@@ -108,6 +108,11 @@ FORMAT: MP4 H.264, 1920×1080, 24 fps native, ≤ 60 s. Audio optional (kept for
 
 ---
 
+> [!NOTE]
+> **Timing note:** The master prompt above uses canonical timings from `own_karma.md` (e.g., SCALE DESTROYED at 35–45 s, pull-back at frames 840–870). The recommended 8-clip split (§2) shifts some beats by up to 2.5 s to accommodate dead-air buffer holds at clip boundaries — e.g., the pull-back becomes frames 900–930 of the merged film. The per-clip prompts in §2 contain the correct shifted timings; use those when generating.
+
+---
+
 ## 2. Veo 3 8-clip split (canonical, seam-safe — RECOMMENDED for Flow / Veo 3 free / most tools)
 
 **Why 8 clips × 7.5 s instead of 6 × 10 s:**
@@ -140,6 +145,7 @@ FORMAT: MP4 H.264, 1920×1080, 24 fps native, ≤ 60 s. Audio optional (kept for
    ffmpeg -sseof -0.05 -i clip-divine-N.mp4 -vframes 1 -q:v 1 handoff-divine-N.png
    ```
 6. **Visually verify** the extracted PNG matches the "CLOSING FRAME" description at the end of each clip's prompt block below. If it doesn't match, regenerate that clip before continuing — otherwise the seam will show in the final merged film.
+7. **Seed / CFG guidance:** If your tool supports seed locking, use the same seed for all 8 clips to improve style coherence. If it supports CFG/guidance scale, use 7–9 for cinematic consistency.
 
 ---
 
@@ -191,7 +197,7 @@ ffmpeg -sseof -0.05 -i clip-divine-1.mp4 -vframes 1 -q:v 1 handoff-divine-1.png
 ```
 CLIP 2 OF 8 (Divine). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Massive galaxy rotated ~40° clockwise at center-frame filling ~60% of frame width, half-resolved backlit human silhouette (~50% opacity) at center-frame Y=40%, faint gold rim-light (10% opacity) at silhouette's shoulders. No golden axis yet.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Massive galaxy rotated ~40° clockwise from original orientation at center-frame filling ~60% of frame width, half-resolved backlit human silhouette (~50% opacity) at center-frame Y=40%, faint gold rim-light (10% opacity) at silhouette's shoulders. No golden axis yet.
 
 BEAT MAP:
 
@@ -323,13 +329,13 @@ BEAT MAP:
 0.0–5.0 s (frames 0–120) — INFINITE GALAXY CLOTH (final 120 frames of canonical 240-frame beat)
   Frames 0–48 (2 s): weaving continues — hoodie extends down to cover full arms and reach hem at the silhouette's waist. Sleeves complete by frame 48.
   Frames 48–96 (2 s): fabric detail densifies — subtle gold thread patterns become more defined across the entire garment. Neural network in head slowly dims to ~30% opacity (galaxy energy fully absorbed into the fabric). Background blueprint grid finishes dissolving (all remaining grid lines become fabric threads on the hoodie).
-  Frames 96–120 (1 s): hoodie hood optionally forms if silhouette should show hood — otherwise hoodie is a pullover style with the head fully visible. Final weaving passes complete. Hood or head silhouette is fully rendered.
+  Frames 96–120 (1 s): hoodie hood forms over the head — hood is UP for the remainder of the film. Final weaving passes complete. Hooded silhouette is fully rendered.
 
 5.0–7.5 s (frames 120–180) — DEAD-AIR HOLD (buffer for seamless join with Clip 6)
   Frames 120–180: absolutely no motion. Silhouette in completed hoodie holds pose. Camera locked. Neural network in head at low-opacity glow. Faint gold rim-light at shoulders continues. Void black background with the axis extending floor-to-ceiling. This 2.5-second held-stillness gives Clip 6 a clean starting point for the rapid camera pull-back.
 
 CLOSING FRAME (frame 180 — extract as handoff-divine-5.png, verify VERY carefully — Clip 6's rapid camera move MUST start from this exact locked state):
-- Silhouette at center-frame Y=40%, fully clothed in complete hoodie.
+- Silhouette at center-frame Y=40%, occupying ~50% of frame height, fully clothed in complete hoodie (hood UP).
 - Hoodie: deep black fabric with subtle gold thread pattern visible, spine seam is the golden axis, collar snug at neck, sleeves reaching wrists.
 - Head above hoodie collar: neural network subtly glowing at ~30% opacity inside skull outline.
 - Vertical gold axis (spine seam) extends floor-to-ceiling of the frame (from below silhouette's feet through the head to top of frame).
@@ -403,7 +409,7 @@ BEAT MAP:
   Frames 0–60: orbiting galaxies in the background begin to fade toward pure black. Fade is uniform across all galaxies. Cosmic blue-black nebula also fades. By frame 60: galaxies at ~30% opacity, nebula at ~40% opacity.
 
 2.5–5.0 s (frames 60–120) — FULL FADE TO VOID
-  Frames 60–120: galaxies and nebula continue fading. By frame 120: all galaxies fully faded to void black. All nebula faded to void black. Only the silhouette, the gold axis, and faint gold particles suspended around the silhouette remain visible.
+  Frames 60–120: galaxies and nebula continue fading. By frame 120: all galaxies fully faded to void black. All nebula faded to void black. Only the silhouette, the gold axis, and ~20 faint gold particles — remnants of the dissolved galaxies, NOT sparkle effects, each 1–2 px — suspended motionless around the silhouette remain visible.
 
 5.0–7.5 s (frames 120–180) — HELD STILLNESS
   Frames 120–180: absolutely no motion. Silhouette + axis + faint particles held in the void. Very subtle particulate drift (~1 px per 30 frames) at the axis line only — everything else absolutely still. This is the pure "ABSOLUTE SILENCE" beat.
@@ -489,17 +495,17 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";
 ffmpeg -y `
   -i clip-divine-1.mp4 -i clip-divine-2.mp4 -i clip-divine-3.mp4 -i clip-divine-4.mp4 `
   -i clip-divine-5.mp4 -i clip-divine-6.mp4 -i clip-divine-7.mp4 -i clip-divine-8.mp4 `
-  -filter_complex "[0:v][0:a][1:v][1:a][2:v][2:a][3:v][3:a][4:v][4:a][5:v][5:a][6:v][6:a][7:v][7:a]concat=n=8:v=1:a=1[cat][aout];[cat]delogo=x=1110:y=570:w=100:h=100,hqdn3d=1.5:1.5:3:3,scale=1920:1080:flags=lanczos,unsharp=5:5:0.6,eq=contrast=1.06:saturation=1.04:gamma=0.98,fps=24[vout]" `
-  -map "[vout]" -map "[aout]" `
+  -filter_complex "[0:v][1:v][2:v][3:v][4:v][5:v][6:v][7:v]concat=n=8:v=1:a=0[cat];[cat]delogo=x=1110:y=570:w=100:h=100,hqdn3d=1.5:1.5:3:3,scale=1920:1080:flags=lanczos,unsharp=5:5:0.6,eq=contrast=1.06:saturation=1.04:gamma=0.98,fps=24[vout]" `
+  -map "[vout]" `
   -c:v libx264 -profile:v main -tune fastdecode -crf 25 -bf 0 -g 4 -keyint_min 4 -sc_threshold 0 `
-  -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 96k -ac 2 `
+  -pix_fmt yuv420p -movflags +faststart `
   public\videos\story-divine.mp4
 
 # Extract poster from the final held frame (frame 1440 of the merged 60 s film)
 ffmpeg -y -sseof -0.1 -i public\videos\story-divine.mp4 -update 1 -frames:v 1 -q:v 2 public\videos\story-divine-poster.jpg
 ```
 
-**If clips have no audio**, replace the concat filter with `[0:v][1:v][2:v][3:v][4:v][5:v][6:v][7:v]concat=n=8:v=1:a=0[vout]` and drop the `-map "[aout]" -c:a aac -b:a 96k -ac 2` arguments.
+**If clips include audio tracks**, replace the concat filter with `[0:v][0:a][1:v][1:a][2:v][2:a][3:v][3:a][4:v][4:a][5:v][5:a][6:v][6:a][7:v][7:a]concat=n=8:v=1:a=1[cat][aout]`, change the map to `-map "[vout]" -map "[aout]"`, and add `-c:a aac -b:a 96k -ac 2` to the output arguments.
 
 **Adjust `x=1110:y=570:w=100:h=100`** to your actual watermark box (see corner crops above).
 
