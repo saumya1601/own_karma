@@ -41,49 +41,28 @@ const RANGES = [
 ]
 
 export default function Home() {
-  const trackRef = useRef(null)
   const [progress, setProgress] = useState(0)
+  const cuesContainerRef = useRef(null)
+  const ownRef = useRef(null)
+  const karmaRef = useRef(null)
+  const topThingsRef = useRef(null)
+  const bottomThingsRef = useRef(null)
+  const scrollIndicatorRef = useRef(null)
+  const overlayRef = useRef(null)
+  const hasStartedRef = useRef(false)
 
   useDocumentTitle('Home')
 
-  const handleAutoplay = () => {
+  const handleExplore = () => {
     const lenis = getLenis()
     if (lenis) {
-      // Scroll to the end of the cinematic track (#shop-anchor) over 30s
       lenis.scrollTo('#shop-anchor', {
-        duration: 30,
-        easing: (t) => t, // linear
-      })
-    }
-  }
-
-  const handleOnScroll = () => {
-    const lenis = getLenis()
-    if (lenis) {
-      // Scroll down slightly (150px) to start the experience
-      lenis.scrollTo(150, {
-        duration: 1.2,
+        duration: 1.5,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // smooth exponential ease
       })
     }
   }
 
-  const overlayOpacity = Math.max(0, 1 - progress * 20)
-  const isOverlayVisible = overlayOpacity > 0
-
-  // Track scroll progress along the 1000vh track
-  useLenis(() => {
-    if (!trackRef.current) return
-    const rect = trackRef.current.getBoundingClientRect()
-    const scrollY = window.scrollY
-    const start = scrollY + rect.top
-    const height = rect.height - window.innerHeight
-    const current = scrollY - start
-    const pct = Math.max(0, Math.min(1, current / height))
-    setProgress(pct)
-  })
-
-  // Determine active segment index
   const getSegmentIndex = (p) => {
     for (let i = 0; i < RANGES.length; i++) {
       const [start, end] = RANGES[i]
@@ -103,26 +82,85 @@ export default function Home() {
           detail: { segmentIndex }
         })
       )
-      track('hero_scene_reached', { segment: REALMS[segmentIndex].title, scrollPct: Math.round(progress * 100) })
-      if (segmentIndex === 9) {
-        track('hero_completed', { elapsedMs: performance.now() })
-      }
     }
   }, [segmentIndex, progress])
 
-  // Get opacity for individual realm overlay details
-  const getRealmOpacity = (i) => {
-    const [start, end] = RANGES[i]
-    if (progress < start || progress > end) return 0
-    const buffer = 0.015
-    if (progress < start + buffer) {
-      return (progress - start) / buffer
+  // Animate realm cues using GSAP for buttery smooth cinematic transitions
+  useEffect(() => {
+    if (!cuesContainerRef.current) return
+    const children = cuesContainerRef.current.children
+    if (!children || children.length === 0) return
+
+    Array.from(children).forEach((child, i) => {
+      const isActive = i === segmentIndex
+      if (isActive) {
+        gsap.to(child, {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        })
+      } else {
+        gsap.to(child, {
+          opacity: 0,
+          y: 8,
+          duration: 0.8,
+          ease: 'power2.inOut',
+          overwrite: 'auto'
+        })
+      }
+    })
+  }, [segmentIndex])
+
+  // Intro cinematic splitting animation when video playback starts (progress > 0)
+  useEffect(() => {
+    if (progress > 0 && !hasStartedRef.current) {
+      hasStartedRef.current = true
+
+      const tl = gsap.timeline({ delay: 1.5 })
+
+      tl.to(ownRef.current, {
+        x: -200,
+        opacity: 0,
+        duration: 3.0,
+        ease: 'power4.inOut'
+      }, 0)
+
+      tl.to(karmaRef.current, {
+        x: 200,
+        opacity: 0,
+        duration: 3.0,
+        ease: 'power4.inOut'
+      }, 0)
+
+      tl.to(topThingsRef.current, {
+        y: -100,
+        opacity: 0,
+        duration: 2.5,
+        ease: 'power4.inOut'
+      }, 0.2)
+
+      tl.to(bottomThingsRef.current, {
+        y: 100,
+        opacity: 0,
+        duration: 2.5,
+        ease: 'power4.inOut'
+      }, 0.2)
+
+      tl.to(scrollIndicatorRef.current, {
+        y: 80,
+        opacity: 0,
+        duration: 2.0,
+        ease: 'power4.inOut'
+      }, 0.2)
+
+      tl.to(overlayRef.current, {
+        display: 'none',
+        duration: 0.1
+      })
     }
-    if (progress > end - buffer) {
-      return (end - progress) / buffer
-    }
-    return 1
-  }
+  }, [progress])
 
   return (
     <>
@@ -133,112 +171,95 @@ export default function Home() {
 
       {/* Screen reader description transcript */}
       <div className="sr-only">
-        This page begins with a cinematic alignment film. As you scroll, a human silhouette passes through 10 collapsing realms: Void Birth, Netherworld, Desert, Water, Forest, Lava, Ice Shatter, Galaxy, Sun, and Lock. Only after this cinematic resolves does the first hoodie display.
+        This page begins with a cinematic video playing in the background. The title card overlays a human silhouette aligned with a vertical axis.
       </div>
 
-      {/* Cinematic Sticky Track — mobile 30 s film uses 1200vh, desktop 30 s film uses 2400vh
-          at natural scroll pace. Adjust proportionally if the merged film runtime changes. */}
-      <div ref={trackRef} className="relative w-full h-[1200vh] md:h-[2400vh] bg-ok-void">
-        <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+      {/* Cinematic Autoplay Video Hero (h-screen) */}
+      <div
+        className="relative w-full bg-ok-void overflow-hidden flex items-center justify-center -mt-16 pt-16"
+        style={{ height: 'calc(100vh + 4rem)' }}
+      >
+        {/* Cinematic autoplay loop film */}
+        <div className="absolute inset-0 w-full h-full z-0">
+          <HeroFilm onProgress={setProgress} />
+        </div>
 
-          {/* Cinematic scroll-scrubbed film — see _document/requirement2.md */}
-          <div className="absolute inset-0 w-full h-full z-0">
-            <HeroFilm progress={progress} />
+        {/* Centered Golden Axis snappable cursor strip (Invisible DOM element for snapping) */}
+        <div data-cursor-axis className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-1 pointer-events-none z-10" />
+
+        {/* Static, Persistent Overlay */}
+        <div ref={overlayRef} className="relative z-30 max-w-2xl w-full text-center px-6 select-none">
+          {/* Top decorative dot and code line */}
+          <div ref={topThingsRef} className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-1.5 h-1.5 rounded-full bg-ok-axis animate-pulse" />
+            <span className="font-mono text-[10px] tracking-[0.5em] text-ok-axis uppercase">
+              SYS.EXEC // CONCEPT_01
+            </span>
           </div>
 
-          {/* Centered Golden Axis snappable cursor strip (Invisible DOM element for snapping) */}
-          <div data-cursor-axis className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-1 pointer-events-none z-10" />
+          {/* Main Title */}
+          <h1 className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl text-ok-bone tracking-[0.18em] font-light uppercase leading-none mb-6 whitespace-nowrap">
+            <span ref={ownRef} className="inline-block mr-4 md:mr-8">OWN</span>
+            <span ref={karmaRef} className="inline-block">KARMA</span>
+          </h1>
 
+          <div ref={bottomThingsRef} className="flex flex-col items-center">
+            {/* Subtle Divider Line */}
+            <div className="w-20 h-px bg-ok-axis/30 mx-auto mb-6" />
 
+            {/* Description */}
+            <p className="font-sans text-xs md:text-sm text-ok-dust leading-relaxed tracking-wider max-w-lg mx-auto mb-1">
+              "Not worn to be seen. Worn to stand correctly."
+            </p>
+            <p className="font-mono text-[10px] text-ok-axis/70 tracking-[0.2em] max-w-lg mx-auto mb-10">
+              Observe the 10 collapsing realms.
+            </p>
 
-          {/* Realm Cues typography */}
-          <div className="absolute bottom-24 left-6 md:left-12 right-6 pointer-events-none z-20 select-none">
-            {REALMS.map((realm, i) => (
-              <div
-                key={realm.title}
-                className="absolute bottom-0 left-0 transition-opacity duration-300 ease-ok w-full md:max-w-md"
-                style={{ opacity: getRealmOpacity(i) }}
+            {/* Action Button */}
+            <div className="flex items-center justify-center w-full max-w-sm mx-auto pointer-events-auto">
+              <button
+                onClick={handleExplore}
+                className="group relative px-8 py-3.5 text-[10px] font-mono tracking-[0.25em] bg-ok-axis text-ok-void hover:bg-ok-bone hover:text-ok-void active:scale-[0.98] transition-all duration-300 uppercase cursor-pointer font-bold shadow-lg shadow-ok-axis/10"
               >
-                <p className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] text-ok-axis uppercase mb-2">
-                  {realm.subtitle}
-                </p>
-                <h3 className="font-display text-ok-md md:text-ok-lg text-ok-bone leading-tight">
-                  {realm.title}
-                </h3>
-                <p className="font-mono text-[10px] md:text-xs text-ok-dust leading-relaxed mt-2 tracking-wide">
-                  {realm.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Progress Percent Overlay */}
-          <div className="absolute bottom-6 md:bottom-24 right-6 md:right-12 pointer-events-none z-20 font-mono text-[10px] text-ok-axis/60 tracking-[0.2em]">
-            {Math.round(progress * 100)}% ALIGNED
-          </div>
-
-          {/* Initial Experience Selector Overlay */}
-          {isOverlayVisible && (
-            <div
-              className={`absolute inset-0 z-30 flex flex-col items-center justify-center bg-ok-void/90 text-center px-6 transition-opacity duration-500 select-none ${progress > 0 ? 'pointer-events-none' : 'pointer-events-auto'
-                }`}
-              style={{ opacity: overlayOpacity }}
-            >
-              {/* Central Technical Content Wrapper (No box/borders) */}
-              <div className="relative max-w-2xl w-full text-center -translate-y-12 transition-all duration-300">
-
-                {/* Top decorative dot and code line */}
-                <div className="flex items-center justify-center gap-3 mb-6">
-                  <div className="w-1.5 h-1.5 rounded-full bg-ok-axis animate-pulse" />
-                  <span className="font-mono text-[10px] tracking-[0.5em] text-ok-axis uppercase">
-                    SYS.EXEC // CONCEPT_01
-                  </span>
-                </div>
-
-                {/* Main Title */}
-                <h1 className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl text-ok-bone tracking-[0.18em] font-light uppercase leading-none mb-6 whitespace-nowrap">
-                  OWN KARMA
-                </h1>
-
-                {/* Subtle Divider Line */}
-                <div className="w-20 h-px bg-ok-axis/30 mx-auto mb-6" />
-
-                {/* Description */}
-                <p className="font-sans text-xs md:text-sm text-ok-dust leading-relaxed tracking-wider max-w-lg mx-auto mb-1">
-                  "Not worn to be seen. Worn to stand correctly."
-                </p>
-                <p className="font-mono text-[10px] text-ok-axis/70 tracking-[0.2em] max-w-lg mx-auto mb-10">
-                  Align the axis. Observe the 10 collapsing realms.
-                </p>
-
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full max-w-sm mx-auto pointer-events-auto">
-                  <button
-                    onClick={handleAutoplay}
-                    className="group relative w-full sm:w-auto px-8 py-3.5 text-[10px] font-mono tracking-[0.25em] bg-ok-axis text-ok-void hover:bg-ok-bone hover:text-ok-void active:scale-[0.98] transition-all duration-300 uppercase cursor-pointer font-bold shadow-lg shadow-ok-axis/10"
-                  >
-                    Auto Play
-                  </button>
-                  <button
-                    onClick={handleOnScroll}
-                    className="w-full sm:w-auto px-8 py-3.5 text-[10px] font-mono tracking-[0.25em] border border-ok-stone/80 text-ok-dust hover:border-ok-axis hover:text-ok-axis active:scale-[0.98] transition-all duration-300 uppercase cursor-pointer"
-                  >
-                    On Scroll
-                  </button>
-                </div>
-              </div>
-
-              {/* Bottom Mouse Scroll Indicator */}
-              <div className="absolute bottom-10 flex flex-col items-center gap-2">
-                <span className="font-mono text-[8px] tracking-[0.4em] text-ok-dust/40 uppercase">
-                  Scroll to enter directly
-                </span>
-                <div className="w-4 h-6 border border-ok-dust/20 rounded-full flex justify-center p-1">
-                  <div className="w-0.5 h-1.5 bg-ok-axis/50 rounded-full animate-bounce" />
-                </div>
-              </div>
+                Explore Drop
+              </button>
             </div>
-          )}
+          </div>
+        </div>
+
+        {/* Realm Cues typography */}
+        <div ref={cuesContainerRef} className="absolute bottom-24 left-6 md:left-12 right-6 pointer-events-none z-20 select-none">
+          {REALMS.map((realm, i) => (
+            <div
+              key={realm.title}
+              className="absolute bottom-0 left-0 w-full md:max-w-md opacity-0"
+            >
+              <p className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] text-ok-axis uppercase mb-2">
+                {realm.subtitle}
+              </p>
+              <h3 className="font-display text-ok-md md:text-ok-lg text-ok-bone leading-tight">
+                {realm.title}
+              </h3>
+              <p className="font-mono text-[10px] md:text-xs text-ok-dust leading-relaxed mt-2 tracking-wide">
+                {realm.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Progress Percent Overlay */}
+        <div className="absolute bottom-6 md:bottom-24 right-6 md:right-12 pointer-events-none z-20 font-mono text-[10px] text-ok-axis/60 tracking-[0.2em]">
+          {Math.round(progress * 100)}% ALIGNED
+        </div>
+
+        {/* Bottom Mouse Scroll Indicator */}
+        <div ref={scrollIndicatorRef} className="absolute bottom-10 flex flex-col items-center gap-2 z-30 pointer-events-none">
+          <span className="font-mono text-[8px] tracking-[0.4em] text-ok-dust/40 uppercase">
+            Scroll to explore
+          </span>
+          <div className="w-4 h-6 border border-ok-dust/20 rounded-full flex justify-center p-1">
+            <div className="w-0.5 h-1.5 bg-ok-axis/50 rounded-full animate-bounce" />
+          </div>
         </div>
       </div>
 
