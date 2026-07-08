@@ -342,7 +342,7 @@ function ManifestoSlab() {
   return (
     <section className="relative h-screen w-full bg-ok-void flex flex-col justify-center items-center px-6 text-center select-none border-t border-ok-stone/30">
       <p className="font-mono text-[10px] tracking-[0.4em] text-ok-axis uppercase mb-6">OWN KARMA</p>
-      <h2 className="font-display text-ok-xl md:text-ok-2xl lg:text-ok-3xl text-ok-bone max-w-4xl leading-tight">
+      <h2 className="font-display text-ok-md md:text-ok-lg lg:text-ok-xl text-ok-bone max-w-4xl leading-tight">
         {t('tagline')}
       </h2>
       <div className="h-16 w-px bg-ok-axis/30 mt-12 animate-pulse" />
