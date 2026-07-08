@@ -4,6 +4,15 @@ export const storyConcepts = {
     subtitle: 'The Axis Through All Realms',
     quote: 'Not worn to be seen. Worn to stand correctly.',
     philosophy: 'Alignment distorts chaos. The closer to alignment, the slower reality moves. A thin vertical golden axis runs through the human silhouette — invisible at first, extending infinitely up and down.',
+    // Video convention (for future concepts):
+    //   src:    /videos/story-{slug}.mp4       — H.264 main + fastdecode + short GOP, ≤ 12 MB
+    //   poster: /videos/story-{slug}-poster.jpg — first-frame still, ≤ 250 KB
+    // Concept 01 reuses the home hero film directly (same 30 s cut).
+    video: {
+      src: '/videos/hero-main.mp4',
+      poster: '/videos/hero-poster.jpg',
+      label: 'Concept 01 hero film — axis through 10 collapsing realms',
+    },
     timeline: [
       { time: '0–4s', name: 'Void Birth', desc: 'Black. A faint golden vertical line appears. Camera pushes forward. Tiny human silhouette aligns with axis. Low sub-bass vibration.' },
       { time: '4–8s', name: 'Netherworld', desc: 'Ground cracks beneath the axis. Dark mist rises. Obsidian terrain grows outward from feet. Human is still.' },

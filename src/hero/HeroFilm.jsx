@@ -41,6 +41,11 @@ export default function HeroFilm({ progress = 0 }) {
     const isMuted = useSoundStore((s) => s.isMuted)
     const toggleMute = useSoundStore((s) => s.toggleMute)
 
+    // Derived audio mode: a global site mute (from useSoundStore) forces us out of
+    // autoplay-with-sound regardless of the user's local click on the film's Sound
+    // On button. Derived at render time — no state-mirror effect required.
+    const effectiveAudioMode = isMuted ? 'scrub' : audioMode
+
     // Viewport-tailored asset pair. `useMediaCapability` already tracks the
     // 767 px breakpoint and re-renders on viewport change, so switching between
     // portrait and landscape rotations "just works" via key= on the elements below.
@@ -71,18 +76,6 @@ export default function HeroFilm({ progress = 0 }) {
             setAudioMode('scrub')
         }
     }, [audioMode, isMuted, toggleMute])
-
-    // If the site is muted globally, force video to pause and return to scroll-scrub mode.
-    useEffect(() => {
-        if (isMuted && audioMode === 'autoplay') {
-            const video = videoRef.current
-            if (video) {
-                video.pause()
-                lastAppliedTimeRef.current = -1
-            }
-            setAudioMode('scrub')
-        }
-    }, [isMuted, audioMode])
 
     // ─── Load listeners + release on source-change / unmount ────────────
     // Dep is `sources.video` so listeners re-attach when the viewport crosses
@@ -146,30 +139,32 @@ export default function HeroFilm({ progress = 0 }) {
         })
     }, [])
 
-    // Sync video play/pause with audioMode state
+    // Sync video play/pause with effectiveAudioMode (local intent gated by global mute).
     useEffect(() => {
         const video = videoRef.current
         if (!video || videoState !== 'ready') return
 
-        if (audioMode === 'autoplay') {
+        if (effectiveAudioMode === 'autoplay') {
             if (video.paused) {
                 video.play().catch(() => {
+                    // Browser blocked unmuted playback — revert local intent.
                     setAudioMode('scrub')
                 })
             }
         } else {
             if (!video.paused) {
                 video.pause()
+                lastAppliedTimeRef.current = -1
             }
         }
-    }, [audioMode, videoState])
+    }, [effectiveAudioMode, videoState])
 
     useEffect(() => {
         // Only drive currentTime from scroll when we're in scrub mode.
-        if (videoState !== 'ready' || audioMode !== 'scrub') return
+        if (videoState !== 'ready' || effectiveAudioMode !== 'scrub') return
         scheduleScrub(progress)
         return () => cancelAnimationFrame(rafRef.current)
-    }, [progress, videoState, scheduleScrub, audioMode])
+    }, [progress, videoState, scheduleScrub, effectiveAudioMode])
 
     // Reduced-motion OR decode failure → poster-only. Video element is never mounted.
     const posterOnly = prefersReducedMotion || videoState === 'error'
@@ -199,8 +194,8 @@ export default function HeroFilm({ progress = 0 }) {
                     style={{ objectPosition: 'center 40%' }}
                     poster={sources.poster}
                     preload="auto"
-                    muted={isMuted || audioMode === 'scrub'}
-                    loop={audioMode === 'autoplay'}
+                    muted={effectiveAudioMode === 'scrub'}
+                    loop={effectiveAudioMode === 'autoplay'}
                     playsInline
                     disablePictureInPicture
                     disableRemotePlayback
@@ -242,10 +237,10 @@ export default function HeroFilm({ progress = 0 }) {
                     type="button"
                     onClick={toggleAudio}
                     className="absolute bottom-6 left-6 md:left-12 z-30 flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] uppercase select-none transition-colors text-ok-axis/60 hover:text-ok-axis focus-visible:outline focus-visible:outline-ok-axis focus-visible:outline-offset-4"
-                    aria-label={audioMode === 'scrub' ? 'Turn sound on and play the film' : 'Turn sound off and return to scroll-scrub'}
+                    aria-label={effectiveAudioMode === 'scrub' ? 'Turn sound on and play the film' : 'Turn sound off and return to scroll-scrub'}
                 >
-                    <span aria-hidden="true" className="text-base leading-none">{audioMode === 'scrub' ? '◇' : '◆'}</span>
-                    <span>Sound {audioMode === 'scrub' ? 'On' : 'Off'}</span>
+                    <span aria-hidden="true" className="text-base leading-none">{effectiveAudioMode === 'scrub' ? '◇' : '◆'}</span>
+                    <span>Sound {effectiveAudioMode === 'scrub' ? 'On' : 'Off'}</span>
                 </button>
             )}
         </div>

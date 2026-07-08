@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { storyConcepts } from '../data/storyConcepts.js'
+import StoryFilm from '../hero/StoryFilm.jsx'
 
 export default function StoryConcept() {
   const { concept } = useParams()
@@ -30,6 +31,15 @@ export default function StoryConcept() {
             </h1>
           </div>
         </header>
+
+        {/* Concept film — only renders when storyConcepts.js defines a `video` for this slug. */}
+        {data.video && (
+          <StoryFilm
+            src={data.video.src}
+            poster={data.video.poster}
+            label={data.video.label}
+          />
+        )}
 
         {/* Brand Quote */}
         <blockquote className="border-l border-ok-axis pl-6 py-2 italic text-ok-axis bg-ok-obsidian/30">

@@ -15,16 +15,16 @@ import { track } from '../lib/track.js'
 gsap.registerPlugin(ScrollTrigger)
 
 const REALMS = [
-  { title: 'Void Birth', subtitle: 'Concept 01 · Segment 01', desc: 'A faint golden vertical line appears. Tiny human silhouette aligns with axis. Low sub-bass vibration.' },
-  { title: 'Netherworld', subtitle: 'Concept 01 · Segment 02', desc: 'Ground cracks beneath the axis. Dark mist rises. Obsidian terrain grows outward.' },
-  { title: 'Desert', subtitle: 'Concept 01 · Segment 03', desc: 'Obsidian dissolves into sand. Heat waves distort air. Sand storms curve like magnetic fields.' },
-  { title: 'Water', subtitle: 'Concept 01 · Segment 04', desc: 'Desert liquefies into water. Gravity flips. Water rotates 360° around the axis.' },
-  { title: 'Forest', subtitle: 'Concept 01 · Segment 05', desc: 'Water evaporates upward. Trees grow rapidly. Roots never touch the human. Leaves freeze.' },
-  { title: 'Lava', subtitle: 'Concept 01 · Segment 06', desc: 'Forest chars instantly. Lava erupts but arcs away. Nothing touches the aligned human.' },
-  { title: 'Ice Shatter', subtitle: 'Concept 01 · Segment 07', desc: 'Lava flash-freezes mid-air. Crystals expand. Sound drops to silence. World paused.' },
-  { title: 'Galaxy Reveal', subtitle: 'Concept 01 · Segment 08', desc: 'Ice shatters into stars. Camera pulls back. All realms inside a rotating cosmic structure.' },
-  { title: 'Sun Ignition', subtitle: 'Concept 01 · Segment 09', desc: 'A small golden sun ignites above. Sudarshan-like circular geometry forms.' },
-  { title: 'Lock', subtitle: 'Concept 01 · Resolution', desc: 'Everything stops. Absolute silence. Axis, eye geometry, and circular law align. The first hoodie exists.' }
+  { title: 'Void Birth', subtitle: 'Concept 01 · Segment 01', desc: 'Black. A faint golden vertical line appears. Camera pushes forward. Tiny human silhouette aligns with axis. Low sub-bass vibration.' },
+  { title: 'Netherworld', subtitle: 'Concept 01 · Segment 02', desc: 'Ground cracks beneath the axis. Dark mist rises. Obsidian terrain grows outward from feet. Human is still. World builds itself around them.' },
+  { title: 'Desert Transition', subtitle: 'Concept 01 · Segment 03', desc: 'Obsidian dissolves into sand mid-frame. Heat waves distort air. Sand storms curve around the axis like magnetic fields.' },
+  { title: 'Water Impossibility', subtitle: 'Concept 01 · Segment 04', desc: 'Desert liquefies into water without cutting. Gravity flips. Water rotates 360° around axis. Human does not swim — just stands.' },
+  { title: 'Forest Growth', subtitle: 'Concept 01 · Segment 05', desc: 'Water evaporates upward. Trees grow rapidly. Roots never touch the human. Leaves freeze mid-air near the axis.' },
+  { title: 'Lava & Pressure', subtitle: 'Concept 01 · Segment 06', desc: 'Forest chars instantly. Lava erupts but arcs away from axis like repelled. Nothing touches the human.' },
+  { title: 'Ice Shatter', subtitle: 'Concept 01 · Segment 07', desc: 'Lava flash-freezes mid-air. Crystals expand outward. Sound drops to silence. World feels paused. Human remains upright.' },
+  { title: 'Galaxy Reveal', subtitle: 'Concept 01 · Segment 08', desc: 'Ice shatters into stars. Camera pulls back. All realms were inside a rotating cosmic structure. Human is microscopic yet still aligned.' },
+  { title: 'Sun Ignition', subtitle: 'Concept 01 · Segment 09', desc: 'A small golden sun ignites above. Sudarshan-like circular geometry forms. Mathematical, precise, slow.' },
+  { title: 'Lock', subtitle: 'Concept 01 · Resolution', desc: 'Everything stops. Absolute silence. Axis, eye geometry, and circular law align perfectly. OWN KARMA appears. Small. Centered.' }
 ]
 
 const RANGES = [
@@ -180,14 +180,13 @@ export default function Home() {
           {/* Initial Experience Selector Overlay */}
           {isOverlayVisible && (
             <div
-              className={`absolute inset-0 z-30 flex flex-col items-center justify-center bg-ok-void/90 text-center px-6 transition-opacity duration-500 select-none ${
-                progress > 0 ? 'pointer-events-none' : 'pointer-events-auto'
-              }`}
+              className={`absolute inset-0 z-30 flex flex-col items-center justify-center bg-ok-void/90 text-center px-6 transition-opacity duration-500 select-none ${progress > 0 ? 'pointer-events-none' : 'pointer-events-auto'
+                }`}
               style={{ opacity: overlayOpacity }}
             >
               {/* Central Technical Content Wrapper (No box/borders) */}
               <div className="relative max-w-2xl w-full text-center -translate-y-12 transition-all duration-300">
-                
+
                 {/* Top decorative dot and code line */}
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <div className="w-1.5 h-1.5 rounded-full bg-ok-axis animate-pulse" />
