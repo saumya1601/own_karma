@@ -9,7 +9,7 @@ import { cn } from '../../lib/cn.js'
 /**
  * TopNav — §5.1.
  * Fixed, translucent, hides on scroll-down, reveals on scroll-up.
- * Left: OWN KARMA logo. Right: Shop · Story · Waitlist · EN/HI · Sound · Cart.
+ * Left: OWN KARMA logo. Right: Shop · Story · EN/HI · Sound · Cart.
  */
 export default function TopNav() {
   const { t } = useTranslation()
@@ -54,8 +54,8 @@ export default function TopNav() {
           <Link to="/story/karmas-eye" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
             {t('nav.karmas_eye')}
           </Link>
-          <Link to="/waitlist" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
-            {t('nav.waitlist')}
+          <Link to="/story/destiny" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
+            {t('nav.destiny')}
           </Link>
         </div>
 

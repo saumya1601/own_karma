@@ -107,7 +107,7 @@ export default function HeroFilm({ onProgress, src, poster, preload = 'metadata'
                 alt=""
                 aria-hidden="true"
                 draggable="false"
-                fetchpriority="high"
+                fetchPriority="high"
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-900 ease-out ${videoState === 'ready' && !posterOnly ? 'opacity-0' : 'opacity-100'
                     }`}
                 style={{ objectPosition: 'center 40%' }}

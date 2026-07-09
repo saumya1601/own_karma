@@ -38,11 +38,6 @@ export default function Footer() {
                 {t('nav.story')}
               </Link>
             </li>
-            <li>
-              <Link to="/waitlist" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
-                {t('nav.waitlist')}
-              </Link>
-            </li>
           </ul>
         </div>
 

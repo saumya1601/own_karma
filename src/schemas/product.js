@@ -4,7 +4,7 @@
  * Optional zod runtime validation below.
  */
 
-/** @typedef {'hoodies' | 'tees' | 'pants' | 'caps' | 'accessories'} Category */
+/** @typedef {'hoodies' | 'tees'} Category */
 /** @typedef {'in-stock' | 'last-few-left' | 'sold-out' | 'coming-soon'} StockState */
 /** @typedef {'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'ONE-SIZE'} Size */
 
@@ -61,7 +61,7 @@
 // ---------- Zod schema for dev-mode validation ----------
 import { z } from 'zod'
 
-export const CategoryEnum = z.enum(['hoodies', 'tees', 'pants', 'caps', 'accessories'])
+export const CategoryEnum = z.enum(['hoodies', 'tees'])
 export const StockStateEnum = z.enum(['in-stock', 'last-few-left', 'sold-out', 'coming-soon'])
 export const SizeEnum = z.enum(['XS', 'S', 'M', 'L', 'XL', 'XXL', 'ONE-SIZE'])
 

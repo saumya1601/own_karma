@@ -18,7 +18,6 @@ const Checkout = lazy(() => import('./routes/Checkout.jsx'))
 const CheckoutSuccess = lazy(() => import('./routes/CheckoutSuccess.jsx'))
 const Story = lazy(() => import('./routes/Story.jsx'))
 const StoryConcept = lazy(() => import('./routes/StoryConcept.jsx'))
-const Waitlist = lazy(() => import('./routes/Waitlist.jsx'))
 const About = lazy(() => import('./routes/About.jsx'))
 const Contact = lazy(() => import('./routes/Contact.jsx'))
 const Terms = lazy(() => import('./routes/legal/Terms.jsx'))
@@ -60,7 +59,6 @@ export default function App() {
             <Route path="/checkout/success" element={<CheckoutSuccess />} />
             <Route path="/story" element={<Story />} />
             <Route path="/story/:concept" element={<StoryConcept />} />
-            <Route path="/waitlist" element={<Waitlist />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/legal/terms" element={<Terms />} />

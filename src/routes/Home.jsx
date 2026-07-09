@@ -7,10 +7,8 @@ import ProductCard from '../components/product/ProductCard.jsx'
 import HeroFilm from '../hero/HeroFilm.jsx'
 import InstagramGrid from '../components/social/InstagramGrid.jsx'
 import { getAll } from '../services/productsAdapter.js'
-import { subscribe } from '../services/waitlistAdapter.js'
 import { useLenis, getLenis } from '../hooks/useLenis.js'
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js'
-import { track } from '../lib/track.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -105,39 +103,49 @@ export default function Home() {
     }
   }, [segmentIndex, progress])
 
-  // Animate realm cues using GSAP for buttery smooth cinematic transitions
+  // Animate realm cues using GSAP for buttery smooth cinematic transitions.
+  // Scoped to cuesContainerRef via gsap.context() so ctx.revert() on unmount
+  // kills all pending tweens and reverts inline styles — prevents React 19
+  // 'removeChild: The node to be removed is not a child of this node' errors
+  // caused by GSAP writing to DOM after React has torn down the fiber.
   useEffect(() => {
     if (!cuesContainerRef.current) return
     const children = cuesContainerRef.current.children
     if (!children || children.length === 0) return
 
-    Array.from(children).forEach((child, i) => {
-      const isActive = i === segmentIndex
-      if (isActive) {
-        gsap.to(child, {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          ease: 'power2.out',
-          overwrite: 'auto'
-        })
-      } else {
-        gsap.to(child, {
-          opacity: 0,
-          y: 8,
-          duration: 0.8,
-          ease: 'power2.inOut',
-          overwrite: 'auto'
-        })
-      }
-    })
+    const ctx = gsap.context(() => {
+      Array.from(children).forEach((child, i) => {
+        const isActive = i === segmentIndex
+        if (isActive) {
+          gsap.to(child, {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          })
+        } else {
+          gsap.to(child, {
+            opacity: 0,
+            y: 8,
+            duration: 0.8,
+            ease: 'power2.inOut',
+            overwrite: 'auto'
+          })
+        }
+      })
+    }, cuesContainerRef)
+
+    return () => ctx.revert()
   }, [segmentIndex])
 
-  // Intro cinematic splitting animation when video playback starts (progress > 0)
+  // Intro cinematic splitting animation when video playback starts (progress > 0).
+  // Same gsap.context() safety net as above.
   useEffect(() => {
-    if (progress > 0 && !hasStartedRef.current) {
-      hasStartedRef.current = true
+    if (!(progress > 0 && !hasStartedRef.current)) return
+    hasStartedRef.current = true
 
+    const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 1.5 })
 
       tl.to(ownRef.current, {
@@ -176,10 +184,12 @@ export default function Home() {
       }, 0.2)
 
       tl.to(overlayRef.current, {
-        display: 'none',
+        autoAlpha: 0,
         duration: 0.1
       })
-    }
+    })
+
+    return () => ctx.revert()
   }, [progress])
 
   return (
@@ -297,9 +307,6 @@ export default function Home() {
 
       {/* Instagram Grid */}
       <InstagramGrid />
-
-      {/* Waitlist CTA */}
-      <WaitlistCTA />
     </>
   )
 }
@@ -441,54 +448,4 @@ function ConceptTrail() {
   )
 }
 
-function WaitlistCTA() {
-  const { t } = useTranslation()
-  const [email, setEmail] = useState('')
-  const [status, setStatus] = useState('idle')
 
-  const onSubmit = async (e) => {
-    e.preventDefault()
-    setStatus('loading')
-    const result = await subscribe(email, 'genesis-drop')
-    if (result.success) {
-      setStatus('success')
-      setEmail('')
-      track('waitlist_joined', { dropSlug: 'genesis-drop', source: 'home-waitlist-cta' })
-    } else {
-      setStatus('error')
-    }
-  }
-
-  return (
-    <section className="px-6 py-32 bg-ok-void text-center border-t border-ok-stone/30">
-      <div className="max-w-md mx-auto space-y-6">
-        <h2 className="font-display text-ok-lg text-ok-axis">{t('waitlist.title')}</h2>
-        <p className="text-ok-dust text-xs tracking-wider">
-          Receive notification tags when the realms collapse into the next drop.
-        </p>
-
-        <form onSubmit={onSubmit} className="flex gap-2">
-          <input
-            required
-            type="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value)
-              setStatus('idle')
-            }}
-            placeholder={t('waitlist.email_placeholder')}
-            className="flex-1 px-4 py-3 bg-ok-stone/40 border border-ok-stone text-ok-bone text-sm placeholder:text-ok-dust/50 focus:border-ok-axis focus:outline-none transition-colors"
-          />
-          <button
-            type="submit"
-            className="px-6 py-3 font-mono text-xs tracking-[0.15em] bg-ok-axis text-ok-void hover:bg-ok-axis/90 transition-colors uppercase"
-          >
-            {status === 'loading' ? '...' : t('waitlist.submit')}
-          </button>
-        </form>
-
-        {status === 'success' && <p className="text-xs text-ok-axis font-mono">{t('waitlist.success')}</p>}
-      </div>
-    </section>
-  )
-}

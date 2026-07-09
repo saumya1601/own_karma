@@ -1,13 +1,12 @@
 {
   "brand": "OWN KARMA",
   "tagline": "Not worn to be seen. Worn to stand correctly.",
-
   "nav": {
     "shop": "Shop",
     "story": "Story",
     "divine": "Divine",
     "karmas_eye": "Karma",
-    "waitlist": "Waitlist",
+    "destiny": "Destiny",
     "about": "About",
     "contact": "Contact",
     "cart": "Cart",
@@ -16,7 +15,6 @@
     "sound_on": "Sound On",
     "sound_off": "Sound Off"
   },
-
   "footer": {
     "cool_stuff": "Cool Stuff",
     "boring_stuff": "Boring Stuff",
@@ -31,7 +29,6 @@
     "copyright": "© {{year}} OWN KARMA. All rights reserved.",
     "tagline_footer": "Black. Silence. End."
   },
-
   "cart": {
     "title": "Cart",
     "empty": "The axis holds nothing yet.",
@@ -41,7 +38,6 @@
     "remove": "Remove",
     "qty": "Qty"
   },
-
   "product": {
     "add_to_cart": "Add to Cart",
     "notify_me": "Notify Me",
@@ -57,7 +53,6 @@
     "color": "Color",
     "serial_explainer": "Every OWN KARMA piece is laser-serialized inside the neck tape. Your number is yours alone."
   },
-
   "checkout": {
     "title": "Checkout",
     "step_address": "Address",
@@ -80,24 +75,13 @@
     "success_serial": "Your serial allocations:",
     "continue_shopping": "Continue Shopping"
   },
-
-  "waitlist": {
-    "title": "Enter the Next Collapse",
-    "email_placeholder": "your@email.com",
-    "submit": "Join Waitlist",
-    "success": "You're on the list.",
-    "already": "Already on the list."
-  },
-
   "story": {
     "title": "The Story",
     "read_more": "Read the Full Story"
   },
-
   "about": {
     "title": "About OWN KARMA"
   },
-
   "contact": {
     "title": "Contact",
     "form_name": "Your Name",
@@ -106,7 +90,6 @@
     "form_submit": "Send",
     "whatsapp_cta": "Chat on WhatsApp"
   },
-
   "page": {
     "not_found_title": "404",
     "not_found_text": "This realm doesn't exist.",

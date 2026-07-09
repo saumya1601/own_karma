@@ -113,12 +113,6 @@ export default function Product() {
           {selectedSize && isSelectedOut && (
             <div className="flex items-center gap-3">
               <Badge variant="sold-out" />
-              <span className="text-xs text-ok-dust">
-                {t('product.notify_me')} —{' '}
-                <Link to="/waitlist" className="underline hover:text-ok-bone transition-colors">
-                  {t('nav.waitlist').toLowerCase()}
-                </Link>
-              </span>
             </div>
           )}
 

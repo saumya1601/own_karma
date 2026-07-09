@@ -1,13 +1,12 @@
 {
   "brand": "OWN KARMA",
   "tagline": "दिखने के लिए नहीं पहना जाता। सही खड़े होने के लिए पहना जाता है।",
-
   "nav": {
     "shop": "दुकान",
     "story": "कहानी",
     "divine": "दिव्य",
     "karmas_eye": "कर्म",
-    "waitlist": "प्रतीक्षा सूची",
+    "destiny": "नियति",
     "about": "हमारे बारे में",
     "contact": "संपर्क",
     "cart": "कार्ट",
@@ -16,7 +15,6 @@
     "sound_on": "ध्वनि चालू",
     "sound_off": "ध्वनि बंद"
   },
-
   "footer": {
     "cool_stuff": "अच्छी चीज़ें",
     "boring_stuff": "उबाऊ चीज़ें",
@@ -31,7 +29,6 @@
     "copyright": "© {{year}} OWN KARMA. सर्वाधिकार सुरक्षित।",
     "tagline_footer": "काला। मौन। अंत।"
   },
-
   "cart": {
     "title": "कार्ट",
     "empty": "धुरी अभी कुछ नहीं थामे है।",
@@ -41,7 +38,6 @@
     "remove": "हटाएं",
     "qty": "मात्रा"
   },
-
   "product": {
     "add_to_cart": "कार्ट में डालें",
     "notify_me": "मुझे सूचित करें",
@@ -57,7 +53,6 @@
     "color": "रंग",
     "serial_explainer": "हर OWN KARMA पीस के नेक टेप में लेज़र-सीरियल छपा है। आपका नंबर सिर्फ़ आपका है।"
   },
-
   "checkout": {
     "title": "चेकआउट",
     "step_address": "पता",
@@ -80,24 +75,13 @@
     "success_serial": "आपके सीरियल आवंटन:",
     "continue_shopping": "खरीदारी जारी रखें"
   },
-
-  "waitlist": {
-    "title": "अगले पतन में प्रवेश करें",
-    "email_placeholder": "your@email.com",
-    "submit": "प्रतीक्षा सूची में शामिल हों",
-    "success": "आप सूची में हैं।",
-    "already": "पहले से सूची में हैं।"
-  },
-
   "story": {
     "title": "कहानी",
     "read_more": "पूरी कहानी पढ़ें"
   },
-
   "about": {
     "title": "OWN KARMA के बारे में"
   },
-
   "contact": {
     "title": "संपर्क",
     "form_name": "आपका नाम",
@@ -106,7 +90,6 @@
     "form_submit": "भेजें",
     "whatsapp_cta": "WhatsApp पर चैट करें"
   },
-
   "page": {
     "not_found_title": "404",
     "not_found_text": "यह लोक अस्तित्व में नहीं है।",

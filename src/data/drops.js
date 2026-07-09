@@ -1,5 +1,5 @@
 /**
- * Upcoming drops data — for the /waitlist page (§6.6).
+ * Upcoming drops data.
  * v2 catalog (2026-07-07): only 4 SKUs exist. See `_document/requirement2.md §10`.
  * In v1 these are hardcoded. In v2 they come from a CMS.
  */
