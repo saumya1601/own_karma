@@ -37,13 +37,13 @@ If any clip renders wall breaks with speed, sharp glass shards flying, starburst
 
 ## Style Lock cheat-sheet (prepend to every per-clip call)
 
-```
+```text
 STYLE LOCK (do not deviate):
 - 24 fps native, no frame interpolation.
 - Every motion uses cubic-bezier(0.65, 0, 0.35, 1) easing — no linear motion.
 - Last 6 frames of each clip: hold the settled state, zero motion (dead-air pause), UNLESS the clip explicitly hands off mid-motion for continuity.
 - Camera: LOCKED-OFF for the ENTIRE film. No pans, no dollies, no zooms. Human is fixed in frame. The world moves around them.
-- Human silhouette: backlit, rim-lit gold at shoulders fading to black at feet, 7-head-tall, arms at sides, feet touching, absolutely motionless (except for the ~20 px INTENTIONAL step forward at end of Clip 2 and Clip 3 as canon dictates).
+- Human silhouette: fully clothed, draped in a dark formless gown, backlit, rim-lit gold at shoulders fading to black at feet, 7-head-tall, arms at sides, feet touching, absolutely motionless (except for the ~20 px INTENTIONAL step forward in Clip 3, Clip 4, and Clip 5 as canon dictates).
 - Axis: vertical golden beam BEHIND the silhouette (visible between silhouette and the wall in front), 2 px core + 8 px anisotropic glow, color #D4A855, brightest at Y=40%. The axis extends floor-to-ceiling throughout.
 - Palette: void black + charcoal wall variants (Wall 1 Opinion #0F0F14, Wall 2 Comfort #1A1712 warm, Wall 3 Time #14100A, Wall 4 Self mirror #0C0C10) + gold #D4A855 for axis + blueprint lines emerging when walls break + bone off-white capped Y-luma 0.86 for light through cracks. No reds, no reflective silvers, no pure whites.
 - Grade: ARRI Log C → Rec.709 film curve, 3200K NEUTRAL (less warm than desert), 0.3% monochrome film grain. Very controlled contrast — deep blacks lifted only 0.02.
@@ -78,8 +78,8 @@ TEXT CALLOUTS (rendered as DOM overlays post-generation, DO NOT bake as readable
   Wall 2 (12–18 s): 'Later.' / 'You deserve rest.' / 'It's fine.'
   Wall 3 (18–25 s): 'Not now.' / 'Someday.' / 'When I'm ready.' / 'Time is not your enemy. Delay is.'
 
-THE CONSTANT: Single backlit human silhouette (7-head-tall canonical, gender-neutral, feet touching, arms at sides, absolutely motionless except for canonical intentional steps in beats 3 and 4) at center-frame Y=40%. Vertical golden axis extends floor-to-ceiling BEHIND the silhouette. Walls appear IN FRONT of the human (between silhouette and camera).
-
+THE CONSTANT: Single backlit human silhouette (fully clothed, draped in a dark formless gown, 7-head-tall canonical, gender-neutral, feet touching, arms at sides, absolutely motionless except for canonical intentional steps in beats 3, 4, and 5) at center-frame Y=40%. Vertical golden axis extends floor-to-ceiling BEHIND the silhouette. Walls appear IN FRONT of the human (between silhouette and camera).
+PALETTE (austere): void black #000000 base, charcoal wall variants:
 PALETTE (austere): void black #000000 base, charcoal wall variants:
   Wall 1 Opinion:  #0F0F14 (cold neutral charcoal)
   Wall 2 Comfort:  #1A1712 (warm charcoal)
@@ -187,7 +187,7 @@ CLIP 1 OF 6 (Destiny). Duration: 7.5 s, 24 fps, 180 frames. Text-to-Video genera
 Camera: LOCKED-OFF for entire clip and entire film.
 TONE: Calm Destruction. NEVER angry, violent, or explosive.
 
-OPENING FRAME (frame 0): Backlit human silhouette at center-frame Y=40% with faint gold rim-light at shoulders (20% opacity). Vertical golden axis (#D4A855, 2 px core + 8 px glow) extends floor-to-ceiling BEHIND the silhouette. In FRONT of the silhouette (between silhouette and camera): a massive charcoal wall (#0F0F14, cold neutral) fills the middle 60% of the frame vertically and 80% horizontally. Wall surface has low-relief fresco carvings of faint human faces (visible but not identifiable). Etched writing visible as surface texture (implies text but NOT legible letters). Palette: void black + charcoal + gold axis + faint gold rim-light. Camera absolutely locked.
+OPENING FRAME (frame 0): Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% with faint gold rim-light at shoulders (20% opacity). Vertical golden axis (#D4A855, 2 px core + 8 px glow) extends floor-to-ceiling BEHIND the silhouette. In FRONT of the silhouette (between silhouette and camera): a massive charcoal wall (#0F0F14, cold neutral) fills the middle 60% of the frame vertically and 80% horizontally. Wall surface has low-relief fresco carvings of faint human faces (visible but not identifiable). Etched writing visible as surface texture (implies text but NOT legible letters). Palette: void black + charcoal + gold axis + faint gold rim-light. Camera absolutely locked.
 
 BEAT MAP:
 
@@ -201,7 +201,7 @@ BEAT MAP:
 Clip 1 ends MID-CRACK PROPAGATION (cracks still spreading) — Clip 2 continues.
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-1.png, verify visually before Clip 2):
-- Silhouette at center-frame Y=40% with faint gold rim-light at shoulders (20% opacity), absolutely still.
+- Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% with faint gold rim-light at shoulders (20% opacity), absolutely still.
 - Vertical golden axis behind silhouette, extending floor-to-ceiling.
 - Massive charcoal wall (#0F0F14) in front of silhouette with:
   - Faint fresco face carvings still visible across the surface.
@@ -233,7 +233,7 @@ CLIP 2 OF 6 (Destiny). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video gener
 Camera: LOCKED-OFF (same framing as Clip 1).
 TONE: Calm Destruction. Wall shatter is CALM DUST DISSOLUTION, NOT violent glass-break.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Silhouette + axis behind, charcoal wall #0F0F14 in front with fresco faces + golden glow at palm point + first cracks radiating ~200 px outward from palm point in 4–5 line fragments.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) + axis behind, charcoal wall #0F0F14 in front with fresco faces + golden glow at palm point + first cracks radiating ~200 px outward from palm point in 4–5 line fragments.
 
 BEAT MAP:
 
@@ -250,7 +250,7 @@ BEAT MAP:
   Frames 150–180 (1.25 s): WALL 2 fully opaque. Surface has soft rounded pattern implying "comfort object" texture (silhouetted low relief of a bed / blanket / womb shape). Text implied via etched surface texture but NOT legible letters. Silhouette absolutely still.
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-2.png):
-- Silhouette at center-frame Y=40% with faint gold rim-light, absolutely still.
+- Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% with faint gold rim-light, absolutely still.
 - Vertical golden axis behind silhouette, extending floor-to-ceiling.
 - WALL 2 (#1A1712, warm charcoal) fully visible in front of silhouette, filling middle 60% of frame vertically.
 - Wall 2 surface has soft rounded low-relief pattern (comfort object texture), warm inner glow at ~10% brightness.
@@ -277,10 +277,10 @@ ffmpeg -sseof -0.05 -i clip-destiny-2.mp4 -vframes 1 -q:v 1 handoff-destiny-2.pn
 
 ```
 CLIP 3 OF 6 (Destiny). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
-Camera: LOCKED-OFF. Silhouette makes ONE 20 px step forward mid-clip — this is the ONLY silhouette motion in this clip.
+Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) makes ONE 20 px step forward mid-clip — this is the ONLY silhouette motion in this clip.
 TONE: Calm Destruction. Wall 2 dissolves into dust, NOT violent shattering.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Silhouette + axis behind, WALL 2 (#1A1712 warm charcoal) fully visible in front with soft rounded low-relief pattern + faint ochre inner glow.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) + axis behind, WALL 2 (#1A1712 warm charcoal) fully visible in front with soft rounded low-relief pattern + faint ochre inner glow.
 
 BEAT MAP:
 
@@ -299,7 +299,7 @@ BEAT MAP:
   Frames 150–180 (1.25 s): inside the hourglass carving, sand begins to appear at the bottom chamber and starts flowing UPWARD (impossible physics = "wall reality is a lie"). Sand travels at ~2 px/frame upward against gravity. By frame 180: sand fills ~30% of the hourglass carving's upper chamber (having flowed up from the lower).
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-3.png):
-- Silhouette at center-frame Y=40% but SHIFTED 20 px forward (closer to camera) compared to Clip 1/2 opening frames. Rim-light at shoulders (20% opacity), absolutely still.
+- Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% but SHIFTED 20 px forward (closer to camera) compared to Clip 1/2 opening frames. Rim-light at shoulders (20% opacity), absolutely still.
 - Vertical golden axis behind silhouette, extending floor-to-ceiling.
 - WALL 3 (#14100A, cracked amber-charcoal) fully visible in front of silhouette.
 - Wall 3 surface has an hourglass-shape carved into it. Inside the carving: sand flowing upward, upper chamber ~30% full.
@@ -326,10 +326,10 @@ ffmpeg -sseof -0.05 -i clip-destiny-3.mp4 -vframes 1 -q:v 1 handoff-destiny-3.pn
 
 ```
 CLIP 4 OF 6 (Destiny). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
-Camera: LOCKED-OFF. Silhouette steps forward AND walks THROUGH the wall's plane in this clip.
+Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) steps forward AND walks THROUGH the wall's plane in this clip.
 TONE: Calm Destruction. Wall 3 fractures as clean blueprint geometry, NOT violent glass-break.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Silhouette 20 px forward from film-start position, gold axis behind, WALL 3 (#14100A cracked amber-charcoal) in front with hourglass carving containing upward-flowing sand at ~30% upper-chamber fill.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) 20 px forward from film-start position, gold axis behind, WALL 3 (#14100A cracked amber-charcoal) in front with hourglass carving containing upward-flowing sand at ~30% upper-chamber fill.
 
 BEAT MAP:
 
@@ -343,7 +343,7 @@ BEAT MAP:
   Frames 60–96 (1.5 s): silhouette walks INTO the wall's plane — visually, the wall begins to fracture around the silhouette's body. Cracks form as clean geometric blueprint lines (golden #D4A855, precise, calm — NOT jagged violence). Cracks emanate outward from where the silhouette's body intersects the wall plane. By frame 96: silhouette has moved through the wall plane; wall is heavily fractured with golden crack lines throughout.
   Frames 96–108 (0.5 s): as silhouette passes through, sand in the hourglass carving HALTS mid-flow (frozen mid-air within the fractured hourglass). Fractures continue spreading.
 
-4.5–5.0 s (frames 108–120) — WALL 3 FULLY FRACTURES (contained)
+4.0–5.0 s (frames 108–120) — WALL 3 FULLY FRACTURES (contained)
   Frames 108–120 (0.5 s): remaining wall fragments dissolve like slow-falling glass shards drifting at ~3 px/frame. NOT violent — controlled slow-motion glass dissolution. NO starburst reflections. By frame 120: ~50% of wall fragments have drifted out of frame.
 
 5.0–7.5 s (frames 120–180) — WALL 4: SELF begin (first 60 frames of canonical 240-frame beat)
@@ -351,7 +351,7 @@ BEAT MAP:
   Frames 150–180 (1.25 s): WALL 4 is a distorted mirror surface. It reflects a distorted version of the silhouette — the reflection is SMALLER (about 70% of silhouette's actual size), HUNCHED, and appears more doubtful in posture. Reflection is visible in the mirror at approximately center-frame Y=50%. Silhouette itself absolutely still.
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-4.png):
-- Silhouette at center-frame Y=40% but SHIFTED 40 px forward total from film-start. Rim-light at shoulders, absolutely still.
+- Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% but SHIFTED 40 px forward total from film-start. Rim-light at shoulders, absolutely still.
 - Vertical golden axis behind silhouette, extending floor-to-ceiling.
 - WALL 4 (#0C0C10, mirror-dark charcoal) fully visible in front of silhouette.
 - Wall 4 surface reflects a distorted, smaller (~70% size), hunched version of the silhouette at ~center-frame Y=50%.
@@ -378,10 +378,10 @@ ffmpeg -sseof -0.05 -i clip-destiny-4.mp4 -vframes 1 -q:v 1 handoff-destiny-4.pn
 
 ```
 CLIP 5 OF 6 (Destiny). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
-Camera: LOCKED-OFF. Silhouette takes FINAL 20 px step forward and passes through mirror in this clip.
+Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) takes FINAL 20 px step forward and passes through mirror in this clip.
 TONE: Calm Destruction. Mirror shatters SILENTLY into light fragments that become blueprint geometry.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Silhouette 40 px forward from film-start, gold axis behind, WALL 4 (#0C0C10 mirror-dark charcoal) in front reflecting a distorted-smaller-hunched version of the silhouette at center-frame Y=50%.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) 40 px forward from film-start, gold axis behind, WALL 4 (#0C0C10 mirror-dark charcoal) in front reflecting a distorted-smaller-hunched version of the silhouette at center-frame Y=50%.
 
 BEAT MAP:
 
@@ -402,7 +402,7 @@ BEAT MAP:
 Clip 5 ends with fragments hovering, hoodie formation not yet begun — Clip 6 continues.
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-5.png):
-- Silhouette at center-frame Y=40% but SHIFTED 60 px forward total from film-start. Absolutely still with rim-light at shoulders.
+- Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% but SHIFTED 60 px forward total from film-start. Absolutely still with rim-light at shoulders.
 - Vertical golden axis behind silhouette, extending floor-to-ceiling — now fully visible without any wall obscuring it.
 - NO walls visible (all four have shattered).
 - ~40 individual golden blueprint line segments hovering in the space around the silhouette at various depths.
@@ -427,10 +427,10 @@ ffmpeg -sseof -0.05 -i clip-destiny-5.mp4 -vframes 1 -q:v 1 handoff-destiny-5.pn
 
 ```
 CLIP 6 OF 6 (Destiny). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation. Ends on the poster frame.
-Camera: LOCKED-OFF. Silhouette absolutely motionless throughout.
+Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) absolutely motionless throughout.
 TONE: Calm Destruction resolves into calm inevitability. Hoodie forms organically from broken wall fragments.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Silhouette 60 px forward from film-start position, gold axis behind, ~40 individual golden blueprint line segments hovering in the space around the silhouette, no walls remaining.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) 60 px forward from film-start position, gold axis behind, ~40 individual golden blueprint line segments hovering in the space around the silhouette, no walls remaining.
 
 BEAT MAP:
 
@@ -494,7 +494,7 @@ CLIP 1 OF 6 (Destiny Mobile 9:16). Duration: 7.5 s, 24 fps, 180 frames. Text-to-
 Camera: LOCKED-OFF for entire clip and entire film.
 TONE: Calm Destruction. NEVER angry, violent, or explosive.
 
-OPENING FRAME (frame 0): Portrait 1080×1920. Backlit human silhouette at center-frame X, Y=40% from top (~Y=768) with faint gold rim-light at shoulders (20% opacity). Vertical golden axis (#D4A855, 2 px core + 8 px glow) extends from top pixel (Y=0) to bottom pixel (Y=1919) BEHIND the silhouette. In FRONT of the silhouette (between silhouette and camera): a massive charcoal wall (#0F0F14, cold neutral) fills the middle 50% of the frame vertically (Y=25%–75%) and 90% horizontally (X=54–1026, ~5% margin each side). Wall surface has low-relief fresco carvings of faint human faces (visible but not identifiable) contained within the wall region. Etched writing visible as surface texture (implies text but NOT legible letters). Upper 25% and lower 25% show void black + gold axis only. Palette: void black + charcoal + gold axis + faint gold rim-light. Camera absolutely locked.
+OPENING FRAME (frame 0): Portrait 1080×1920. Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame X, Y=40% from top (~Y=768) with faint gold rim-light at shoulders (20% opacity). Vertical golden axis (#D4A855, 2 px core + 8 px glow) extends from top pixel (Y=0) to bottom pixel (Y=1919) BEHIND the silhouette. In FRONT of the silhouette (between silhouette and camera): a massive charcoal wall (#0F0F14, cold neutral) fills the middle 50% of the frame vertically (Y=25%–75%) and 90% horizontally (X=54–1026, ~5% margin each side). Wall surface has low-relief fresco carvings of faint human faces (visible but not identifiable) contained within the wall region. Etched writing visible as surface texture (implies text but NOT legible letters). Upper 25% and lower 25% show void black + gold axis only. Palette: void black + charcoal + gold axis + faint gold rim-light. Camera absolutely locked.
 
 BEAT MAP:
 
@@ -508,7 +508,7 @@ BEAT MAP:
 Clip 1 ends MID-CRACK PROPAGATION — Clip 2 continues.
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-mobile-1.png, verify visually before Clip 2):
-- Portrait 1080×1920. Silhouette at center-frame X, Y=40% with faint gold rim-light at shoulders (20% opacity), absolutely still.
+- Portrait 1080×1920. Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame X, Y=40% with faint gold rim-light at shoulders (20% opacity), absolutely still.
 - Vertical golden axis behind silhouette, extending top pixel to bottom pixel of frame.
 - Massive charcoal wall (#0F0F14) in front of silhouette filling middle 50% vertically + 90% horizontally with:
   - Faint fresco face carvings still visible across the wall surface.
@@ -541,7 +541,7 @@ CLIP 2 OF 6 (Destiny Mobile 9:16). Duration: 7.5 s, 24 fps, 180 frames. Image-to
 Camera: LOCKED-OFF (same framing as Clip 1).
 TONE: Calm Destruction. Wall shatter is CALM DUST DISSOLUTION, NOT violent glass-break.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Silhouette + axis behind, charcoal wall #0F0F14 in front (filling middle 50% vertically + 90% horizontally) with fresco faces + golden glow at palm point + first cracks radiating ~180 px outward in 4–5 line fragments.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Backlit human silhouette (fully clothed, draped in a dark formless gown) + axis behind, charcoal wall #0F0F14 in front (filling middle 50% vertically + 90% horizontally) with fresco faces + golden glow at palm point + first cracks radiating ~180 px outward in 4–5 line fragments.
 
 BEAT MAP:
 
@@ -558,7 +558,7 @@ BEAT MAP:
   Frames 150–180 (1.25 s): WALL 2 fully opaque. Surface has soft rounded pattern implying "comfort object" texture (silhouetted low relief of a bed / blanket / womb shape) contained within the wall region. Text implied via etched surface texture but NOT legible letters. Silhouette absolutely still.
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-mobile-2.png):
-- Portrait 1080×1920. Silhouette at center-frame X, Y=40% with faint gold rim-light, absolutely still.
+- Portrait 1080×1920. Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame X, Y=40% with faint gold rim-light, absolutely still.
 - Vertical golden axis behind silhouette, top pixel to bottom pixel of frame.
 - WALL 2 (#1A1712, warm charcoal) fully visible in front of silhouette, filling middle 50% vertically + 90% horizontally.
 - Wall 2 surface has soft rounded low-relief pattern (comfort object texture), warm inner glow at ~10% brightness.
@@ -586,10 +586,10 @@ ffmpeg -sseof -0.05 -i clip-destiny-mobile-2.mp4 -vframes 1 -q:v 1 handoff-desti
 
 ```
 CLIP 3 OF 6 (Destiny Mobile 9:16). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
-Camera: LOCKED-OFF. Silhouette makes ONE 20 px step forward mid-clip.
+Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) makes ONE 20 px step forward mid-clip.
 TONE: Calm Destruction. Wall 2 dissolves into dust.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Silhouette + axis behind, WALL 2 (#1A1712 warm charcoal) fully visible in front (middle 50% + 90% region) with soft rounded low-relief pattern + faint ochre inner glow.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Backlit human silhouette (fully clothed, draped in a dark formless gown) + axis behind, WALL 2 (#1A1712 warm charcoal) fully visible in front (middle 50% + 90% region) with soft rounded low-relief pattern + faint ochre inner glow.
 
 BEAT MAP:
 
@@ -608,7 +608,7 @@ BEAT MAP:
   Frames 150–180 (1.25 s): inside the hourglass carving, sand appears at the bottom chamber and flows UPWARD (impossible physics = "wall reality is a lie"). Sand travels at ~2 px/frame upward against gravity. By frame 180: sand fills ~30% of the hourglass carving's upper chamber.
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-mobile-3.png):
-- Portrait 1080×1920. Silhouette at center-frame X, Y=40% but SHIFTED 20 px forward (closer to camera) compared to Clip 1/2 opening frames.
+- Portrait 1080×1920. Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame X, Y=40% but SHIFTED 20 px forward (closer to camera) compared to Clip 1/2 opening frames.
 - Vertical golden axis behind silhouette, top pixel to bottom pixel of frame.
 - WALL 3 (#14100A, cracked amber-charcoal) fully visible in front of silhouette in middle 50% + 90% region.
 - Wall 3 surface has vertically-oriented hourglass-shape carved into it (Y=30–70%). Inside the carving: sand flowing upward, upper chamber ~30% full.
@@ -619,27 +619,11 @@ CLOSING FRAME (frame 180 — extract as handoff-destiny-mobile-3.png):
 
 TEXT CALLOUTS for this clip (DOM overlays in lower 40% quiet zone, do NOT bake): 'Later.' at ~0.5 s, 'You deserve rest.' at ~1.2 s, 'It's fine.' at ~2 s.
 
-FORMAT: 1080×1920 (portrait 1080p), 9:16, 24 fps native, no audio, MP4 H.264. Duration exactly 7.5 s.
-```
-
-**After generation:**
-```powershell
-ffmpeg -sseof -0.05 -i clip-destiny-mobile-3.mp4 -vframes 1 -q:v 1 handoff-destiny-mobile-3.png
-```
-**Verify:** Silhouette clearly 20 px closer to camera than in Clip 2's frame 0. Wall 3 revealed with vertically-oriented hourglass carving + upward-flowing sand. If silhouette didn't step, hourglass has downward sand, or hourglass appears horizontally oriented, regenerate.
-
----
-
-### Mobile Clip 4 — WALL 3 finish + step + walk-through + WALL 4 begin (22.50–30.00 s)
-
-**Mode:** Image-to-Video. Upload `handoff-destiny-mobile-3.png`. Prepend Style Lock + Portrait framing rules. Then submit at aspect 9:16:
-
-```
-CLIP 4 OF 6 (Destiny Mobile 9:16). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
-Camera: LOCKED-OFF. Silhouette steps forward AND walks THROUGH the wall's plane in this clip.
+FORMAT: 1080×1920 (portrait 1080p), 9:16, 24 fps native, no audCLIP 4 OF 6 (Destiny Mobile 9:16). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
+Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) steps forward AND walks THROUGH the wall's plane in this clip.
 TONE: Calm Destruction. Wall 3 fractures as clean blueprint geometry.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Silhouette 20 px forward from film-start position, gold axis top pixel to bottom pixel of frame, WALL 3 (#14100A cracked amber-charcoal) in front (middle 50% + 90% region) with vertical hourglass carving containing upward-flowing sand at ~30% upper-chamber fill.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Backlit human silhouette (fully clothed, draped in a dark formless gown) 20 px forward from film-start position, gold axis top pixel to bottom pixel of frame, WALL 3 (#14100A cracked amber-charcoal) in front (middle 50% + 90% region) with vertical hourglass carving containing upward-flowing sand at ~30% upper-chamber fill.
 
 BEAT MAP:
 
@@ -653,11 +637,17 @@ BEAT MAP:
   Frames 60–96 (1.5 s): silhouette walks INTO the wall's plane — visually, the wall fractures around the silhouette's body. Cracks form as clean geometric blueprint lines (golden #D4A855, precise, calm). Cracks emanate outward from where the silhouette's body intersects the wall plane. By frame 96: silhouette has moved through the wall plane; wall is heavily fractured.
   Frames 96–108 (0.5 s): as silhouette passes through, sand in the hourglass carving HALTS mid-flow (frozen mid-air within the fractured hourglass). Fractures continue spreading.
 
-4.5–5.0 s (frames 108–120) — WALL 3 FULLY FRACTURES (contained)
+4.0–5.0 s (frames 108–120) — WALL 3 FULLY FRACTURES (contained)
   Frames 108–120 (0.5 s): remaining wall fragments dissolve like slow-falling glass shards drifting at ~3 px/frame. NOT violent — controlled slow-motion glass dissolution. NO starburst reflections. By frame 120: ~50% of wall fragments have drifted out of frame (some down into lower quiet zone, some sideways past the wall region's edges).
 
 5.0–7.5 s (frames 120–180) — WALL 4: SELF begin (first 60 frames of canonical 240-frame beat)
   Frames 120–150 (1.25 s): remaining Wall 3 fragments finish drifting. Behind them, WALL 4 (#0C0C10, mirror-dark charcoal) fades in via 30-frame opacity ramp from 0% to 100% in the same wall region.
+  Frames 150–180 (1.25 s): WALL 4 is a distorted mirror surface. It reflects a distorted version of the silhouette — the reflection is SMALLER (~70% of silhouette's actual size), HUNCHED, and appears more doubtful. Reflection visible in the mirror at approximately center-frame X, Y=50% from top. Silhouette itself absolutely still.
+
+CLOSING FRAME (frame 180 — extract as handoff-destiny-mobile-4.png):
+- Portrait 1080×1920. Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame X, Y=40% but SHIFTED 40 px forward total from film-start.
+- Vertical golden axis behind silhouette, top pixel to bottom pixel of frame.
+- WALL 4 (#0C0C10, mirror-dark charcoal) fully visible in front of silhouette in middle 50% + 90% region.rame opacity ramp from 0% to 100% in the same wall region.
   Frames 150–180 (1.25 s): WALL 4 is a distorted mirror surface. It reflects a distorted version of the silhouette — the reflection is SMALLER (~70% of silhouette's actual size), HUNCHED, and appears more doubtful. Reflection visible in the mirror at approximately center-frame X, Y=50% from top. Silhouette itself absolutely still.
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-mobile-4.png):
@@ -689,10 +679,10 @@ ffmpeg -sseof -0.05 -i clip-destiny-mobile-4.mp4 -vframes 1 -q:v 1 handoff-desti
 
 ```
 CLIP 5 OF 6 (Destiny Mobile 9:16). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
-Camera: LOCKED-OFF. Silhouette takes FINAL 20 px step forward and passes through mirror.
+Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) takes FINAL 20 px step forward and passes through mirror.
 TONE: Calm Destruction. Mirror shatters SILENTLY into light fragments that become blueprint geometry.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Silhouette 40 px forward from film-start, gold axis top pixel to bottom pixel of frame, WALL 4 (#0C0C10 mirror-dark charcoal) in front (middle 50% + 90% region) reflecting a distorted-smaller-hunched version of the silhouette at center-frame X, Y=50% from top.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Backlit human silhouette (fully clothed, draped in a dark formless gown) 40 px forward from film-start, gold axis top pixel to bottom pixel of frame, WALL 4 (#0C0C10 mirror-dark charcoal) in front (middle 50% + 90% region) reflecting a distorted-smaller-hunched version of the silhouette at center-frame X, Y=50% from top.
 
 BEAT MAP:
 
@@ -713,7 +703,7 @@ BEAT MAP:
 Clip 5 ends with fragments hovering — Clip 6 continues.
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-mobile-5.png):
-- Portrait 1080×1920. Silhouette at center-frame X, Y=40% but SHIFTED 60 px forward total from film-start.
+- Portrait 1080×1920. Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame X, Y=40% but SHIFTED 60 px forward total from film-start.
 - Vertical golden axis behind silhouette, top pixel to bottom pixel of frame — now fully visible without any wall obscuring it.
 - NO walls visible (all four have shattered).
 - ~40 individual golden blueprint line segments hovering in the space around the silhouette at various depths, all within middle 60% band (Y=384–1536).
