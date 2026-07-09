@@ -34,21 +34,6 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/shop/pants" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
-                {t('footer.pants')}
-              </Link>
-            </li>
-            <li>
-              <Link to="/shop/caps" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
-                {t('footer.caps')}
-              </Link>
-            </li>
-            <li>
-              <Link to="/shop/accessories" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
-                {t('footer.accessories')}
-              </Link>
-            </li>
-            <li>
               <Link to="/story" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
                 {t('nav.story')}
               </Link>

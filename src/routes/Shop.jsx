@@ -5,7 +5,7 @@ import ProductCard from '../components/product/ProductCard.jsx'
 import { getAll } from '../services/productsAdapter.js'
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js'
 
-const CATEGORIES = ['hoodies', 'tees', 'pants', 'caps', 'accessories']
+const CATEGORIES = ['hoodies', 'tees']
 
 /** Shop — Product grid (§6.2). Wired to productsAdapter.getAll(). */
 export default function Shop() {

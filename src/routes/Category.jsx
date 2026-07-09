@@ -5,7 +5,7 @@ import ProductCard from '../components/product/ProductCard.jsx'
 import { getAll } from '../services/productsAdapter.js'
 import { cn } from '../lib/cn.js'
 
-const CATEGORIES = ['hoodies', 'tees', 'pants', 'caps', 'accessories']
+const CATEGORIES = ['hoodies', 'tees']
 
 /** Category — Filtered shop (§6.2). */
 export default function Category() {
