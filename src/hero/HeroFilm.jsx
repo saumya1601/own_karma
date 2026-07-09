@@ -30,7 +30,7 @@ import { useSoundStore } from '../stores/soundStore.js'
  *
  * @param {{ onProgress?: (progress: number) => void }} props
  */
-export default function HeroFilm({ onProgress, src, poster }) {
+export default function HeroFilm({ onProgress, src, poster, preload = 'metadata' }) {
     const { prefersReducedMotion, isMobile } = useMediaCapability()
     const videoRef = useRef(null)
     const [videoState, setVideoState] = useState('loading') // 'loading' | 'ready' | 'error'
@@ -122,7 +122,7 @@ export default function HeroFilm({ onProgress, src, poster }) {
                         }`}
                     style={{ objectPosition: 'center 40%' }}
                     poster={sources.poster}
-                    preload="metadata"
+                    preload={preload}
                     autoPlay
                     loop
                     muted={isMuted}
