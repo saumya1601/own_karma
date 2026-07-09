@@ -43,20 +43,20 @@ const KARMA_REALMS = [
 ]
 
 const KARMA_RANGES = [
-  [0.000, 0.125],
-  [0.125, 0.300],
-  [0.300, 0.500],
-  [0.500, 0.750],
-  [0.750, 1.000]
+  [0.000, 0.200],
+  [0.200, 0.400],
+  [0.400, 0.600],
+  [0.600, 0.800],
+  [0.800, 1.000]
 ]
 
-// Destiny canon timeline (own_karma.md §Concept 04, 45 s total):
-//   0–5 s   WALL 1: OPINION       → [0.000, 0.111]  (5/45)
-//   5–12 s  THE PRESSURE          → [0.111, 0.267]  (7/45)
-//   12–18 s WALL 2: COMFORT       → [0.267, 0.400]  (6/45)
-//   18–25 s WALL 3: TIME          → [0.400, 0.556]  (7/45)
-//   25–35 s WALL 4: SELF          → [0.556, 0.778]  (10/45)
-//   35–45 s DESTINY REVEALED      → [0.778, 1.000]  (10/45)
+// Destiny canon timeline (updated to match actual generated 60 s total video loop with 10 s clips):
+//   0–10 s  WALL 1: OPINION       → [0.000, 0.1667]
+//   10–20 s THE PRESSURE          → [0.1667, 0.3333]
+//   20–30 s WALL 2: COMFORT       → [0.3333, 0.5000]
+//   30–40 s WALL 3: TIME          → [0.5000, 0.6667]
+//   40–50 s WALL 4: SELF          → [0.6667, 0.8333]
+//   50–60 s DESTINY REVEALED      → [0.8333, 1.0000]
 const DESTINY_REALMS = [
   { title: 'Wall 1: Opinion', subtitle: 'Concept 04 · Segment 01', desc: "A massive wall made of faint human faces and whispers. 'What will they think?' / 'Be realistic.' Human does not move." },
   { title: 'The Pressure', subtitle: 'Concept 04 · Segment 02', desc: "Human touches wall with one hand. Silent cracks form. Whispers stop. Text: 'Every destiny begins with disagreement.'" },
@@ -67,12 +67,12 @@ const DESTINY_REALMS = [
 ]
 
 const DESTINY_RANGES = [
-  [0.000, 0.111],
-  [0.111, 0.267],
-  [0.267, 0.400],
-  [0.400, 0.556],
-  [0.556, 0.778],
-  [0.778, 1.000]
+  [0.0000, 0.1667],
+  [0.1667, 0.3333],
+  [0.3333, 0.5000],
+  [0.5000, 0.6667],
+  [0.6667, 0.8333],
+  [0.8333, 1.0000]
 ]
 
 export default function StoryConcept() {

@@ -63,11 +63,11 @@ export const storyConcepts = {
       label: 'Concept 03 film — desert maze folding inward around the Eye',
     },
     timeline: [
-      { time: '0–5s', name: 'The Desert', desc: "Wide cinematic shot. Endless desert. Heat distortion. Fractured pyramids. Single human silhouette. Text: 'Every journey begins in illusion.'" },
-      { time: '5–12s', name: 'The Maze Reveals', desc: 'Sand shifts. Geometric lines emerge from beneath. Ground morphs into impossible staircase maze. Sand cascades down stair edges. Pyramids connected by staircase bridges.' },
-      { time: '12–20s', name: 'The Infinite Ascent', desc: 'Camera rotates. Staircase forms a spiral with a faint glowing Eye at its centre. The Eye does not move — the maze rotates around it.' },
-      { time: '20–30s', name: 'Scale Break', desc: 'Human becomes smaller. Maze grows enormous. Camera pulls back to reveal the entire desert maze exists inside the outline of an Eye.' },
-      { time: '30–40s', name: 'Transformation', desc: 'Maze dissolves into blueprint lines. Sand turns into threads. Staircase pattern forms on fabric. Eye locks into hoodie design.' }
+      { time: '0–10s', name: 'The Desert', desc: "Wide cinematic shot. Endless desert. Heat distortion. Fractured pyramids. Single human silhouette. Text: 'Every journey begins in illusion.'" },
+      { time: '10–20s', name: 'The Maze Reveals', desc: 'Sand shifts. Geometric lines emerge from beneath. Ground morphs into impossible staircase maze. Sand cascades down stair edges. Pyramids connected by staircase bridges.' },
+      { time: '20–30s', name: 'The Infinite Ascent', desc: 'Camera rotates. Staircase forms a spiral with a faint glowing Eye at its centre. The Eye does not move — the maze rotates around it.' },
+      { time: '30–40s', name: 'Scale Break', desc: 'Human becomes smaller. Maze grows enormous. Camera pulls back to reveal the entire desert maze exists inside the outline of an Eye.' },
+      { time: '40–50s', name: 'Transformation', desc: 'Maze dissolves into blueprint lines. Sand turns into threads. Staircase pattern forms on fabric. Eye locks into hoodie design.' }
     ],
     designDetails: [
       { name: 'Distance view', desc: 'Looks like an architectural maze.' },
@@ -88,12 +88,12 @@ export const storyConcepts = {
       label: 'Concept 04 film — four psychological walls, calm destruction',
     },
     timeline: [
-      { time: '0–5s', name: 'Wall 1: Opinion', desc: "A massive wall made of faint human faces and whispers. Text etched across: 'What will they think?' / 'Be realistic.' Human does not move." },
-      { time: '5–12s', name: 'The Pressure', desc: "Human touches wall with one hand. Silent cracks form. Whispers stop. Text: 'Every destiny begins with disagreement.'" },
-      { time: '12–18s', name: 'Wall 2: Comfort', desc: "Smoother, warmer, glowing wall. 'Later.' / 'You deserve rest.' / 'It's fine.' Human hesitates — then steps forward. Wall shatters into dust." },
-      { time: '18–25s', name: 'Wall 3: Time', desc: "A cracked hourglass wall. Sand flows upward. 'Not now.' / 'Someday.' / 'When I'm ready.' Human walks through. Glass fractures. Text: 'Time is not your enemy. Delay is.'" },
-      { time: '25–35s', name: 'Wall 4: Self', desc: 'A distorted mirror shows a smaller, doubtful self. Silence. Human steps through, shattering the mirror into geometric blueprint lines.' },
-      { time: '35–45s', name: 'Destiny Revealed', desc: 'Walls are gone. Space is open. The human is the same size, but nothing blocks them anymore.' }
+      { time: '0–10s', name: 'Wall 1: Opinion', desc: "A massive wall made of faint human faces and whispers. Text etched across: 'What will they think?' / 'Be realistic.' Human does not move." },
+      { time: '10–20s', name: 'The Pressure', desc: "Human touches wall with one hand. Silent cracks form. Whispers stop. Text: 'Every destiny begins with disagreement.'" },
+      { time: '20–30s', name: 'Wall 2: Comfort', desc: "Smoother, warmer, glowing wall. 'Later.' / 'You deserve rest.' / 'It's fine.' Human hesitates — then steps forward. Wall shatters into dust." },
+      { time: '30–40s', name: 'Wall 3: Time', desc: "A cracked hourglass wall. Sand flows upward. 'Not now.' / 'Someday.' / 'When I'm ready.' Human walks through. Glass fractures. Text: 'Time is not your enemy. Delay is.'" },
+      { time: '40–50s', name: 'Wall 4: Self', desc: 'A distorted mirror shows a smaller, doubtful self. Silence. Human steps through, shattering the mirror into geometric blueprint lines.' },
+      { time: '50–60s', name: 'Destiny Revealed', desc: 'Walls are gone. Space is open. The human is the same size, but nothing blocks them anymore.' }
     ],
     hiddenDetail: 'When the walls shatter, they dissolve into staircase lines, eye geometry, and blueprint threads that form the hoodie pattern. The cracks of the walls become the design lines.'
   },
