@@ -331,34 +331,34 @@ CLIP 4 OF 6 (Destiny). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video gener
 Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) steps forward AND walks THROUGH the wall's plane in this clip.
 TONE: Calm Destruction. Wall 3 fractures as clean blueprint geometry, NOT violent glass-break.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) 20 px forward from film-start position, gold axis behind, WALL 3 (#14100A cracked amber-charcoal) in front with hourglass carving containing upward-flowing sand at ~30% upper-chamber fill.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) positioned forward from film-start position, gold axis behind, WALL 3 (cracked amber-charcoal color) in front with hourglass carving containing upward-flowing sand.
 
 BEAT MAP:
 
 0.0–2.0 s (frames 0–48) — WALL 3: TIME held (canonical middle 48 frames)
-  Frames 0–48: sand continues flowing upward in the hourglass carving at ~2 px/frame. By frame 48: upper chamber ~50% full. Silhouette absolutely still.
+  Frames 0–48: sand continues flowing upward in the hourglass carving. Silhouette absolutely still.
 
 2.0–2.5 s (frames 48–60) — SILHOUETTE STEP FORWARD
-  Frames 48–60 (0.5 s = 12 frames): silhouette shifts ANOTHER 20 px forward toward camera using cubic ease-in-out. Silhouette is now 40 px total forward from film-start position. Rim-light briefly brightens.
+  Frames 48–60 (0.5 s = 12 frames): silhouette shifts forward toward camera using cubic ease-in-out. Silhouette is now positioned further forward. Rim-light briefly brightens.
 
 2.5–4.5 s (frames 60–108) — WALK THROUGH THE WALL (canonical final part of Wall 3 beat)
-  Frames 60–96 (1.5 s): silhouette walks INTO the wall's plane — visually, the wall begins to fracture around the silhouette's body. Cracks form as clean geometric blueprint lines (golden #D4A855, precise, calm — NOT jagged violence). Cracks emanate outward from where the silhouette's body intersects the wall plane. By frame 96: silhouette has moved through the wall plane; wall is heavily fractured with golden crack lines throughout.
+  Frames 60–96 (1.5 s): silhouette walks INTO the wall's plane — visually, the wall begins to fracture around the silhouette's body. Cracks form as clean geometric blueprint lines (golden, precise, calm — NOT jagged violence). Cracks emanate outward from where the silhouette's body intersects the wall plane. By frame 96: silhouette has moved through the wall plane; wall is heavily fractured with golden crack lines throughout.
   Frames 96–108 (0.5 s): as silhouette passes through, sand in the hourglass carving HALTS mid-flow (frozen mid-air within the fractured hourglass). Fractures continue spreading.
 
 4.0–5.0 s (frames 108–120) — WALL 3 FULLY FRACTURES (contained)
-  Frames 108–120 (0.5 s): remaining wall fragments dissolve like slow-falling glass shards drifting at ~3 px/frame. NOT violent — controlled slow-motion glass dissolution. NO starburst reflections. By frame 120: ~50% of wall fragments have drifted out of frame.
+  Frames 108–120 (0.5 s): remaining wall fragments dissolve like slow-falling glass shards. NOT violent — controlled slow-motion glass dissolution. NO starburst reflections. By frame 120: about half of wall fragments have drifted out of frame.
 
 5.0–7.5 s (frames 120–180) — WALL 4: SELF begin (first 60 frames of canonical 240-frame beat)
-  Frames 120–150 (1.25 s): remaining Wall 3 fragments finish drifting. Behind them, WALL 4 (#0C0C10, mirror-dark charcoal) fades in via 30-frame opacity ramp from 0% to 100%.
-  Frames 150–180 (1.25 s): WALL 4 is a distorted mirror surface. It reflects a distorted version of the silhouette — the reflection is SMALLER (about 70% of silhouette's actual size), HUNCHED, and appears more doubtful in posture. Reflection is visible in the mirror at approximately center-frame Y=50%. Silhouette itself absolutely still.
+  Frames 120–150 (1.25 s): remaining Wall 3 fragments finish drifting. Behind them, WALL 4 (mirror-dark charcoal color) fades in via opacity ramp.
+  Frames 150–180 (1.25 s): WALL 4 is a distorted mirror surface. It reflects a distorted version of the silhouette — the reflection is SMALLER (about 70% of silhouette's actual size), HUNCHED, and appears more doubtful in posture. Reflection is visible in the mirror. Silhouette itself absolutely still.
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-4.png):
-- Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% but SHIFTED 40 px forward total from film-start. Rim-light at shoulders, absolutely still.
+- Backlit human silhouette (fully clothed, draped in a dark formless gown) positioned forward from film-start. Rim-light at shoulders, absolutely still.
 - Vertical golden axis behind silhouette, extending floor-to-ceiling.
-- WALL 4 (#0C0C10, mirror-dark charcoal) fully visible in front of silhouette.
-- Wall 4 surface reflects a distorted, smaller (~70% size), hunched version of the silhouette at ~center-frame Y=50%.
+- WALL 4 (mirror-dark charcoal) fully visible in front of silhouette.
+- Wall 4 surface reflects a distorted, smaller, hunched version of the silhouette.
 - NO trace of WALL 3 remaining.
-- Palette: void black + mirror-dark charcoal #0C0C10 + gold #D4A855 (axis, rim-light) + subtle bone off-white reflections in the mirror surface.
+- Palette: void black + mirror-dark charcoal + warm gold (axis, rim-light) + subtle bone off-white reflections in the mirror surface.
 - Camera absolutely locked (identical framing to prior clips).
 
 TEXT CALLOUTS for this clip (DOM overlays, do NOT bake): 'Not now.' at ~0.5 s, 'Someday.' at ~1.5 s, 'When I'm ready.' at ~2.5 s, 'Time is not your enemy. Delay is.' at ~5 s.
