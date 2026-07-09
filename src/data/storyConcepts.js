@@ -54,6 +54,9 @@ export const storyConcepts = {
     subtitle: 'Inward Descent',
     quote: 'The staircase is not leading upward. It is folding inward.',
     philosophy: 'An infinite staircase maze built on desert stone and fractured pyramids. The staircase appears to rise, but when the perspective rotates, it actually descends inward. The climb is not upward; the climb is inward.',
+    // Concept 03 hero pair — rendered by <KarmaEyeHero> as a full-viewport HeroFilm.
+    // Files must be generated per _document/prompts/concept-03-karmas-eye.md and
+    // placed in public/videos/.
     video: {
       src: '/videos/story-karmas-eye.mp4',
       poster: '/videos/story-karmas-eye-poster.jpg',
