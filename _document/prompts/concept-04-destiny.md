@@ -432,13 +432,13 @@ CLIP 6 OF 6 (Destiny). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video gener
 Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) absolutely motionless throughout.
 TONE: Calm Destruction resolves into calm inevitability. Hoodie forms organically from broken wall fragments.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) 60 px forward from film-start position, gold axis behind, ~40 individual golden blueprint line segments hovering in the space around the silhouette, no walls remaining.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) positioned forward from film-start position, gold axis behind, multiple individual golden blueprint line segments hovering in the space around the silhouette, no walls remaining.
 
 BEAT MAP:
 
-0.0–5.0 s (frames 0–120) — DESTINY REVEALED (final 192 frames of canonical 240-frame beat, condensed to 120 here + 48 already in Clip 5)
-  Frames 0–48 (2 s): blueprint fragments drift TOWARD the silhouette at increasing rate (~3 px/frame). Fragments visibly reorganize as they approach — line segments arrange themselves into groups that will become hoodie pattern regions.
-  Frames 48–96 (2 s): fragments begin weaving into the hoodie shape ON the silhouette. Weaving is organic — fragments flow from around the silhouette inward, meeting at the axis (spine seam) first, then radiating outward. Hoodie forms from collar → shoulders → torso → arms over 48 frames. By frame 96: hoodie ~80% complete. Pattern on hoodie visibly composed of the four wall's crack lines:
+0.0–5.0 s (frames 0–120) — DESTINY REVEALED (final portion of canonical beat)
+  Frames 0–48 (2 s): blueprint fragments drift toward the silhouette. Fragments visibly reorganize as they approach — line segments arrange themselves into groups that will become hoodie pattern regions.
+  Frames 48–96 (2 s): fragments begin weaving into the hoodie shape ON the silhouette. Weaving is organic — fragments flow from around the silhouette inward, meeting at the axis (spine seam) first, then radiating outward. Hoodie forms from collar → shoulders → torso → arms. By frame 96: hoodie is mostly complete. Pattern on hoodie visibly composed of the four walls' crack lines:
     - Opinion wall's spreading cracks form the shoulder yoke pattern
     - Comfort wall's soft rounded lines form the sleeve details
     - Time wall's hourglass geometry forms a chest emblem
@@ -446,15 +446,15 @@ BEAT MAP:
   Frames 96–120 (1 s): remaining fragments complete the hoodie. Hoodie fully formed. Silhouette wearing complete hoodie made from what was broken.
 
 5.0–7.5 s (frames 120–180) — DEAD-AIR HOLD (poster frame)
-  Frames 120–180 (2.5 s): absolutely no motion. Silhouette in completed hoodie stands at center-frame Y=40%, 60 px forward from film-start position (canon: same size as start, but has advanced through the wall planes). This final frame IS the poster.jpg export.
+  Frames 120–180 (2.5 s): absolutely no motion. Silhouette in completed hoodie stands positioned forward from film-start position (same body size as start, but has advanced through the wall planes). This final frame IS the poster.jpg export.
 
 CLOSING FRAME (frame 180 — this IS the poster frame, extract as story-destiny-poster candidate):
-- Backlit human silhouette at center-frame Y=40% (60 px forward from film-start position), same body size as film-start, wearing complete hoodie.
+- Backlit human silhouette positioned forward from film-start position, same body size as film-start, wearing complete hoodie.
 - Hoodie fabric composed of the four walls' crack lines as design pattern: opinion cracks in shoulders, comfort curves in sleeves, time hourglass at chest, mirror fragments in overall seam. Fabric is charcoal-black with subtle gold line-art details.
 - Vertical golden axis behind silhouette, extending floor-to-ceiling.
 - NO walls, NO wall dust, NO blueprint fragments hovering (all absorbed into hoodie).
 - Void black background around silhouette.
-- Palette: void black + charcoal hoodie + gold #D4A855 (axis, hoodie design lines, rim-light).
+- Palette: void black + charcoal hoodie + warm gold (axis, hoodie design lines, rim-light).
 - Camera absolutely locked (identical framing to all prior clips). Zero motion.
 
 DEFINING LINE for this clip (rendered as DOM overlay in the final beat, DO NOT bake): 'Break what contains you.' at ~5 s, held for the final 2.5 s.
