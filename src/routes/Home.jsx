@@ -51,25 +51,7 @@ export default function Home() {
 
   useDocumentTitle('Home')
 
-  // Route-scoped preload: only inject when Home mounts, remove on unmount.
-  // Replaces the unconditional <link> tags previously in index.html which fired
-  // "preloaded but not used" warnings on every non-home route. See HeroFilm.jsx.
-  useEffect(() => {
-    const links = [
-      { href: '/videos/hero-poster.jpg', media: '(min-width: 768px)' },
-      { href: '/videos/hero-poster-mobile.jpg', media: '(max-width: 767px)' },
-    ].map(({ href, media }) => {
-      const link = document.createElement('link')
-      link.rel = 'preload'
-      link.as = 'image'
-      link.href = href
-      link.media = media
-      link.setAttribute('fetchpriority', 'high')
-      document.head.appendChild(link)
-      return link
-    })
-    return () => { links.forEach((l) => l.remove()) }
-  }, [])
+
 
   const handleExplore = () => {
     const lenis = getLenis()
@@ -104,92 +86,87 @@ export default function Home() {
   }, [segmentIndex, progress])
 
   // Animate realm cues using GSAP for buttery smooth cinematic transitions.
-  // Scoped to cuesContainerRef via gsap.context() so ctx.revert() on unmount
-  // kills all pending tweens and reverts inline styles — prevents React 19
-  // 'removeChild: The node to be removed is not a child of this node' errors
-  // caused by GSAP writing to DOM after React has torn down the fiber.
+  // `overwrite: 'auto'` on each tween cancels the previous target-conflicting
+  // tween — no manual cleanup needed. Deliberately no ctx.revert() so React 19
+  // StrictMode's synthetic cleanup doesn't snap cues back mid-fade.
   useEffect(() => {
     if (!cuesContainerRef.current) return
     const children = cuesContainerRef.current.children
     if (!children || children.length === 0) return
 
-    const ctx = gsap.context(() => {
-      Array.from(children).forEach((child, i) => {
-        const isActive = i === segmentIndex
-        if (isActive) {
-          gsap.to(child, {
-            opacity: 1,
-            y: 0,
-            duration: 1.2,
-            ease: 'power2.out',
-            overwrite: 'auto'
-          })
-        } else {
-          gsap.to(child, {
-            opacity: 0,
-            y: 8,
-            duration: 0.8,
-            ease: 'power2.inOut',
-            overwrite: 'auto'
-          })
-        }
-      })
-    }, cuesContainerRef)
-
-    return () => ctx.revert()
+    Array.from(children).forEach((child, i) => {
+      const isActive = i === segmentIndex
+      if (isActive) {
+        gsap.to(child, {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        })
+      } else {
+        gsap.to(child, {
+          opacity: 0,
+          y: 8,
+          duration: 0.8,
+          ease: 'power2.inOut',
+          overwrite: 'auto'
+        })
+      }
+    })
   }, [segmentIndex])
 
   // Intro cinematic splitting animation when video playback starts (progress > 0).
-  // Same gsap.context() safety net as above.
+  // No gsap.context() wrapper on purpose — StrictMode's synthetic cleanup would
+  // call ctx.revert() between the double-invoked effects and kill the timeline
+  // before it plays. `hasStartedRef` guarantees we build the timeline once per
+  // mount; `autoAlpha: 0` (instead of the earlier `display: 'none'`) avoids the
+  // removeChild race with React's fiber deletion on route change.
   useEffect(() => {
     if (!(progress > 0 && !hasStartedRef.current)) return
     hasStartedRef.current = true
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 1.5 })
+    const tl = gsap.timeline({ delay: 1.5 })
 
-      tl.to(ownRef.current, {
-        x: -200,
-        opacity: 0,
-        duration: 3.0,
-        ease: 'power4.inOut'
-      }, 0)
+    tl.to(ownRef.current, {
+      x: -200,
+      opacity: 0,
+      duration: 3.0,
+      ease: 'power4.inOut'
+    }, 0)
 
-      tl.to(karmaRef.current, {
-        x: 200,
-        opacity: 0,
-        duration: 3.0,
-        ease: 'power4.inOut'
-      }, 0)
+    tl.to(karmaRef.current, {
+      x: 200,
+      opacity: 0,
+      duration: 3.0,
+      ease: 'power4.inOut'
+    }, 0)
 
-      tl.to(topThingsRef.current, {
-        y: -100,
-        opacity: 0,
-        duration: 2.5,
-        ease: 'power4.inOut'
-      }, 0.2)
+    tl.to(topThingsRef.current, {
+      y: -100,
+      opacity: 0,
+      duration: 2.5,
+      ease: 'power4.inOut'
+    }, 0.2)
 
-      tl.to(bottomThingsRef.current, {
-        y: 100,
-        opacity: 0,
-        duration: 2.5,
-        ease: 'power4.inOut'
-      }, 0.2)
+    tl.to(bottomThingsRef.current, {
+      y: 100,
+      opacity: 0,
+      duration: 2.5,
+      ease: 'power4.inOut'
+    }, 0.2)
 
-      tl.to(scrollIndicatorRef.current, {
-        y: 80,
-        opacity: 0,
-        duration: 2.0,
-        ease: 'power4.inOut'
-      }, 0.2)
+    tl.to(scrollIndicatorRef.current, {
+      y: 80,
+      opacity: 0,
+      duration: 2.0,
+      ease: 'power4.inOut'
+    }, 0.2)
 
-      tl.to(overlayRef.current, {
-        autoAlpha: 0,
-        duration: 0.1
-      })
+    tl.to(overlayRef.current, {
+      autoAlpha: 0,
+      duration: 0.1
     })
-
-    return () => ctx.revert()
   }, [progress])
 
   return (
@@ -412,7 +389,12 @@ function ConceptTrail() {
     })
 
     return () => {
-      pin.scrollTrigger?.kill()
+      // `kill(true)` — the `true` argument reverts the pin-spacer DOM wrapping
+      // that ScrollTrigger creates when `pin: true`. Without it, the spacer div
+      // remains in the DOM after unmount and React's fiber tree still thinks the
+      // element's parent is the original parent → 'removeChild: not a child' error.
+      pin.scrollTrigger?.kill(true)
+      pin.kill()
     }
   }, [])
 

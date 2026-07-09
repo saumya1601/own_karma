@@ -86,7 +86,7 @@ export default function StoryConcept() {
   // Render full viewport layout for Divine, exactly matching the home hero experience.
   if (concept === 'divine') {
     return (
-      <div className="bg-ok-void text-ok-bone min-h-screen">
+      <div key={concept} className="bg-ok-void text-ok-bone min-h-screen">
         <DivineHero />
         <div id="concept-article" className="px-6 md:px-12 py-32 max-w-3xl mx-auto space-y-16">
           {/* Navigation / Header */}
@@ -169,7 +169,7 @@ export default function StoryConcept() {
   // Render full viewport layout for Karma's Eye, mirroring the Divine treatment.
   if (concept === 'karmas-eye') {
     return (
-      <div className="bg-ok-void text-ok-bone min-h-screen">
+      <div key={concept} className="bg-ok-void text-ok-bone min-h-screen">
         <KarmaEyeHero />
         <div id="concept-article" className="px-6 md:px-12 py-32 max-w-3xl mx-auto space-y-16">
           {/* Navigation / Header */}
@@ -267,7 +267,7 @@ export default function StoryConcept() {
   // Render full viewport layout for Destiny, mirroring Divine / Karma's Eye.
   if (concept === 'destiny') {
     return (
-      <div className="bg-ok-void text-ok-bone min-h-screen">
+      <div key={concept} className="bg-ok-void text-ok-bone min-h-screen">
         <DestinyHero />
         <div id="concept-article" className="px-6 md:px-12 py-32 max-w-3xl mx-auto space-y-16">
           {/* Navigation / Header */}
@@ -349,7 +349,7 @@ export default function StoryConcept() {
 
   // Standard editorial route for other concepts
   return (
-    <div className="min-h-screen px-6 md:px-12 pt-24 pb-32 bg-ok-void text-ok-bone">
+    <div key={concept} className="min-h-screen px-6 md:px-12 pt-24 pb-32 bg-ok-void text-ok-bone">
       <article className="max-w-3xl mx-auto space-y-16">
         {/* Navigation / Header */}
         <header className="space-y-6">
@@ -472,18 +472,7 @@ function DivineHero() {
   // valid `as` value per the Fetch spec (browsers reject it). The correct
   // way to hint video priority is the <video preload> attribute itself, so
   // we pass preload="auto" through to HeroFilm below.
-  useEffect(() => {
-    const posterLink = document.createElement('link')
-    posterLink.rel = 'preload'
-    posterLink.as = 'image'
-    posterLink.href = '/videos/story-divine-poster.jpg'
-    posterLink.setAttribute('fetchpriority', 'high')
-    document.head.appendChild(posterLink)
 
-    return () => {
-      posterLink.remove()
-    }
-  }, [])
 
   const handleExplore = () => {
     const lenis = getLenis()
@@ -505,93 +494,86 @@ function DivineHero() {
 
   const segmentIndex = getSegmentIndex(progress)
 
-  // Cues fading with GSAP — scoped via gsap.context() so ctx.revert() on
-  // unmount kills all pending tweens and reverts inline styles. Prevents
-  // 'removeChild: node not a child' errors during route change.
+  // Cues fading with GSAP. `overwrite: 'auto'` handles the previous-tween
+  // conflict on each cue — no gsap.context() cleanup so React 19 StrictMode
+  // doesn't revert cues mid-fade.
   useEffect(() => {
     if (!cuesContainerRef.current) return
     const children = cuesContainerRef.current.children
     if (!children || children.length === 0) return
 
-    const ctx = gsap.context(() => {
-      Array.from(children).forEach((child, i) => {
-        const isActive = i === segmentIndex
-        if (isActive) {
-          gsap.to(child, {
-            opacity: 1,
-            y: 0,
-            duration: 1.2,
-            ease: 'power2.out',
-            overwrite: 'auto'
-          })
-        } else {
-          gsap.to(child, {
-            opacity: 0,
-            y: 8,
-            duration: 0.8,
-            ease: 'power2.inOut',
-            overwrite: 'auto'
-          })
-        }
-      })
-    }, cuesContainerRef)
-
-    return () => ctx.revert()
+    Array.from(children).forEach((child, i) => {
+      const isActive = i === segmentIndex
+      if (isActive) {
+        gsap.to(child, {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        })
+      } else {
+        gsap.to(child, {
+          opacity: 0,
+          y: 8,
+          duration: 0.8,
+          ease: 'power2.inOut',
+          overwrite: 'auto'
+        })
+      }
+    })
   }, [segmentIndex])
 
   // Splitting Title Card Animation on Playback Start.
-  // gsap.context() cleanup + autoAlpha (opacity + visibility) instead of
-  // display:'none' so the overlay stays in the render flow and React can
-  // safely remove it on unmount.
+  // No gsap.context() on purpose — StrictMode's synthetic cleanup would call
+  // ctx.revert() between the double-invoked effects and kill the timeline
+  // before it plays. `hasStartedRef` guarantees single-fire; `autoAlpha: 0`
+  // (instead of the earlier `display: 'none'`) avoids the removeChild race.
   useEffect(() => {
     if (!(progress > 0 && !hasStartedRef.current)) return
     hasStartedRef.current = true
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 1.5 })
+    const tl = gsap.timeline({ delay: 1.5 })
 
-      tl.to(ownRef.current, {
-        x: -200,
-        opacity: 0,
-        duration: 3.0,
-        ease: 'power4.inOut'
-      }, 0)
+    tl.to(ownRef.current, {
+      x: -200,
+      opacity: 0,
+      duration: 3.0,
+      ease: 'power4.inOut'
+    }, 0)
 
-      tl.to(karmaRef.current, {
-        x: 200,
-        opacity: 0,
-        duration: 3.0,
-        ease: 'power4.inOut'
-      }, 0)
+    tl.to(karmaRef.current, {
+      x: 200,
+      opacity: 0,
+      duration: 3.0,
+      ease: 'power4.inOut'
+    }, 0)
 
-      tl.to(topThingsRef.current, {
-        y: -100,
-        opacity: 0,
-        duration: 2.5,
-        ease: 'power4.inOut'
-      }, 0.2)
+    tl.to(topThingsRef.current, {
+      y: -100,
+      opacity: 0,
+      duration: 2.5,
+      ease: 'power4.inOut'
+    }, 0.2)
 
-      tl.to(bottomThingsRef.current, {
-        y: 100,
-        opacity: 0,
-        duration: 2.5,
-        ease: 'power4.inOut'
-      }, 0.2)
+    tl.to(bottomThingsRef.current, {
+      y: 100,
+      opacity: 0,
+      duration: 2.5,
+      ease: 'power4.inOut'
+    }, 0.2)
 
-      tl.to(scrollIndicatorRef.current, {
-        y: 80,
-        opacity: 0,
-        duration: 2.0,
-        ease: 'power4.inOut'
-      }, 0.2)
+    tl.to(scrollIndicatorRef.current, {
+      y: 80,
+      opacity: 0,
+      duration: 2.0,
+      ease: 'power4.inOut'
+    }, 0.2)
 
-      tl.to(overlayRef.current, {
-        autoAlpha: 0,
-        duration: 0.1
-      })
+    tl.to(overlayRef.current, {
+      autoAlpha: 0,
+      duration: 0.1
     })
-
-    return () => ctx.revert()
   }, [progress])
 
   return (
@@ -703,15 +685,7 @@ function KarmaEyeHero() {
   // Route-scoped preload: kick off the poster fetch during hydration so it
   // overlaps with React mount instead of waiting until <HeroFilm> commits.
   // See DivineHero for the note on why we don't use <link rel="preload" as="video">.
-  useEffect(() => {
-    const posterLink = document.createElement('link')
-    posterLink.rel = 'preload'
-    posterLink.as = 'image'
-    posterLink.href = '/videos/story-karmas-eye-poster.jpg'
-    posterLink.setAttribute('fetchpriority', 'high')
-    document.head.appendChild(posterLink)
-    return () => { posterLink.remove() }
-  }, [])
+
 
   const handleExplore = () => {
     const lenis = getLenis()
@@ -733,88 +707,84 @@ function KarmaEyeHero() {
 
   const segmentIndex = getSegmentIndex(progress)
 
-  // Cues fading with GSAP — scoped via gsap.context() for safe unmount.
+  // Cues fading with GSAP. `overwrite: 'auto'` handles conflicts — no
+  // gsap.context() cleanup so StrictMode doesn't revert cues mid-fade.
   useEffect(() => {
     if (!cuesContainerRef.current) return
     const children = cuesContainerRef.current.children
     if (!children || children.length === 0) return
 
-    const ctx = gsap.context(() => {
-      Array.from(children).forEach((child, i) => {
-        const isActive = i === segmentIndex
-        if (isActive) {
-          gsap.to(child, {
-            opacity: 1,
-            y: 0,
-            duration: 1.2,
-            ease: 'power2.out',
-            overwrite: 'auto'
-          })
-        } else {
-          gsap.to(child, {
-            opacity: 0,
-            y: 8,
-            duration: 0.8,
-            ease: 'power2.inOut',
-            overwrite: 'auto'
-          })
-        }
-      })
-    }, cuesContainerRef)
-
-    return () => ctx.revert()
+    Array.from(children).forEach((child, i) => {
+      const isActive = i === segmentIndex
+      if (isActive) {
+        gsap.to(child, {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        })
+      } else {
+        gsap.to(child, {
+          opacity: 0,
+          y: 8,
+          duration: 0.8,
+          ease: 'power2.inOut',
+          overwrite: 'auto'
+        })
+      }
+    })
   }, [segmentIndex])
 
-  // Splitting Title Card Animation on Playback Start — gsap.context() + autoAlpha.
+  // Splitting Title Card Animation on Playback Start.
+  // No gsap.context() — StrictMode's synthetic cleanup would ctx.revert() the
+  // timeline before it plays. hasStartedRef guarantees single-fire; autoAlpha
+  // instead of display:'none' avoids the removeChild race on route change.
   useEffect(() => {
     if (!(progress > 0 && !hasStartedRef.current)) return
     hasStartedRef.current = true
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 1.5 })
+    const tl = gsap.timeline({ delay: 1.5 })
 
-      tl.to(ownRef.current, {
-        x: -200,
-        opacity: 0,
-        duration: 3.0,
-        ease: 'power4.inOut'
-      }, 0)
+    tl.to(ownRef.current, {
+      x: -200,
+      opacity: 0,
+      duration: 3.0,
+      ease: 'power4.inOut'
+    }, 0)
 
-      tl.to(karmaRef.current, {
-        x: 200,
-        opacity: 0,
-        duration: 3.0,
-        ease: 'power4.inOut'
-      }, 0)
+    tl.to(karmaRef.current, {
+      x: 200,
+      opacity: 0,
+      duration: 3.0,
+      ease: 'power4.inOut'
+    }, 0)
 
-      tl.to(topThingsRef.current, {
-        y: -100,
-        opacity: 0,
-        duration: 2.5,
-        ease: 'power4.inOut'
-      }, 0.2)
+    tl.to(topThingsRef.current, {
+      y: -100,
+      opacity: 0,
+      duration: 2.5,
+      ease: 'power4.inOut'
+    }, 0.2)
 
-      tl.to(bottomThingsRef.current, {
-        y: 100,
-        opacity: 0,
-        duration: 2.5,
-        ease: 'power4.inOut'
-      }, 0.2)
+    tl.to(bottomThingsRef.current, {
+      y: 100,
+      opacity: 0,
+      duration: 2.5,
+      ease: 'power4.inOut'
+    }, 0.2)
 
-      tl.to(scrollIndicatorRef.current, {
-        y: 80,
-        opacity: 0,
-        duration: 2.0,
-        ease: 'power4.inOut'
-      }, 0.2)
+    tl.to(scrollIndicatorRef.current, {
+      y: 80,
+      opacity: 0,
+      duration: 2.0,
+      ease: 'power4.inOut'
+    }, 0.2)
 
-      tl.to(overlayRef.current, {
-        autoAlpha: 0,
-        duration: 0.1
-      })
+    tl.to(overlayRef.current, {
+      autoAlpha: 0,
+      duration: 0.1
     })
-
-    return () => ctx.revert()
   }, [progress])
 
   return (
@@ -921,15 +891,7 @@ function DestinyHero() {
   // Route-scoped preload: hint the browser to fetch the destiny poster during
   // hydration so it overlaps with React mount. See DivineHero note on why we
   // don't use <link rel="preload" as="video">.
-  useEffect(() => {
-    const posterLink = document.createElement('link')
-    posterLink.rel = 'preload'
-    posterLink.as = 'image'
-    posterLink.href = '/videos/story-destiny-poster.jpg'
-    posterLink.setAttribute('fetchpriority', 'high')
-    document.head.appendChild(posterLink)
-    return () => { posterLink.remove() }
-  }, [])
+
 
   const handleExplore = () => {
     const lenis = getLenis()
@@ -951,88 +913,84 @@ function DestinyHero() {
 
   const segmentIndex = getSegmentIndex(progress)
 
-  // Cues fading with GSAP — scoped via gsap.context() for safe unmount.
+  // Cues fading with GSAP. `overwrite: 'auto'` handles conflicts — no
+  // gsap.context() cleanup so StrictMode doesn't revert cues mid-fade.
   useEffect(() => {
     if (!cuesContainerRef.current) return
     const children = cuesContainerRef.current.children
     if (!children || children.length === 0) return
 
-    const ctx = gsap.context(() => {
-      Array.from(children).forEach((child, i) => {
-        const isActive = i === segmentIndex
-        if (isActive) {
-          gsap.to(child, {
-            opacity: 1,
-            y: 0,
-            duration: 1.2,
-            ease: 'power2.out',
-            overwrite: 'auto'
-          })
-        } else {
-          gsap.to(child, {
-            opacity: 0,
-            y: 8,
-            duration: 0.8,
-            ease: 'power2.inOut',
-            overwrite: 'auto'
-          })
-        }
-      })
-    }, cuesContainerRef)
-
-    return () => ctx.revert()
+    Array.from(children).forEach((child, i) => {
+      const isActive = i === segmentIndex
+      if (isActive) {
+        gsap.to(child, {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        })
+      } else {
+        gsap.to(child, {
+          opacity: 0,
+          y: 8,
+          duration: 0.8,
+          ease: 'power2.inOut',
+          overwrite: 'auto'
+        })
+      }
+    })
   }, [segmentIndex])
 
-  // Splitting Title Card Animation on Playback Start — gsap.context() + autoAlpha.
+  // Splitting Title Card Animation on Playback Start.
+  // No gsap.context() — StrictMode's synthetic cleanup would ctx.revert() the
+  // timeline before it plays. hasStartedRef guarantees single-fire; autoAlpha
+  // instead of display:'none' avoids the removeChild race on route change.
   useEffect(() => {
     if (!(progress > 0 && !hasStartedRef.current)) return
     hasStartedRef.current = true
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 1.5 })
+    const tl = gsap.timeline({ delay: 1.5 })
 
-      tl.to(ownRef.current, {
-        x: -200,
-        opacity: 0,
-        duration: 3.0,
-        ease: 'power4.inOut'
-      }, 0)
+    tl.to(ownRef.current, {
+      x: -200,
+      opacity: 0,
+      duration: 3.0,
+      ease: 'power4.inOut'
+    }, 0)
 
-      tl.to(karmaRef.current, {
-        x: 200,
-        opacity: 0,
-        duration: 3.0,
-        ease: 'power4.inOut'
-      }, 0)
+    tl.to(karmaRef.current, {
+      x: 200,
+      opacity: 0,
+      duration: 3.0,
+      ease: 'power4.inOut'
+    }, 0)
 
-      tl.to(topThingsRef.current, {
-        y: -100,
-        opacity: 0,
-        duration: 2.5,
-        ease: 'power4.inOut'
-      }, 0.2)
+    tl.to(topThingsRef.current, {
+      y: -100,
+      opacity: 0,
+      duration: 2.5,
+      ease: 'power4.inOut'
+    }, 0.2)
 
-      tl.to(bottomThingsRef.current, {
-        y: 100,
-        opacity: 0,
-        duration: 2.5,
-        ease: 'power4.inOut'
-      }, 0.2)
+    tl.to(bottomThingsRef.current, {
+      y: 100,
+      opacity: 0,
+      duration: 2.5,
+      ease: 'power4.inOut'
+    }, 0.2)
 
-      tl.to(scrollIndicatorRef.current, {
-        y: 80,
-        opacity: 0,
-        duration: 2.0,
-        ease: 'power4.inOut'
-      }, 0.2)
+    tl.to(scrollIndicatorRef.current, {
+      y: 80,
+      opacity: 0,
+      duration: 2.0,
+      ease: 'power4.inOut'
+    }, 0.2)
 
-      tl.to(overlayRef.current, {
-        autoAlpha: 0,
-        duration: 0.1
-      })
+    tl.to(overlayRef.current, {
+      autoAlpha: 0,
+      duration: 0.1
     })
-
-    return () => ctx.revert()
   }, [progress])
 
   return (
