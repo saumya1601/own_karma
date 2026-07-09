@@ -102,15 +102,21 @@ export const storyConcepts = {
     subtitle: 'The Prison of Time',
     quote: 'Break the frame.',
     philosophy: 'Time contains you — until you decide to break it. Time is not the enemy. Time is a frame. Destiny begins when you step outside the frame. You don’t experience time; you experience alignment.',
+    video: {
+      src: '/videos/story-hourglass.mp4',
+      poster: '/videos/story-hourglass-poster.jpg',
+      label: 'Concept 05 film — the hourglass breaks and becomes the hoodie',
+    },
     timeline: [
-      { time: '0–6s', name: 'The Relic', desc: 'Black void. A large antique hourglass floats. Inside the lower chamber, a tiny human silhouette stands upright and still. No sand movement.' },
-      { time: '6–12s', name: 'The Containment', desc: 'Human is trapped. Sand falls oppressively slowly, floating past them without hitting.' },
-      { time: '12–18s', name: 'The Realization', desc: 'Human looks upward. Sand stops mid-air. Silence. They place one hand against the glass. Cracks form like geometric blueprint lines.' },
-      { time: '18–25s', name: 'The Break', desc: 'Human pushes through. Glass shatters in slow motion. Sand bursts outward, transforming into planets, birds, waves, and forest branches.' },
+      { time: '0–6s', name: 'The Relic', desc: 'Black void. A large antique hourglass floats. Inside the lower bulb stands a tiny backlit human silhouette, upright and still. No sand movement.' },
+      { time: '6–12s', name: 'The Containment', desc: 'The tiny silhouette remains still inside the lower bulb. Sand begins to fall slowly past them, dusting the bottom of the chamber.' },
+      { time: '12–18s', name: 'The Realization', desc: 'The tiny human inside looks upward. Sand stops mid-air. Silhouette reaches out to touch the glass. Cracks form like geometric blueprint lines.' },
+      { time: '18–25s', name: 'The Break', desc: 'The silhouette pushes through. Glass shatters in slow motion. Sand bursts outward, transforming into planets, birds, waves, and forest branches.' },
       { time: '25–35s', name: 'Expansion', desc: "Floating elements rotate slowly around the human. Subtle golden blueprint lines connect everything. Text: 'When you break time... you experience life.'" },
-      { time: '35–45s', name: 'Reorganization', desc: 'Hourglass shards align into geometric patterns and staircase structures. The brass frame transforms into the hoodie structure.' },
-      { time: '45–55s', name: 'The Stillness', desc: "Human stands wearing the hoodie. Hourglass frame floats behind, empty. Text: 'Time was never infinite. You are.'" }
+      { time: '35–45s', name: 'Reorganization', desc: 'Hourglass shards align into geometric patterns and staircase structures. The brass frame transforms into the hoodie structure on the silhouette.' },
+      { time: '45–55s', name: 'The Stillness', desc: "Human stands wearing the hoodie. Hollow brass frame floats behind, empty. Text: 'Time was never infinite. You are.'" }
     ],
     hiddenDetail: 'Inside the shattered glass shards, if paused, faint OWN KARMA inscriptions are visible — as if time was secretly recording everything.'
   }
 }
+

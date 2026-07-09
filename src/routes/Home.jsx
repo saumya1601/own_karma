@@ -399,32 +399,34 @@ function ConceptTrail() {
   }, [])
 
   return (
-    <div ref={containerRef} className="relative bg-ok-obsidian h-screen overflow-hidden border-t border-b border-ok-stone/30">
-      <div className="absolute top-16 left-6 md:left-12 flex items-baseline gap-4">
-        <h2 className="font-mono text-xs tracking-[0.3em] text-ok-axis uppercase">Concept Trail</h2>
-        <span className="text-[10px] font-mono text-ok-dust">HORIZONTAL NAVIGATION</span>
-      </div>
-      <div ref={listRef} className="flex h-full items-center pl-6 pr-24 gap-8 md:gap-12 w-max">
-        {cards.map((card) => (
-          <Link
-            key={card.slug}
-            to={`/story/${card.slug}`}
-            className="group relative w-[75vw] md:w-[380px] h-[55vh] bg-ok-void border border-ok-stone/40 p-8 flex flex-col justify-between hover:border-ok-axis/50 transition-colors duration-500 shrink-0"
-          >
-            <span className="font-display text-[72px] text-ok-stone group-hover:text-ok-axis/10 transition-colors duration-500 select-none">
-              {card.num}
-            </span>
-            <div className="space-y-3">
-              <p className="font-mono text-[9px] tracking-wider text-ok-axis uppercase">CONCEPT {card.num}</p>
-              <h3 className="font-display text-xl text-ok-bone group-hover:text-ok-axis transition-colors duration-500">
-                {card.title}
-              </h3>
-              <p className="font-mono text-[10px] text-ok-dust group-hover:text-ok-bone transition-colors duration-500">
-                Enter story →
-              </p>
-            </div>
-          </Link>
-        ))}
+    <div>
+      <div ref={containerRef} className="relative bg-ok-obsidian h-screen overflow-hidden border-t border-b border-ok-stone/30">
+        <div className="absolute top-16 left-6 md:left-12 flex items-baseline gap-4">
+          <h2 className="font-mono text-xs tracking-[0.3em] text-ok-axis uppercase">Concept Trail</h2>
+          <span className="text-[10px] font-mono text-ok-dust">HORIZONTAL NAVIGATION</span>
+        </div>
+        <div ref={listRef} className="flex h-full items-center pl-6 pr-24 gap-8 md:gap-12 w-max">
+          {cards.map((card) => (
+            <Link
+              key={card.slug}
+              to={`/story/${card.slug}`}
+              className="group relative w-[75vw] md:w-[380px] h-[55vh] bg-ok-void border border-ok-stone/40 p-8 flex flex-col justify-between hover:border-ok-axis/50 transition-colors duration-500 shrink-0"
+            >
+              <span className="font-display text-[72px] text-ok-stone group-hover:text-ok-axis/10 transition-colors duration-500 select-none">
+                {card.num}
+              </span>
+              <div className="space-y-3">
+                <p className="font-mono text-[9px] tracking-wider text-ok-axis uppercase">CONCEPT {card.num}</p>
+                <h3 className="font-display text-xl text-ok-bone group-hover:text-ok-axis transition-colors duration-500">
+                  {card.title}
+                </h3>
+                <p className="font-mono text-[10px] text-ok-dust group-hover:text-ok-bone transition-colors duration-500">
+                  Enter story →
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   )

@@ -57,6 +57,9 @@ export default function TopNav() {
           <Link to="/story/destiny" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
             {t('nav.destiny')}
           </Link>
+          <Link to="/story/broken-hourglass" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
+            {t('nav.hourglass')}
+          </Link>
         </div>
 
         {/* Language toggle */}

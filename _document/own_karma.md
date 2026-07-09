@@ -9,13 +9,13 @@
 
 ## Contents
 
-|   Concept   | Title                                                       | Summary / Core Elements                            |    Duration    |
-| :----------: | :---------------------------------------------------------- | :------------------------------------------------- | :-------------: |
-| **01** | [What Is Own Karma?](#concept-01-what-is-own-karma)          | The Axis Through All Realms · 8 realms            |   ~42 seconds   |
-| **02** | [Divine — The Blueprint](#concept-02-divine--the-blueprint) | Cosmic reversal · Human consciousness             | ~60–75 seconds |
-| **03** | [Karma&#39;s Eye](#concept-03-karmas-eye)                    | Desert maze · Escher geometry · The Eye of Karma |        -        |
-| **04** | [Destiny](#concept-04-destiny)                               | 4 psychological walls · Calm destruction          |        -        |
-| **05** | [Broken Hourglass](#concept-05-broken-hourglass)             | Time as container · Existential break             |   ~55 seconds   |
+| Concept | Title                                                       | Summary / Core Elements                          | Duration       |
+| :-------:| :------------------------------------------------------------| :-------------------------------------------------| :--------------:|
+| **01**  | [What Is Own Karma?](#concept-01-what-is-own-karma)         | The Axis Through All Realms · 8 realms           | ~42 seconds    |
+| **02**  | [Divine — The Blueprint](#concept-02-divine--the-blueprint) | Cosmic reversal · Human consciousness            | ~60–75 seconds |
+| **03**  | [Karma&#39;s Eye](#concept-03-karmas-eye)                   | Desert maze · Escher geometry · The Eye of Karma | -              |
+| **04**  | [Destiny](#concept-04-destiny)                              | 4 psychological walls · Calm destruction         | -              |
+| **05**  | [Broken Hourglass](#concept-05-broken-hourglass)            | Time as container · Existential break            | ~55 seconds    |
 
 **VISUAL REFERENCE:** `2001: A Space Odyssey` x `Interstellar` x `Vedic Cosmology` x `Architectural Precision`
 
