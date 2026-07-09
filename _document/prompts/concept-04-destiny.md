@@ -187,7 +187,7 @@ CLIP 1 OF 6 (Destiny). Duration: 7.5 s, 24 fps, 180 frames. Text-to-Video genera
 Camera: LOCKED-OFF for entire clip and entire film.
 TONE: Calm Destruction. NEVER angry, violent, or explosive.
 
-OPENING FRAME (frame 0): Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% with faint gold rim-light at shoulders (20% opacity). Vertical golden axis (#D4A855, 2 px core + 8 px glow) extends floor-to-ceiling BEHIND the silhouette. In FRONT of the silhouette (between silhouette and camera): a massive charcoal wall (#0F0F14, cold neutral) fills the middle 60% of the frame vertically and 80% horizontally. Wall surface has low-relief fresco carvings of faint human faces (visible but not identifiable). Etched writing visible as surface texture (implies text but NOT legible letters). Palette: void black + charcoal + gold axis + faint gold rim-light. Camera absolutely locked.
+OPENING FRAME (frame 0): Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% with faint gold rim-light at shoulders (20% opacity). Vertical golden axis (thin core + anisotropic glow, warm amber-gold color) extends floor-to-ceiling BEHIND the silhouette. In FRONT of the silhouette (between silhouette and camera): a massive charcoal wall (cold neutral charcoal color) fills the middle 60% of the frame vertically and 80% horizontally. Wall surface has low-relief fresco carvings of faint human faces (visible but not identifiable). Etched writing visible as surface texture (implies text but NOT legible letters). Palette: void black + charcoal + gold axis + faint gold rim-light. Camera absolutely locked.
 
 BEAT MAP:
 
@@ -195,7 +195,7 @@ BEAT MAP:
   Frames 0–120: wall stays completely intact. Fresco face carvings hold. Subtle particulate drift across the wall face (~3 px/frame at scattered points) implying wind + distant murmurs. Silhouette absolutely still throughout. Golden axis behind the silhouette holds steady visibility.
 
 5.0–7.5 s (frames 120–180) — THE PRESSURE (first 60 frames of canonical 168-frame beat)
-  Frames 120–160 (1.67 s): a soft golden glow (#D4A855) emanates from a specific point on the wall — center-frame X, approximately Y=45% (where the silhouette's palm would touch the wall's surface). Glow ramps from 0% to 20% opacity over 40 frames. NO motion of the silhouette itself — the glow implies the silhouette's hand touching the wall from behind.
+  Frames 120–160 (1.67 s): a soft golden glow (warm amber-gold) emanates from a specific point on the wall — center-frame X, approximately Y=45% (where the silhouette's palm would touch the wall's surface). Glow ramps from 0% to 20% opacity over 40 frames. NO motion of the silhouette itself — the glow implies the silhouette's hand touching the wall from behind.
   Frames 160–180 (0.83 s): the FIRST silent geometric cracks begin to form on the wall around the glow point — precise golden line-art fractures, radiating outward from the palm point at ~10 px/frame. NOT jagged glass-break patterns — clean blueprint geometry. By frame 180: cracks extend ~200 px outward from the palm point in 4–5 line fragments.
 
 Clip 1 ends MID-CRACK PROPAGATION (cracks still spreading) — Clip 2 continues.
@@ -203,12 +203,12 @@ Clip 1 ends MID-CRACK PROPAGATION (cracks still spreading) — Clip 2 continues.
 CLOSING FRAME (frame 180 — extract as handoff-destiny-1.png, verify visually before Clip 2):
 - Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% with faint gold rim-light at shoulders (20% opacity), absolutely still.
 - Vertical golden axis behind silhouette, extending floor-to-ceiling.
-- Massive charcoal wall (#0F0F14) in front of silhouette with:
+- Massive charcoal wall (cold neutral charcoal) in front of silhouette with:
   - Faint fresco face carvings still visible across the surface.
   - Soft golden glow (20% opacity) at center-frame X, Y=45% (palm point).
   - First cracks radiating outward from the palm point — 4–5 clean geometric golden line fragments extending ~200 px outward.
 - Some particulate drift across the wall face.
-- Palette: void black + charcoal #0F0F14 + gold #D4A855 (axis, rim-light, glow, cracks).
+- Palette: void black + charcoal + warm gold (axis, rim-light, glow, cracks).
 - Camera absolutely locked.
 
 TEXT CALLOUTS for this clip (DOM overlays post-render, DO NOT bake as legible letters): 'What will they think?' at ~1 s, 'Be realistic.' at ~2.5 s, 'That's not you.' at ~4 s. The AI should imply text via etched wall texture only — NOT render as readable letters.
@@ -233,34 +233,35 @@ CLIP 2 OF 6 (Destiny). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video gener
 Camera: LOCKED-OFF (same framing as Clip 1).
 TONE: Calm Destruction. Wall shatter is CALM DUST DISSOLUTION, NOT violent glass-break.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) + axis behind, charcoal wall #0F0F14 in front with fresco faces + golden glow at palm point + first cracks radiating ~200 px outward from palm point in 4–5 line fragments.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) + axis behind, charcoal wall in front with fresco faces + golden glow at palm point + first cracks radiating outward from palm point in multiple golden line fragments.
 
 BEAT MAP:
 
 0.0–4.0 s (frames 0–96) — THE PRESSURE (final 108 frames of canonical beat)
-  Frames 0–72 (3 s): cracks continue propagating across the wall — line-fragments extend from the palm point outward toward all wall edges at ~10 px/frame. By frame 72: cracks reach all four wall edges. Wall is now heavily fractured but still standing. Fresco face carvings fade progressively from 100% to 30% opacity over this window. Particulate drift dissipates.
+  Frames 0–72 (3 s): cracks continue propagating across the wall — warm golden line-fragments extend from the palm point outward toward all wall edges. By frame 72: cracks reach all four wall edges. Wall is now heavily fractured but still standing. Fresco face carvings fade progressively from 100% to 30% opacity over this window. Particulate drift dissipates.
   Frames 72–96 (1 s): all cracks fully formed. Wall becomes visibly loose — subtle micro-motion (individual crack fragments shift 1–2 px, no more). Fresco faces at 30% opacity. Wall on the verge of collapse.
 
 4.0–5.0 s (frames 96–120) — WALL 1 SHATTERS (contained in this clip)
-  Frames 96–108 (0.5 s): wall CALMLY dissolves into fine charcoal dust. NOT explosive — no shards, no starburst, no violence. Individual dust particles at ~3–5 px in size fall in cubic ease-in-out motion, drifting downward at ~5 px/frame maximum velocity. Fresco face imagery fades to 0% as the wall dissolves.
-  Frames 108–120 (0.5 s): dust continues falling and dispersing. By frame 120: ~60% of the wall dust has fallen out of frame; remaining ~40% still drifting. Silhouette + axis clearly visible now (no wall obscuring them).
+  Frames 96–108 (0.5 s): wall CALMLY dissolves into fine charcoal dust. NOT explosive — no shards, no starburst, no violence. Individual dust particles fall in slow-motion, drifting downward. Fresco face imagery fades to 0% as the wall dissolves.
+  Frames 108–120 (0.5 s): dust continues falling and dispersing. By frame 120: most of the wall dust has fallen out of frame; remaining dust still drifting. Silhouette + axis clearly visible now (no wall obscuring them).
 
 5.0–7.5 s (frames 120–180) — WALL 2: COMFORT begin (first 60 frames of canonical 144-frame beat)
-  Frames 120–150 (1.25 s): remaining dust from Wall 1 finishes falling. Behind the dispersing dust, WALL 2 (#1A1712, warmer charcoal) begins fading in via 30-frame opacity ramp — from 0% at frame 120 to 100% at frame 150. Wall 2 is smoother than Wall 1, with a subtle inner glow (ochre warm hue at ~10% brightness).
-  Frames 150–180 (1.25 s): WALL 2 fully opaque. Surface has soft rounded pattern implying "comfort object" texture (silhouetted low relief of a bed / blanket / womb shape). Text implied via etched surface texture but NOT legible letters. Silhouette absolutely still.
+  Frames 120–150 (1.25 s): remaining dust from Wall 1 finishes falling. Behind the dispersing dust, WALL 2 (warm charcoal color) begins fading in via opacity ramp. Wall 2 is smoother than Wall 1, with a subtle warm ochre inner glow.
+  Frames 150–180 (1.25 s): WALL 2 fully opaque. Surface has soft rounded pattern implying comfort object texture (silhouetted low relief of a bed / blanket / womb shape). Text implied via etched surface texture but NOT legible letters. Silhouette absolutely still.
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-2.png):
 - Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% with faint gold rim-light, absolutely still.
 - Vertical golden axis behind silhouette, extending floor-to-ceiling.
-- WALL 2 (#1A1712, warm charcoal) fully visible in front of silhouette, filling middle 60% of frame vertically.
-- Wall 2 surface has soft rounded low-relief pattern (comfort object texture), warm inner glow at ~10% brightness.
+- WALL 2 (warm charcoal) fully visible in front of silhouette, filling middle 60% of frame vertically.
+- Wall 2 surface has soft rounded low-relief pattern (comfort object texture), warm inner glow.
 - NO trace of WALL 1 remaining (all dust cleared).
-- Palette: void black + warm charcoal #1A1712 + gold #D4A855 (axis, rim-light) + faint ochre inner glow.
+- Palette: void black + warm charcoal + warm gold (axis, rim-light) + faint ochre inner glow.
 - Camera absolutely locked (identical framing to Clip 1).
 
 TEXT CALLOUT for this clip (DOM overlay, do NOT bake): 'Every destiny begins with disagreement.' at ~2 s.
 
 FORMAT: 1920×1080, 16:9, 24 fps native, no audio, MP4 H.264. Duration exactly 7.5 s.
+```
 ```
 
 **After generation:**
@@ -277,39 +278,40 @@ ffmpeg -sseof -0.05 -i clip-destiny-2.mp4 -vframes 1 -q:v 1 handoff-destiny-2.pn
 
 ```
 CLIP 3 OF 6 (Destiny). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
-Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) makes ONE 20 px step forward mid-clip — this is the ONLY silhouette motion in this clip.
+Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) makes ONE subtle step forward mid-clip — this is the ONLY silhouette motion in this clip.
 TONE: Calm Destruction. Wall 2 dissolves into dust, NOT violent shattering.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) + axis behind, WALL 2 (#1A1712 warm charcoal) fully visible in front with soft rounded low-relief pattern + faint ochre inner glow.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) + axis behind, WALL 2 (warm charcoal color) fully visible in front with soft rounded low-relief pattern + faint ochre inner glow.
 
 BEAT MAP:
 
 0.0–2.5 s (frames 0–60) — WALL 2: COMFORT held stillness (final 60 frames of canonical beat)
-  Frames 0–60: silhouette absolutely still. Wall 2 stays fully intact. Warm inner glow modulates very subtly (10% to 12% brightness cycle over 60 frames — barely perceptible). Text implied via etched texture.
+  Frames 0–60: silhouette absolutely still. Wall 2 stays fully intact. Warm inner glow modulates very subtly. Text implied via etched texture.
 
 2.5–3.0 s (frames 60–72) — SILHOUETTE STEP FORWARD (canonical intentional motion)
-  Frames 60–72 (0.5 s = 12 frames): silhouette shifts 20 px forward toward camera using cubic ease-in-out. Silhouette contour visibly moves forward by 20 px. This is the ONLY motion of the silhouette in the entire film's first half. Silhouette's rim-light briefly brightens to 30% opacity during the motion, back to 20% after.
+  Frames 60–72 (0.5 s = 12 frames): silhouette shifts forward toward camera. Silhouette contour visibly moves forward a small distance. This is the ONLY motion of the silhouette in the entire film's first half. Silhouette's rim-light briefly brightens to 30% opacity during the motion, back to 20% after.
 
 3.0–4.0 s (frames 72–96) — WALL 2 SHATTERS (contained)
-  Frames 72–96 (1 s): WALL 2 shatters INTO DUST. NOT explosive — no shards. Fine warm-charcoal dust particles fall in cubic ease-in-out motion at max 5 px/frame downward drift. The soft rounded pattern (comfort object texture) fades as the wall dissolves. By frame 96: ~50% of dust has fallen; wall's inner glow extinguishes.
+  Frames 72–96 (1 s): WALL 2 shatters INTO DUST. NOT explosive — no shards. Fine warm-charcoal dust particles fall in slow-motion downward. The soft rounded pattern (comfort object texture) fades as the wall dissolves. By frame 96: most of dust has fallen; wall's inner glow extinguishes.
 
 4.0–7.5 s (frames 96–180) — WALL 3: TIME begin (first 84 frames of canonical 168-frame beat)
-  Frames 96–120 (1 s): remaining Wall 2 dust finishes falling. Behind it, WALL 3 (#14100A, cracked amber-charcoal) fades in via 24-frame opacity ramp from 0% to 100%.
+  Frames 96–120 (1 s): remaining Wall 2 dust finishes falling. Behind it, WALL 3 (cracked amber-charcoal color) fades in via opacity ramp.
   Frames 120–150 (1.25 s): Wall 3 surface has an hourglass-shape CARVED INTO IT (low-relief carving of an hourglass, visible as darker charcoal shape against slightly lighter charcoal wall). No sand yet — just the empty hourglass carving.
-  Frames 150–180 (1.25 s): inside the hourglass carving, sand begins to appear at the bottom chamber and starts flowing UPWARD (impossible physics = "wall reality is a lie"). Sand travels at ~2 px/frame upward against gravity. By frame 180: sand fills ~30% of the hourglass carving's upper chamber (having flowed up from the lower).
+  Frames 150–180 (1.25 s): inside the hourglass carving, sand begins to appear at the bottom chamber and starts flowing UPWARD against gravity (impossible physics). Sand travels upward. By frame 180: sand fills about one-third of the hourglass carving's upper chamber (having flowed up from the lower).
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-3.png):
-- Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% but SHIFTED 20 px forward (closer to camera) compared to Clip 1/2 opening frames. Rim-light at shoulders (20% opacity), absolutely still.
+- Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% but SHIFTED forward (closer to camera) compared to Clip 1/2 opening frames. Rim-light at shoulders, absolutely still.
 - Vertical golden axis behind silhouette, extending floor-to-ceiling.
-- WALL 3 (#14100A, cracked amber-charcoal) fully visible in front of silhouette.
-- Wall 3 surface has an hourglass-shape carved into it. Inside the carving: sand flowing upward, upper chamber ~30% full.
+- WALL 3 (cracked amber-charcoal color) fully visible in front of silhouette.
+- Wall 3 surface has an hourglass-shape carved into it. Inside the carving: sand flowing upward, upper chamber about one-third full.
 - NO trace of WALL 2 remaining (dust cleared).
-- Palette: void black + cracked amber-charcoal #14100A + gold #D4A855 (axis, rim-light) + subtle amber tint in the hourglass carving.
+- Palette: void black + cracked amber-charcoal + warm gold (axis, rim-light) + subtle amber tint in the hourglass carving.
 - Camera absolutely locked (identical framing to Clips 1 and 2).
 
 TEXT CALLOUTS for this clip (DOM overlays, do NOT bake): 'Later.' at ~0.5 s, 'You deserve rest.' at ~1.2 s, 'It's fine.' at ~2 s.
 
 FORMAT: 1920×1080, 16:9, 24 fps native, no audio, MP4 H.264. Duration exactly 7.5 s.
+```
 ```
 
 **After generation:**
