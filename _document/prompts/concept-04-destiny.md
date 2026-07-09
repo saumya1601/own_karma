@@ -380,36 +380,36 @@ ffmpeg -sseof -0.05 -i clip-destiny-4.mp4 -vframes 1 -q:v 1 handoff-destiny-4.pn
 
 ```
 CLIP 5 OF 6 (Destiny). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
-Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) takes FINAL 20 px step forward and passes through mirror in this clip.
+Camera: LOCKED-OFF. Backlit human silhouette (fully clothed, draped in a dark formless gown) takes final step forward and passes through mirror in this clip.
 TONE: Calm Destruction. Mirror shatters SILENTLY into light fragments that become blueprint geometry.
 
-OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) 40 px forward from film-start, gold axis behind, WALL 4 (#0C0C10 mirror-dark charcoal) in front reflecting a distorted-smaller-hunched version of the silhouette at center-frame Y=50%.
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Backlit human silhouette (fully clothed, draped in a dark formless gown) positioned forward from film-start, gold axis behind, WALL 4 (mirror-dark charcoal color) in front reflecting a distorted-smaller-hunched version of the silhouette.
 
 BEAT MAP:
 
 0.0–4.0 s (frames 0–96) — WALL 4: SELF held stillness (canonical middle 96 frames of 240-frame beat)
-  Frames 0–96: FULL STILLNESS. Absolutely no motion. No particulates. Silhouette and its distorted mirror-reflection both absolutely still. This is the emotional weight of the film — the silhouette stares at their diminished self for a full 4 seconds of held silence.
+  Frames 0–96: FULL STILLNESS. Absolutely no motion. No particulates. Silhouette and its distorted mirror-reflection both absolutely still. Stares at the diminished self in held silence.
 
 4.0–4.5 s (frames 96–108) — SILHOUETTE STEP FORWARD (final canonical intentional motion)
-  Frames 96–108 (0.5 s = 12 frames): silhouette shifts FINAL 20 px forward toward camera using cubic ease-in-out. Silhouette is now 60 px total forward from film-start position. Rim-light briefly brightens.
+  Frames 96–108 (0.5 s = 12 frames): silhouette shifts final step forward toward camera using cubic ease-in-out. Silhouette is now positioned fully forward. Rim-light briefly brightens.
 
 4.5–5.5 s (frames 108–132) — STEP THROUGH THE MIRROR (contained)
-  Frames 108–120 (0.5 s): silhouette walks INTO the mirror's plane. The mirror-reflection at center-frame Y=50% (the distorted-smaller-hunched version) begins to dissolve as the silhouette advances.
-  Frames 120–132 (0.5 s): Mirror shatters SILENTLY into light fragments. NO sound implied (no starburst, no glare, no whip streaks). Fragments drift outward at ~3 px/frame in cubic ease-out. Each fragment TRANSFORMS mid-air into a golden geometric blueprint line segment — clean line-art, precise, calm. By frame 132: mirror fully dissolved into ~40 individual blueprint line segments hovering in the space where the mirror was.
+  Frames 108–120 (0.5 s): silhouette walks INTO the mirror's plane. The mirror-reflection (the distorted-smaller-hunched version) begins to dissolve as the silhouette advances.
+  Frames 120–132 (0.5 s): Mirror shatters SILENTLY into light fragments. NO sound implied (no starburst, no glare, no whip streaks). Fragments drift outward in slow motion. Each fragment TRANSFORMS mid-air into a golden geometric blueprint line segment — clean line-art, precise, calm. By frame 132: mirror fully dissolved into multiple individual blueprint line segments hovering in the space where the mirror was.
 
 5.5–7.5 s (frames 132–180) — DESTINY REVEALED begin (first 48 frames of canonical 240-frame beat)
-  Frames 132–180 (2 s): walls are all gone (Wall 1, 2, 3, 4 all dissolved). Space is open. Silhouette is at THE SAME SIZE as film-start (canon rule: "Human has not grown — same size"). Blueprint fragments from the shattered mirror hover in the air around the silhouette at various depths — ~40 individual golden line segments floating.
-  Frames 132–180: blueprint fragments begin drifting slowly (~1 px/frame) toward the silhouette but do NOT yet form the hoodie — hoodie weaving happens in Clip 6.
+  Frames 132–180 (2 s): walls are all gone (all four walls dissolved). Space is open. Silhouette is at the same size as film-start (canon rule: "Human has not grown — same size"). Blueprint fragments from the shattered mirror hover in the air around the silhouette at various depths — multiple individual golden line segments floating.
+  Frames 132–180: blueprint fragments begin drifting slowly toward the silhouette but do NOT yet form the hoodie — hoodie weaving happens in Clip 6.
 
 Clip 5 ends with fragments hovering, hoodie formation not yet begun — Clip 6 continues.
 
 CLOSING FRAME (frame 180 — extract as handoff-destiny-5.png):
-- Backlit human silhouette (fully clothed, draped in a dark formless gown) at center-frame Y=40% but SHIFTED 60 px forward total from film-start. Absolutely still with rim-light at shoulders.
+- Backlit human silhouette (fully clothed, draped in a dark formless gown) positioned forward from film-start. Absolutely still with rim-light at shoulders.
 - Vertical golden axis behind silhouette, extending floor-to-ceiling — now fully visible without any wall obscuring it.
 - NO walls visible (all four have shattered).
-- ~40 individual golden blueprint line segments hovering in the space around the silhouette at various depths.
+- Multiple individual golden blueprint line segments hovering in the space around the silhouette at various depths.
 - Fragments are drifting subtly toward the silhouette but not yet weaving.
-- Palette: void black + gold #D4A855 (axis, rim-light, fragments) + faint bone off-white for any light through / around fragments.
+- Palette: void black + gold (axis, rim-light, fragments) + faint bone off-white for any light through / around fragments.
 - Camera absolutely locked (identical framing to prior clips).
 
 FORMAT: 1920×1080, 16:9, 24 fps native, no audio, MP4 H.264. Duration exactly 7.5 s.
