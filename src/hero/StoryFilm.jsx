@@ -129,7 +129,6 @@ export default function StoryFilm({ src, poster, aspectRatio = '16 / 9', label }
                     playsInline
                     disablePictureInPicture
                     disableRemotePlayback
-                    crossOrigin="anonymous"
                     aria-hidden="true"
                 >
                     <source src={src} type="video/mp4" />

@@ -53,6 +53,26 @@ export default function Home() {
 
   useDocumentTitle('Home')
 
+  // Route-scoped preload: only inject when Home mounts, remove on unmount.
+  // Replaces the unconditional <link> tags previously in index.html which fired
+  // "preloaded but not used" warnings on every non-home route. See HeroFilm.jsx.
+  useEffect(() => {
+    const links = [
+      { href: '/videos/hero-poster.jpg', media: '(min-width: 768px)' },
+      { href: '/videos/hero-poster-mobile.jpg', media: '(max-width: 767px)' },
+    ].map(({ href, media }) => {
+      const link = document.createElement('link')
+      link.rel = 'preload'
+      link.as = 'image'
+      link.href = href
+      link.media = media
+      link.setAttribute('fetchpriority', 'high')
+      document.head.appendChild(link)
+      return link
+    })
+    return () => { links.forEach((l) => l.remove()) }
+  }, [])
+
   const handleExplore = () => {
     const lenis = getLenis()
     if (lenis) {

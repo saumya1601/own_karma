@@ -7,11 +7,13 @@
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="OWN KARMA — Not worn to be seen. Worn to stand correctly." />
 
-  <!-- Hero poster preload — starts fetch before React mounts (~200–400ms faster first paint).
-       Media queries ensure only the correct-orientation poster is prefetched per viewport. -->
-  <link rel="preload" as="image" href="/videos/hero-poster.jpg" fetchpriority="high" media="(min-width: 768px)" />
-  <link rel="preload" as="image" href="/videos/hero-poster-mobile.jpg" fetchpriority="high"
-    media="(max-width: 767px)" />
+  <!-- Route-scoped poster + video preloads are injected by React (see Home.jsx and StoryConcept.jsx).
+       We do NOT preload posters here because they are route-specific:
+         /              needs hero-poster.jpg
+         /story/divine  needs story-divine-poster.jpg
+         other routes   need nothing
+       An unconditional preload here wastes bandwidth on non-matching routes AND fires Chrome's
+       "preloaded but not used within a few seconds" warning. -->
 
   <!-- Open Graph -->
   <meta property="og:site_name" content="OWN KARMA" />

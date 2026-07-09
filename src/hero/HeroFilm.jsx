@@ -122,14 +122,13 @@ export default function HeroFilm({ onProgress, src, poster }) {
                         }`}
                     style={{ objectPosition: 'center 40%' }}
                     poster={sources.poster}
-                    preload="auto"
+                    preload="metadata"
                     autoPlay
                     loop
                     muted={isMuted}
                     playsInline
                     disablePictureInPicture
                     disableRemotePlayback
-                    crossOrigin="anonymous"
                     aria-hidden="true"
                     onTimeUpdate={onProgress ? handleTimeUpdate : undefined}
                 >

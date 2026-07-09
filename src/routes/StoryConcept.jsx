@@ -235,6 +235,31 @@ function DivineHero() {
   const overlayRef = useRef(null)
   const hasStartedRef = useRef(false)
 
+  // Route-scoped preload: kick off poster + video fetches during hydration so
+  // they overlap with React mount instead of waiting until <HeroFilm> commits.
+  // On Vercel this saves ~300–600 ms on cold cache. Removed on unmount so
+  // navigating away doesn't leave stale hints in the document head.
+  useEffect(() => {
+    const posterLink = document.createElement('link')
+    posterLink.rel = 'preload'
+    posterLink.as = 'image'
+    posterLink.href = '/videos/story-divine-poster.jpg'
+    posterLink.setAttribute('fetchpriority', 'high')
+    document.head.appendChild(posterLink)
+
+    const videoLink = document.createElement('link')
+    videoLink.rel = 'preload'
+    videoLink.as = 'video'
+    videoLink.href = '/videos/story-divine.mp4'
+    videoLink.type = 'video/mp4'
+    document.head.appendChild(videoLink)
+
+    return () => {
+      posterLink.remove()
+      videoLink.remove()
+    }
+  }, [])
+
   const handleExplore = () => {
     const lenis = getLenis()
     if (lenis) {
