@@ -82,6 +82,11 @@ export const storyConcepts = {
     subtitle: 'The Walls You Call Reality',
     quote: 'Break what contains you.',
     philosophy: 'Destiny is not something you reach; it is something you remove. You are not building your future; you are breaking your prison. The walls are not concrete; they are psychological.',
+    video: {
+      src: '/videos/story-destiny.mp4',
+      poster: '/videos/story-destiny-poster.jpg',
+      label: 'Concept 04 film — four psychological walls, calm destruction',
+    },
     timeline: [
       { time: '0–5s', name: 'Wall 1: Opinion', desc: "A massive wall made of faint human faces and whispers. Text etched across: 'What will they think?' / 'Be realistic.' Human does not move." },
       { time: '5–12s', name: 'The Pressure', desc: "Human touches wall with one hand. Silent cracks form. Whispers stop. Text: 'Every destiny begins with disagreement.'" },
