@@ -133,7 +133,7 @@ When the walls shatter they dissolve into staircase lines, eye geometry, and blu
 
 > You don't wear fashion — you wear what you broke through.
 
-NEGATIVE: see §5, PLUS: no wall shattering with speed or violence, no glass shards flying, no sharp reflections, no starburst glare, no red anywhere, no whispered-text as readable letters (imply via texture only).
+NEGATIVE: see §6, PLUS: no wall shattering with speed or violence, no glass shards flying, no sharp reflections, no starburst glare, no red anywhere, no whispered-text as readable letters (imply via texture only).
 
 FORMAT: MP4 H.264, 1920×1080, 24 fps native, ≤ 45 s. Audio optional.
 ```
@@ -464,11 +464,338 @@ FORMAT: 1920×1080, 16:9, 24 fps native, no audio, MP4 H.264. Duration exactly 7
 ```powershell
 ffmpeg -sseof -0.05 -i clip-destiny-6.mp4 -vframes 1 -q:v 1 handoff-destiny-6.png
 ```
-This handoff-destiny-6.png becomes the basis for `story-destiny-poster.jpg` after the merge (§3).
+This handoff-destiny-6.png becomes the basis for `story-destiny-poster.jpg` after the merge (§4).
 
 ---
 
-## 3. Post-generation ffmpeg merge (6 clips → `story-destiny.mp4`)
+## 3. Mobile portrait variant (1080×1920, 6 clips × 7.5 s)
+
+**Same 6-clip beat distribution as landscape**, but portrait 9:16. Set Flow / Veo 3 aspect to **9:16 (Portrait)** before each generation. Target resolution **1080×1920** (portrait 1080p — do NOT generate at 720×1280).
+
+### Portrait framing rules (apply to every mobile clip)
+
+- **Vertical golden axis extends from top pixel to bottom pixel of the frame** (not just silhouette extents).
+- Silhouette centered horizontally (X=540 ± 10 px) and at **Y=40% from top** (~Y=768 px).
+- **Upper 20% (Y=0–384)** kept visually quiet — void black with only the axis passing through.
+- **Lower 40% (Y=1152–1920)** kept visually quiet for DOM overlay text (Concept 04 has text on all four walls).
+- Content density lives in the **middle 40% band (Y=384–1152)**. Walls fill this band vertically and edge-to-edge horizontally.
+- Concept-04 specific: walls are naturally **VERTICAL rectangles** — in portrait they fill nearly the entire frame width (5% margin on each side) and the full middle band height (Y=25%–75%). Palm-point glow, cracks, and dust-fall all stay within the middle band.
+- Camera **LOCKED-OFF for entire 45 s** — same as landscape, unique to Concept 04.
+- Silhouette forward-motion is the same 20 px per canonical step in portrait (Z-axis motion is aspect-independent).
+
+---
+
+### Mobile Clip 1 — WALL 1: OPINION + PRESSURE begin (0.00–7.50 s)
+
+**Mode:** Text-to-Video. Prepend Style Lock + Portrait framing rules. Then submit at aspect 9:16:
+
+```
+CLIP 1 OF 6 (Destiny Mobile 9:16). Duration: 7.5 s, 24 fps, 180 frames. Text-to-Video generation.
+Camera: LOCKED-OFF for entire clip and entire film.
+TONE: Calm Destruction. NEVER angry, violent, or explosive.
+
+OPENING FRAME (frame 0): Portrait 1080×1920. Backlit human silhouette at center-frame X, Y=40% from top (~Y=768) with faint gold rim-light at shoulders (20% opacity). Vertical golden axis (#D4A855, 2 px core + 8 px glow) extends from top pixel (Y=0) to bottom pixel (Y=1919) BEHIND the silhouette. In FRONT of the silhouette (between silhouette and camera): a massive charcoal wall (#0F0F14, cold neutral) fills the middle 50% of the frame vertically (Y=25%–75%) and 90% horizontally (X=54–1026, ~5% margin each side). Wall surface has low-relief fresco carvings of faint human faces (visible but not identifiable) contained within the wall region. Etched writing visible as surface texture (implies text but NOT legible letters). Upper 25% and lower 25% show void black + gold axis only. Palette: void black + charcoal + gold axis + faint gold rim-light. Camera absolutely locked.
+
+BEAT MAP:
+
+0.0–5.0 s (frames 0–120) — WALL 1: OPINION (whole canonical beat)
+  Frames 0–120: wall stays completely intact. Fresco face carvings hold. Subtle particulate drift across the wall face (~3 px/frame at scattered points within the wall region) implying wind + distant murmurs. Silhouette absolutely still. Golden axis behind the silhouette holds steady visibility (visible above and below the wall in the upper/lower quiet zones).
+
+5.0–7.5 s (frames 120–180) — THE PRESSURE (first 60 frames of canonical 168-frame beat)
+  Frames 120–160 (1.67 s): a soft golden glow (#D4A855) emanates from a specific point on the wall — center-frame X, approximately Y=45% (where the silhouette's palm would touch the wall's surface from behind). Glow ramps from 0% to 20% opacity over 40 frames. NO motion of the silhouette — the glow implies the silhouette's hand touching the wall from behind.
+  Frames 160–180 (0.83 s): FIRST silent geometric cracks form on the wall around the glow point — precise golden line-art fractures, radiating outward from the palm point at ~10 px/frame. NOT jagged glass-break — clean blueprint geometry. Cracks stay contained within the wall region (do not extend into the upper/lower quiet zones). By frame 180: cracks extend ~180 px outward from the palm point in 4–5 line fragments.
+
+Clip 1 ends MID-CRACK PROPAGATION — Clip 2 continues.
+
+CLOSING FRAME (frame 180 — extract as handoff-destiny-mobile-1.png, verify visually before Clip 2):
+- Portrait 1080×1920. Silhouette at center-frame X, Y=40% with faint gold rim-light at shoulders (20% opacity), absolutely still.
+- Vertical golden axis behind silhouette, extending top pixel to bottom pixel of frame.
+- Massive charcoal wall (#0F0F14) in front of silhouette filling middle 50% vertically + 90% horizontally with:
+  - Faint fresco face carvings still visible across the wall surface.
+  - Soft golden glow (20% opacity) at center-frame X, Y=45% (palm point).
+  - First cracks radiating outward from the palm point — 4–5 clean geometric golden line fragments extending ~180 px outward, contained within the wall region.
+- Some particulate drift across the wall face.
+- Upper 25% (Y=0–480) and lower 25% (Y=1440–1920) show void black + gold axis only.
+- Palette: void black + charcoal #0F0F14 + gold #D4A855 (axis, rim-light, glow, cracks).
+- Camera absolutely locked.
+
+TEXT CALLOUTS for this clip (DOM overlays post-render in lower 40% quiet zone, DO NOT bake as legible letters): 'What will they think?' at ~1 s, 'Be realistic.' at ~2.5 s, 'That's not you.' at ~4 s.
+
+FORMAT: 1080×1920 (portrait 1080p), 9:16, 24 fps native, no audio, MP4 H.264. Duration exactly 7.5 s.
+```
+
+**After generation:**
+```powershell
+ffmpeg -sseof -0.05 -i clip-destiny-mobile-1.mp4 -vframes 1 -q:v 1 handoff-destiny-mobile-1.png
+```
+**Verify:** Wall fills middle 50% vertically + 90% horizontally, with visible margin above and below showing void + axis. Fresco faces + glow + first cracks all contained within wall region. If wall extends to top/bottom of frame or camera has moved, regenerate.
+
+---
+
+### Mobile Clip 2 — PRESSURE finish + Wall 1 SHATTER + WALL 2 begin (7.50–15.00 s)
+
+**Mode:** Image-to-Video. Upload `handoff-destiny-mobile-1.png`. Prepend Style Lock + Portrait framing rules. Then submit at aspect 9:16:
+
+```
+CLIP 2 OF 6 (Destiny Mobile 9:16). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
+Camera: LOCKED-OFF (same framing as Clip 1).
+TONE: Calm Destruction. Wall shatter is CALM DUST DISSOLUTION, NOT violent glass-break.
+
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Silhouette + axis behind, charcoal wall #0F0F14 in front (filling middle 50% vertically + 90% horizontally) with fresco faces + golden glow at palm point + first cracks radiating ~180 px outward in 4–5 line fragments.
+
+BEAT MAP:
+
+0.0–4.0 s (frames 0–96) — THE PRESSURE (final 108 frames of canonical beat)
+  Frames 0–72 (3 s): cracks continue propagating across the wall. Line-fragments extend from the palm point outward toward all wall edges at ~10 px/frame. By frame 72: cracks reach all four wall edges (top, bottom, left, right of the wall region — not the frame). Wall heavily fractured but still standing. Fresco face carvings fade progressively from 100% to 30% opacity. Particulate drift dissipates.
+  Frames 72–96 (1 s): all cracks fully formed. Wall visibly loose — subtle micro-motion (individual crack fragments shift 1–2 px). Fresco faces at 30% opacity. Wall on verge of collapse.
+
+4.0–5.0 s (frames 96–120) — WALL 1 SHATTERS (contained in this clip)
+  Frames 96–108 (0.5 s): wall CALMLY dissolves into fine charcoal dust. NOT explosive — no shards, no starburst, no violence. Individual dust particles at ~3–5 px in size fall in cubic ease-in-out motion, drifting downward at ~5 px/frame maximum velocity. Dust stays within the middle band initially; some particles begin entering the lower 25% quiet zone as they fall. Fresco face imagery fades to 0%.
+  Frames 108–120 (0.5 s): dust continues falling and dispersing. By frame 120: ~60% of the wall dust has fallen out of the middle band into the lower zone and past the frame edge; remaining ~40% still drifting. Silhouette + axis clearly visible now (no wall obscuring them).
+
+5.0–7.5 s (frames 120–180) — WALL 2: COMFORT begin (first 60 frames of canonical 144-frame beat)
+  Frames 120–150 (1.25 s): remaining dust from Wall 1 finishes falling. Behind the dispersing dust, WALL 2 (#1A1712, warmer charcoal) begins fading in via 30-frame opacity ramp — from 0% at frame 120 to 100% at frame 150. Wall 2 occupies the same wall region as Wall 1 (middle 50% vertically + 90% horizontally). Wall 2 is smoother than Wall 1, with a subtle inner glow (ochre warm hue at ~10% brightness).
+  Frames 150–180 (1.25 s): WALL 2 fully opaque. Surface has soft rounded pattern implying "comfort object" texture (silhouetted low relief of a bed / blanket / womb shape) contained within the wall region. Text implied via etched surface texture but NOT legible letters. Silhouette absolutely still.
+
+CLOSING FRAME (frame 180 — extract as handoff-destiny-mobile-2.png):
+- Portrait 1080×1920. Silhouette at center-frame X, Y=40% with faint gold rim-light, absolutely still.
+- Vertical golden axis behind silhouette, top pixel to bottom pixel of frame.
+- WALL 2 (#1A1712, warm charcoal) fully visible in front of silhouette, filling middle 50% vertically + 90% horizontally.
+- Wall 2 surface has soft rounded low-relief pattern (comfort object texture), warm inner glow at ~10% brightness.
+- NO trace of WALL 1 remaining (all dust cleared).
+- Upper 25% and lower 25% show void black + axis only.
+- Palette: void black + warm charcoal #1A1712 + gold #D4A855 + faint ochre inner glow.
+- Camera absolutely locked (identical framing to Clip 1).
+
+TEXT CALLOUT for this clip (DOM overlay in lower 40% quiet zone, do NOT bake): 'Every destiny begins with disagreement.' at ~2 s.
+
+FORMAT: 1080×1920 (portrait 1080p), 9:16, 24 fps native, no audio, MP4 H.264. Duration exactly 7.5 s.
+```
+
+**After generation:**
+```powershell
+ffmpeg -sseof -0.05 -i clip-destiny-mobile-2.mp4 -vframes 1 -q:v 1 handoff-destiny-mobile-2.png
+```
+**Verify (critical):** Wall 1 SHATTERED into calm dust (NOT glass shards, NOT explosive). Wall 2 fully visible in same wall region with warm charcoal + soft rounded pattern. Camera locked. If shatter appears violent, regenerate with stronger "calm dust dissolution" language.
+
+---
+
+### Mobile Clip 3 — WALL 2 finish + step + Wall 2 SHATTER + WALL 3 begin (15.00–22.50 s)
+
+**Mode:** Image-to-Video. Upload `handoff-destiny-mobile-2.png`. Prepend Style Lock + Portrait framing rules. Then submit at aspect 9:16:
+
+```
+CLIP 3 OF 6 (Destiny Mobile 9:16). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
+Camera: LOCKED-OFF. Silhouette makes ONE 20 px step forward mid-clip.
+TONE: Calm Destruction. Wall 2 dissolves into dust.
+
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Silhouette + axis behind, WALL 2 (#1A1712 warm charcoal) fully visible in front (middle 50% + 90% region) with soft rounded low-relief pattern + faint ochre inner glow.
+
+BEAT MAP:
+
+0.0–2.5 s (frames 0–60) — WALL 2: COMFORT held stillness
+  Frames 0–60: silhouette absolutely still. Wall 2 stays fully intact. Warm inner glow modulates very subtly (10% to 12% brightness cycle).
+
+2.5–3.0 s (frames 60–72) — SILHOUETTE STEP FORWARD (canonical intentional motion)
+  Frames 60–72 (0.5 s = 12 frames): silhouette shifts 20 px forward toward camera using cubic ease-in-out. In portrait this is a 20 px Z-axis motion (aspect-independent) — silhouette contour visibly moves 20 px forward. Silhouette's rim-light briefly brightens to 30% opacity during the motion.
+
+3.0–4.0 s (frames 72–96) — WALL 2 SHATTERS (contained)
+  Frames 72–96 (1 s): WALL 2 shatters INTO DUST. NOT explosive — no shards. Fine warm-charcoal dust particles fall in cubic ease-in-out motion at max 5 px/frame downward drift. Some dust falls into the lower 25% quiet zone as it clears the middle band. Soft rounded pattern fades. By frame 96: ~50% of dust has fallen; wall's inner glow extinguishes.
+
+4.0–7.5 s (frames 96–180) — WALL 3: TIME begin (first 84 frames of canonical 168-frame beat)
+  Frames 96–120 (1 s): remaining Wall 2 dust finishes falling. Behind it, WALL 3 (#14100A, cracked amber-charcoal) fades in via 24-frame opacity ramp from 0% to 100% in the same wall region (middle 50% + 90%).
+  Frames 120–150 (1.25 s): Wall 3 surface has an hourglass-shape CARVED INTO IT (low-relief carving, visible as darker charcoal shape against slightly lighter charcoal wall). The hourglass carving is naturally vertical — fits portrait well, spanning most of the wall region's height (Y=30–70%).
+  Frames 150–180 (1.25 s): inside the hourglass carving, sand appears at the bottom chamber and flows UPWARD (impossible physics = "wall reality is a lie"). Sand travels at ~2 px/frame upward against gravity. By frame 180: sand fills ~30% of the hourglass carving's upper chamber.
+
+CLOSING FRAME (frame 180 — extract as handoff-destiny-mobile-3.png):
+- Portrait 1080×1920. Silhouette at center-frame X, Y=40% but SHIFTED 20 px forward (closer to camera) compared to Clip 1/2 opening frames.
+- Vertical golden axis behind silhouette, top pixel to bottom pixel of frame.
+- WALL 3 (#14100A, cracked amber-charcoal) fully visible in front of silhouette in middle 50% + 90% region.
+- Wall 3 surface has vertically-oriented hourglass-shape carved into it (Y=30–70%). Inside the carving: sand flowing upward, upper chamber ~30% full.
+- NO trace of WALL 2 remaining.
+- Upper 25% and lower 25% show void black + axis only.
+- Palette: void black + cracked amber-charcoal #14100A + gold #D4A855 + subtle amber tint in hourglass carving.
+- Camera absolutely locked (identical framing to prior clips).
+
+TEXT CALLOUTS for this clip (DOM overlays in lower 40% quiet zone, do NOT bake): 'Later.' at ~0.5 s, 'You deserve rest.' at ~1.2 s, 'It's fine.' at ~2 s.
+
+FORMAT: 1080×1920 (portrait 1080p), 9:16, 24 fps native, no audio, MP4 H.264. Duration exactly 7.5 s.
+```
+
+**After generation:**
+```powershell
+ffmpeg -sseof -0.05 -i clip-destiny-mobile-3.mp4 -vframes 1 -q:v 1 handoff-destiny-mobile-3.png
+```
+**Verify:** Silhouette clearly 20 px closer to camera than in Clip 2's frame 0. Wall 3 revealed with vertically-oriented hourglass carving + upward-flowing sand. If silhouette didn't step, hourglass has downward sand, or hourglass appears horizontally oriented, regenerate.
+
+---
+
+### Mobile Clip 4 — WALL 3 finish + step + walk-through + WALL 4 begin (22.50–30.00 s)
+
+**Mode:** Image-to-Video. Upload `handoff-destiny-mobile-3.png`. Prepend Style Lock + Portrait framing rules. Then submit at aspect 9:16:
+
+```
+CLIP 4 OF 6 (Destiny Mobile 9:16). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
+Camera: LOCKED-OFF. Silhouette steps forward AND walks THROUGH the wall's plane in this clip.
+TONE: Calm Destruction. Wall 3 fractures as clean blueprint geometry.
+
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Silhouette 20 px forward from film-start position, gold axis top pixel to bottom pixel of frame, WALL 3 (#14100A cracked amber-charcoal) in front (middle 50% + 90% region) with vertical hourglass carving containing upward-flowing sand at ~30% upper-chamber fill.
+
+BEAT MAP:
+
+0.0–2.0 s (frames 0–48) — WALL 3: TIME held
+  Frames 0–48: sand continues flowing upward at ~2 px/frame. By frame 48: upper chamber ~50% full.
+
+2.0–2.5 s (frames 48–60) — SILHOUETTE STEP FORWARD
+  Frames 48–60 (0.5 s = 12 frames): silhouette shifts ANOTHER 20 px forward toward camera using cubic ease-in-out. Silhouette is now 40 px total forward from film-start position.
+
+2.5–4.5 s (frames 60–108) — WALK THROUGH THE WALL
+  Frames 60–96 (1.5 s): silhouette walks INTO the wall's plane — visually, the wall fractures around the silhouette's body. Cracks form as clean geometric blueprint lines (golden #D4A855, precise, calm). Cracks emanate outward from where the silhouette's body intersects the wall plane. By frame 96: silhouette has moved through the wall plane; wall is heavily fractured.
+  Frames 96–108 (0.5 s): as silhouette passes through, sand in the hourglass carving HALTS mid-flow (frozen mid-air within the fractured hourglass). Fractures continue spreading.
+
+4.5–5.0 s (frames 108–120) — WALL 3 FULLY FRACTURES (contained)
+  Frames 108–120 (0.5 s): remaining wall fragments dissolve like slow-falling glass shards drifting at ~3 px/frame. NOT violent — controlled slow-motion glass dissolution. NO starburst reflections. By frame 120: ~50% of wall fragments have drifted out of frame (some down into lower quiet zone, some sideways past the wall region's edges).
+
+5.0–7.5 s (frames 120–180) — WALL 4: SELF begin (first 60 frames of canonical 240-frame beat)
+  Frames 120–150 (1.25 s): remaining Wall 3 fragments finish drifting. Behind them, WALL 4 (#0C0C10, mirror-dark charcoal) fades in via 30-frame opacity ramp from 0% to 100% in the same wall region.
+  Frames 150–180 (1.25 s): WALL 4 is a distorted mirror surface. It reflects a distorted version of the silhouette — the reflection is SMALLER (~70% of silhouette's actual size), HUNCHED, and appears more doubtful. Reflection visible in the mirror at approximately center-frame X, Y=50% from top. Silhouette itself absolutely still.
+
+CLOSING FRAME (frame 180 — extract as handoff-destiny-mobile-4.png):
+- Portrait 1080×1920. Silhouette at center-frame X, Y=40% but SHIFTED 40 px forward total from film-start.
+- Vertical golden axis behind silhouette, top pixel to bottom pixel of frame.
+- WALL 4 (#0C0C10, mirror-dark charcoal) fully visible in front of silhouette in middle 50% + 90% region.
+- Wall 4 surface reflects a distorted, smaller (~70% size), hunched version of the silhouette at ~center-frame X, Y=50%.
+- NO trace of WALL 3 remaining.
+- Upper 25% and lower 25% show void black + axis only.
+- Palette: void black + mirror-dark charcoal #0C0C10 + gold #D4A855 + subtle bone off-white reflections in the mirror.
+- Camera absolutely locked (identical framing to prior clips).
+
+TEXT CALLOUTS for this clip (DOM overlays in lower 40% quiet zone, do NOT bake): 'Not now.' at ~0.5 s, 'Someday.' at ~1.5 s, 'When I'm ready.' at ~2.5 s, 'Time is not your enemy. Delay is.' at ~5 s.
+
+FORMAT: 1080×1920 (portrait 1080p), 9:16, 24 fps native, no audio, MP4 H.264. Duration exactly 7.5 s.
+```
+
+**After generation:**
+```powershell
+ffmpeg -sseof -0.05 -i clip-destiny-mobile-4.mp4 -vframes 1 -q:v 1 handoff-destiny-mobile-4.png
+```
+**Verify (critical):** Silhouette 40 px forward from film-start. Wall 3 fractured cleanly. Wall 4 mirror visible with distorted-smaller-hunched reflection. If reflection looks the same as silhouette or wall 3 shattered violently, regenerate.
+
+---
+
+### Mobile Clip 5 — WALL 4 held + step through + Mirror SHATTER + DESTINY REVEALED begin (30.00–37.50 s)
+
+**Mode:** Image-to-Video. Upload `handoff-destiny-mobile-4.png`. Prepend Style Lock + Portrait framing rules. Then submit at aspect 9:16:
+
+```
+CLIP 5 OF 6 (Destiny Mobile 9:16). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation.
+Camera: LOCKED-OFF. Silhouette takes FINAL 20 px step forward and passes through mirror.
+TONE: Calm Destruction. Mirror shatters SILENTLY into light fragments that become blueprint geometry.
+
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Silhouette 40 px forward from film-start, gold axis top pixel to bottom pixel of frame, WALL 4 (#0C0C10 mirror-dark charcoal) in front (middle 50% + 90% region) reflecting a distorted-smaller-hunched version of the silhouette at center-frame X, Y=50% from top.
+
+BEAT MAP:
+
+0.0–4.0 s (frames 0–96) — WALL 4: SELF held stillness
+  Frames 0–96: FULL STILLNESS. Absolutely no motion. No particulates. Silhouette and its distorted mirror-reflection both absolutely still. Emotional weight of the film — 4 seconds of held silence.
+
+4.0–4.5 s (frames 96–108) — SILHOUETTE STEP FORWARD (final canonical intentional motion)
+  Frames 96–108 (0.5 s = 12 frames): silhouette shifts FINAL 20 px forward toward camera using cubic ease-in-out. Silhouette is now 60 px total forward from film-start position.
+
+4.5–5.5 s (frames 108–132) — STEP THROUGH THE MIRROR (contained)
+  Frames 108–120 (0.5 s): silhouette walks INTO the mirror's plane. The mirror-reflection begins to dissolve as the silhouette advances.
+  Frames 120–132 (0.5 s): Mirror shatters SILENTLY into light fragments. NO sound implied — no starburst, no glare, no whip streaks. Fragments drift outward at ~3 px/frame in cubic ease-out. Each fragment TRANSFORMS mid-air into a golden geometric blueprint line segment — clean line-art, precise, calm. By frame 132: mirror fully dissolved into ~40 individual blueprint line segments hovering in the space where the mirror was (within the middle band).
+
+5.5–7.5 s (frames 132–180) — DESTINY REVEALED begin (first 48 frames of canonical 240-frame beat)
+  Frames 132–180 (2 s): walls all gone. Space is open. Silhouette at THE SAME SIZE as film-start (canon rule). Blueprint fragments hover in the air around the silhouette at various depths — ~40 individual golden line segments floating, all within the middle 60% band vertically.
+  Frames 132–180: fragments begin drifting slowly (~1 px/frame) toward the silhouette but do NOT yet form the hoodie.
+
+Clip 5 ends with fragments hovering — Clip 6 continues.
+
+CLOSING FRAME (frame 180 — extract as handoff-destiny-mobile-5.png):
+- Portrait 1080×1920. Silhouette at center-frame X, Y=40% but SHIFTED 60 px forward total from film-start.
+- Vertical golden axis behind silhouette, top pixel to bottom pixel of frame — now fully visible without any wall obscuring it.
+- NO walls visible (all four have shattered).
+- ~40 individual golden blueprint line segments hovering in the space around the silhouette at various depths, all within middle 60% band (Y=384–1536).
+- Fragments drifting subtly toward the silhouette but not yet weaving.
+- Upper 20% and lower 20% zones: void black + axis + very faint fragment remnants at <25% opacity.
+- Palette: void black + gold #D4A855.
+- Camera absolutely locked.
+
+FORMAT: 1080×1920 (portrait 1080p), 9:16, 24 fps native, no audio, MP4 H.264. Duration exactly 7.5 s.
+```
+
+**After generation:**
+```powershell
+ffmpeg -sseof -0.05 -i clip-destiny-mobile-5.mp4 -vframes 1 -q:v 1 handoff-destiny-mobile-5.png
+```
+**Verify (critical):** All 4 walls gone. Silhouette at same body size as film-start (verify by comparing silhouette height to Clip 1's opening frame). Blueprint fragments hovering within middle band. No hoodie yet. If hoodie is forming already or fragments have merged, regenerate.
+
+---
+
+### Mobile Clip 6 — DESTINY REVEALED finish + poster frame (37.50–45.00 s)
+
+**Mode:** Image-to-Video. Upload `handoff-destiny-mobile-5.png`. Prepend Style Lock + Portrait framing rules. Then submit at aspect 9:16:
+
+```
+CLIP 6 OF 6 (Destiny Mobile 9:16). Duration: 7.5 s, 24 fps, 180 frames. Image-to-Video generation. Ends on the mobile poster frame.
+Camera: LOCKED-OFF. Silhouette absolutely motionless throughout.
+TONE: Calm Destruction resolves into calm inevitability.
+
+OPENING FRAME (frame 0): MATCH THE UPLOADED REFERENCE IMAGE EXACTLY. Portrait 1080×1920. Silhouette 60 px forward from film-start, gold axis top pixel to bottom pixel of frame, ~40 individual golden blueprint line segments hovering in the space around the silhouette within middle 60% band, no walls remaining.
+
+BEAT MAP:
+
+0.0–5.0 s (frames 0–120) — DESTINY REVEALED (final portion of canonical 240-frame beat, condensed to 120 here + 48 already in Clip 5)
+  Frames 0–48 (2 s): blueprint fragments drift TOWARD the silhouette at increasing rate (~3 px/frame). Fragments visibly reorganize as they approach.
+  Frames 48–96 (2 s): fragments begin weaving into the hoodie shape ON the silhouette. Weaving is organic — fragments flow inward, meeting at the axis (spine seam) first, then radiating outward. Hoodie forms from collar → shoulders → torso → arms over 48 frames. By frame 96: hoodie ~80% complete. Pattern on hoodie visibly composed of the four walls' crack lines:
+    - Opinion wall's spreading cracks form the shoulder yoke pattern
+    - Comfort wall's soft rounded lines form the sleeve details
+    - Time wall's hourglass geometry forms a chest emblem (Y≈48%)
+    - Self mirror's blueprint fragments form the overall stitch/seam pattern
+  Frames 96–120 (1 s): remaining fragments complete the hoodie. Silhouette wearing complete hoodie made from what was broken.
+
+5.0–7.5 s (frames 120–180) — DEAD-AIR HOLD (poster frame)
+  Frames 120–180 (2.5 s): absolutely no motion. Silhouette in completed hoodie stands at center-frame X, Y=40%, 60 px forward from film-start position. This final frame IS the mobile poster.jpg export.
+
+CLOSING FRAME (frame 180 — this IS the mobile poster frame, extract as story-destiny-poster-mobile candidate):
+- Portrait 1080×1920. Backlit human silhouette at center-frame X, Y=40% (60 px forward from film-start), same body size as film-start, wearing complete hoodie.
+- Hoodie fabric composed of the four walls' crack lines as design pattern: opinion cracks in shoulders, comfort curves in sleeves, time hourglass at chest (Y≈48%), mirror fragments in overall seam. Fabric is charcoal-black with subtle gold line-art details.
+- Vertical golden axis behind silhouette, top pixel to bottom pixel of frame.
+- NO walls, NO wall dust, NO blueprint fragments hovering (all absorbed into hoodie).
+- Void black background around silhouette.
+- Upper 20% and lower 40% zones stay quiet (void black + axis only).
+- Palette: void black + charcoal hoodie + gold #D4A855.
+- Camera absolutely locked. Zero motion.
+
+DEFINING LINE for this clip (rendered as DOM overlay in lower 40% quiet zone, DO NOT bake): 'Break what contains you.' at ~5 s, held for the final 2.5 s.
+
+FORMAT: 1080×1920 (portrait 1080p), 9:16, 24 fps native, no audio, MP4 H.264. Duration exactly 7.5 s.
+```
+
+**After generation:**
+```powershell
+ffmpeg -sseof -0.05 -i clip-destiny-mobile-6.mp4 -vframes 1 -q:v 1 handoff-destiny-mobile-6.png
+```
+This handoff-destiny-mobile-6.png becomes the basis for `story-destiny-poster-mobile.jpg` after the mobile merge (see §4).
+
+---
+
+### Mobile QA delta (in addition to §7 landscape QA)
+
+- [ ] Every clip resolution is exactly **1080×1920** (portrait 1080p) — NOT 720×1280. Verify with `ffprobe -v error -select_streams v -show_entries stream=width,height -of csv=p=0 clip-destiny-mobile-N.mp4`.
+- [ ] Gold axis extends **top pixel to bottom pixel of frame** in every clip.
+- [ ] Silhouette centered horizontally (X=540 ± 10 px) and at Y=768 ± 30 px (Y=40% of 1920).
+- [ ] Walls fill middle 50% vertically (Y=25–75%) + 90% horizontally (~5% margin each side) in Clips 1–5. Upper 25% (Y=0–480) and lower 25% (Y=1440–1920) show void black + axis only during wall-present clips.
+- [ ] Wall shatter dust falls DOWNWARD into the lower quiet zone (not sideways or upward).
+- [ ] Silhouette Z-axis forward-motion is 20 px per canonical step (aspect-independent — same 20 px in portrait as in landscape).
+- [ ] Hourglass carving in Wall 3 (Clip 3–4) is vertically oriented (fits portrait naturally).
+- [ ] TONE RULES ABSOLUTE from canon: NO angry/violent/explosive moments anywhere. All wall breaks Controlled/Inevitable/Adult/Calm Destruction.
+- [ ] Portrait-specific watermark coords for delogo in §4 merge: `x=530:y=1100:w=130:h=140` (verify by inspecting corner crops of `clip-destiny-mobile-1.mp4`).
+
+---
+
+## 4. Post-generation ffmpeg merge (6 clips → `story-destiny.mp4`)
 
 Detect Veo watermark position first (usually bottom-right of clip 1):
 
@@ -500,7 +827,7 @@ ffmpeg -y -sseof -0.1 -i public\videos\story-destiny.mp4 -update 1 -frames:v 1 -
 
 ---
 
-## 4. Install into the site
+## 5. Install into the site
 
 Once assets are in `public/videos/`, add to [`src/data/storyConcepts.js`](../../src/data/storyConcepts.js) `'destiny'` block:
 
@@ -521,7 +848,7 @@ Refresh `/story/destiny`.
 
 ---
 
-## 5. Universal negative prompt (paste into "avoid" field on every generation)
+## 6. Universal negative prompt (paste into "avoid" field on every generation)
 
 ```
 text on screen, subtitles, letters visible in frame, on-screen typography, logos, watermarks, products (until beat 6), hoodies as flat garments, apparel, clothing, brand marks, faces close-up, hands close-up, blood, red, violence, weapons, vehicles, buildings, cityscape, motion blur that streaks whites, chromatic aberration, RGB glitch, cyberpunk, neon pink, neon cyan, cartoon, anime, low resolution, blurry, jpeg artifacts, 3D-model preview look, wireframe, HUD, UI elements, letterbox bars, ken burns pan, dutch tilt, handheld shake, zoom, lens flare whip, particle sparkle overlay, motion trail, tracer lines, ghosting between frames, judder, frame-blend, 60fps interpolation, TV motion smoothing, overexposed highlights, pure white, pure red, pure blue, RGB primaries, bloom halo, digital sharpening,
@@ -530,7 +857,7 @@ NO angry/violent/explosive wall breaks, NO glass shards flying, NO starburst ref
 
 ---
 
-## 6. QA checklist — Concept 04 continuity + canon compliance
+## 7. QA checklist — Concept 04 continuity + canon compliance
 
 **Camera lock check (critical for this concept):**
 - [ ] Extract midframes from all 6 clips. The framing must be PIXEL-IDENTICAL across all 6 clips (same wall position, same silhouette center-X, same field of view). If the framing shifts by even 5 px between clips, the seam will be visible.
@@ -585,7 +912,7 @@ NO angry/violent/explosive wall breaks, NO glass shards flying, NO starburst ref
 - [ ] Watermark completely removed via delogo.
 
 **Deliverable format:**
-- [ ] Encoded per §3 recipe.
+- [ ] Encoded per §4 recipe.
 - [ ] `story-destiny.mp4` file size ≤ 18 MB (bump `-crf` to 27 if larger).
 - [ ] `story-destiny-poster.jpg` ≤ 220 KB.
 - [ ] `ffprobe` reports 1920×1080, 24 fps, H.264 main profile.
@@ -596,7 +923,7 @@ NO angry/violent/explosive wall breaks, NO glass shards flying, NO starburst ref
 
 ---
 
-## 7. Cross-references
+## 8. Cross-references
 
 - [`_document/own_karma.md` §Concept 04](../own_karma.md) — canonical VFX blueprint
 - [`_document/hero-video-prompt.md`](../hero-video-prompt.md) — main index
