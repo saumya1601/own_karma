@@ -359,13 +359,17 @@ function DivineHero() {
       className="relative w-full bg-ok-void overflow-hidden flex items-center justify-center -mt-16 pt-16"
       style={{ height: 'calc(100vh + 4rem)' }}
     >
-      {/* Full-viewport cinematic video hero */}
+      {/* Full-viewport cinematic video hero.
+          preload="metadata" (HeroFilm default) rather than "auto" — the browser
+          fetches just the moov atom + first keyframe (~500 KB), starts playback,
+          and progressively buffers ahead. preload="auto" on an 18 MB file over
+          4G forces the browser to try to download the whole thing before
+          smoothing playback, which causes visible stalls on Vercel cold cache. */}
       <div className="absolute inset-0 w-full h-full z-0">
         <HeroFilm
           onProgress={setProgress}
           src="/videos/story-divine.mp4"
           poster="/videos/story-divine-poster.jpg"
-          preload="auto"
         />
       </div>
 

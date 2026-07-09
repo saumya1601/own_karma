@@ -54,6 +54,11 @@ export const storyConcepts = {
     subtitle: 'Inward Descent',
     quote: 'The staircase is not leading upward. It is folding inward.',
     philosophy: 'An infinite staircase maze built on desert stone and fractured pyramids. The staircase appears to rise, but when the perspective rotates, it actually descends inward. The climb is not upward; the climb is inward.',
+    video: {
+      src: '/videos/story-karmas-eye.mp4',
+      poster: '/videos/story-karmas-eye-poster.jpg',
+      label: 'Concept 03 film — desert maze folding inward around the Eye',
+    },
     timeline: [
       { time: '0–5s', name: 'The Desert', desc: "Wide cinematic shot. Endless desert. Heat distortion. Fractured pyramids. Single human silhouette. Text: 'Every journey begins in illusion.'" },
       { time: '5–12s', name: 'The Maze Reveals', desc: 'Sand shifts. Geometric lines emerge from beneath. Ground morphs into impossible staircase maze. Sand cascades down stair edges. Pyramids connected by staircase bridges.' },

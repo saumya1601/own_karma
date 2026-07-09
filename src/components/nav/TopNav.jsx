@@ -51,6 +51,9 @@ export default function TopNav() {
           <Link to="/story/divine" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
             {t('nav.divine')}
           </Link>
+          <Link to="/story/karmas-eye" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
+            {t('nav.karmas_eye')}
+          </Link>
           <Link to="/waitlist" className="text-ok-dust hover:text-ok-bone transition-colors duration-300">
             {t('nav.waitlist')}
           </Link>
